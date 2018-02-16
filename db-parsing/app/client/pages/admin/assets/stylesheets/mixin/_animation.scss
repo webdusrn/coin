@@ -1,0 +1,26 @@
+@mixin animation($animation-name, $animation-duration, $animation-timing-function, $animation-delay, $animation-fill-mode) {
+    animation-name: $animation-name;
+    -webkit-animation-name: $animation-name;
+    -moz-animation-name: $animation-name;
+    -o-animation-name: $animation-name;
+
+    animation-duration: $animation-duration;
+    -webkit-animation-duration: $animation-duration;
+    -moz-animation-duration: $animation-duration;
+    -o-animation-duration: $animation-duration;
+
+    animation-timing-function: $animation-timing-function;
+    -webkit-animation-timing-function: $animation-timing-function;
+    -moz-animation-timing-function: $animation-timing-function;
+    -o-animation-timing-function: $animation-timing-function;
+
+    animation-delay: $animation-delay;
+    -webkit-animation-delay: $animation-delay;
+    -moz-animation-delay: $animation-delay;
+    -o-animation-delay: $animation-delay;
+
+    animation-fill-mode: $animation-fill-mode;
+    -webkit-animation-fill-mode: $animation-fill-mode;
+    -moz-animation-fill-mode: $animation-fill-mode;
+    -o-animation-fill-mode: $animation-fill-mode;
+}

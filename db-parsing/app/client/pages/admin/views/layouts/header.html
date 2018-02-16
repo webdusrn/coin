@@ -1,0 +1,27 @@
+<header id="sg-main-header-container" data-ng-controller="HeaderCtrl">
+    <div id="sg-main-header">
+        <!--<div class="sg-main-header-logo-image" data-ng-click=""></div>-->
+        <div class="sg-main-header-left">
+            <div class="sg-main-header-left-navigation-btn" ng-click="vm.toggleNavigation()">
+                <div class="sg-main-header-left-navigation-btn-item-container">
+                    <div class="sg-main-header-left-navigation-btn-item"></div>
+                    <div class="sg-main-header-left-navigation-btn-item"></div>
+                    <div class="sg-main-header-left-navigation-btn-item"></div>
+                </div>
+            </div>
+            <div class="sg-main-header-left-logo">
+
+            </div>
+        </div>
+        <div class="sg-main-header-right">
+            <!--<div class="sg-main-header-user-info" data-ng-if="vm.session">-->
+                <!--<div class="sg-main-header-user-image"></div>-->
+                <!--<p class="sg-main-header-user-nick">{{ vm.session.nick }}</p>-->
+            <!--</div>-->
+            <div class="sg-main-header-logout-button" data-ng-if="vm.session" data-ng-click="vm.logout()">
+                <!--<img class="sg-main-header-logout-button-image" src="/pages/admin/assets/images/ic_out.png" alt=""/>-->
+                <div>{{'logout'|translate}}</div>
+            </div>
+        </div>
+    </div>
+</header>

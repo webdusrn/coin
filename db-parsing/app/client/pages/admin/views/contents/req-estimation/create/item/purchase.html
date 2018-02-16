@@ -1,0 +1,7 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">신품 구매 여부 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.isPurchase">
+        <option disabled selected hidden value="">-</option>
+        <option data-ng-repeat="item in enumIsPurchases" value="{{ item }}">{{ item }}</option>
+    </select>
+</div>

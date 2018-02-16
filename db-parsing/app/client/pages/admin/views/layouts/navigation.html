@@ -1,0 +1,197 @@
+<div data-ng-controller="NavigationCtrl">
+    <div ng-class="vm.isNavigationVisible?'sg-navigation-wrap': 'sg-navigation-wrap-hide'">
+        <div class="sg-navigation-top">
+            <div class="sg-initial">
+                <p>{{ vm.session.nick[0].toUpperCase() }}</p>
+            </div>
+            <div class="sg-navigation-nick">
+                {{vm.session.nick}}
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == vm.ADMIN.moduleDashboardInfo}"
+                         data-ng-click="vm.goIndex()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'dashboard' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'user'}"
+                         data-ng-click="vm.goUser()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'userManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'notice'}"
+                         data-ng-click="vm.goNotice()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'noticeManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'engineer'}"
+                         data-ng-click="vm.goEngineer()">
+                        <a class="sg-navigation-item-text">
+                            <p>기사 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'premium-info'}"
+                         data-ng-click="vm.goPremiumInfo()">
+                        <a class="sg-navigation-item-text">
+                            <p>프리미엄 기사 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'contract-info'}"
+                         data-ng-click="vm.goContractInfo()">
+                        <a class="sg-navigation-item-text">
+                            <p>도급 기사 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'req-estimation-create'}"
+                         data-ng-click="vm.goReqEstimationCreate()">
+                        <a class="sg-navigation-item-text">
+                            <p>설치 신청 생성</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'req-estimation'}"
+                         data-ng-click="vm.goReqEstimation()">
+                        <a class="sg-navigation-item-text">
+                            <p>설치 신청 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'install-cs'}"
+                         data-ng-click="vm.goInstallCs()">
+                        <a class="sg-navigation-item-text">
+                            <p>설치 CS 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'as-history'}"
+                         data-ng-click="vm.goAsHistory()">
+                        <a class="sg-navigation-item-text">
+                            <p>A/S 문의 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'point-history'}"
+                         data-ng-click="vm.goPointHistory()">
+                        <a class="sg-navigation-item-text">
+                            <p>포인트 내역 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'vbank'}"
+                         data-ng-click="vm.goVbank()">
+                        <a class="sg-navigation-item-text">
+                            <p>가상계좌 내역 관리</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == vm.ADMIN.moduleReports}"
+                         data-ng-click="vm.goReport()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'reportManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == vm.ADMIN.moduleTerms}"
+                         data-ng-click="vm.goTerms()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'termsManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == vm.ADMIN.moduleImages}"
+                         data-ng-click="vm.goImage()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'imageManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == vm.ADMIN.moduleCompanyInfo}"
+                         data-ng-click="vm.goInfo()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'infoManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'option'}"
+                         data-ng-click="vm.goOption()">
+                        <a class="sg-navigation-item-text">
+                            <p>조건부 기사 통계</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'blog'}"
+                         data-ng-click="vm.goBlog()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'blogManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'engineer-phone-num'}"
+                         data-ng-click="vm.goEngineerPhoneNum()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ 'engineerPhoneNumManage' | translate }}</p>
+                        </a>
+                    </div>
+                </li>
+                <li class="sg-navigation-item">
+                    <div class="sg-navigation-item-text-wrap"
+                         data-ng-class="{'active': vm.activeNav == 'biz-msg'}"
+                         data-ng-click="vm.goBizMsg()">
+                        <a class="sg-navigation-item-text">
+                            <p>{{ '알림톡 테스트' }}</p>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sg-navigation-fake-btn" ng-click="vm.toggleNavigation()" ng-if="vm.isNavigationVisible"></div>
+</div>

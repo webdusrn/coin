@@ -1,0 +1,12 @@
+@media (min-width: 1100px) {
+  .modal-big {
+    width: 1000px !important;
+  }
+}
+
+@media screen and (max-width: 1099px) {
+  .modal-big {
+    width: auto !important;
+    margin: 30px 10px !important;
+  }
+}

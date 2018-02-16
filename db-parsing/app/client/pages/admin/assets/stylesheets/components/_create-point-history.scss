@@ -1,0 +1,21 @@
+#sg-create-point-history-wrap {
+  div.sg-g-modal-header {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  div.sg-g-modal-content {
+    padding: 0 36px;
+    div.sg-g-input-wrap {
+      select.sgc-option {
+        width: 100%
+      }
+    }
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    text-align: right;
+    button:first-child {
+      margin-right: 9px;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<div id="sg-contract-info-wrap" data-ng-controller="ContractInfoCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">도급 기사 관리</div>
+
+        <div class="sg-contract-info-manage-search-wrap">
+            <select class="sgc-option" data-ng-model="form.searchField">
+                <option data-ng-repeat="item in enumSearchFields" value="{{ item }}">
+                    {{ item | translate }}
+                </option>
+            </select>
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findContractInfos(true)">
+                    <input type="text" class="sgc-search-input" data-ng-model="form.searchItem" placeholder="검색어">
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-contract-info-manage-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option" data-ng-model="form.state">
+                    <option data-ng-repeat="item in enumStates" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.category">
+                    <option data-ng-repeat="item in enumCategories" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ contractInfos.count }}</span></p>
+        </div>
+
+        <div class="sg-contract-info-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">상태</h6>
+                <h6 class="sg-header">항목</h6>
+                <h6 class="sg-header">기사명</h6>
+                <h6 class="sg-header">기사번호</h6>
+                <h6 class="sg-header">도급 시작일</h6>
+                <h6 class="sg-header">도급 종료일</h6>
+                <h6 class="sg-header">이행보증 이미지</h6>
+                <h6 class="sg-header">미인증/미완료 사유</h6>
+                <h6 class="sg-header">신청일</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in contractInfos.rows" data-ng-click="detailContractInfo(item, $index, 'lg')">
+                        <div class="sg-item"><span class="sg-state" data-ng-class="item.state"></span></div>
+                        <div class="sg-item">{{ item.state | translate }}</div>
+                        <div class="sg-item">{{ item.category | translate }}</div>
+                        <div class="sg-item">{{ item.user.name }}</div>
+                        <div class="sg-item">{{ item.user.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item">{{ item.startDate ? (item.startDate | date: 'yyyy-MM-dd') : '-' }}</div>
+                        <div class="sg-item">{{ item.endDate ? (item.endDate | date: 'yyyy-MM-dd') : '-' }}</div>
+                        <div class="sg-item">{{ item.contractImageId ? 'Y' : 'N' }}</div>
+                        <div class="sg-item">{{ item.failMessage ? 'Y' : 'N' }}</div>
+                        <div class="sg-item">{{ item.createdAt | microTimeToDate }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button type="button" class="sgc-btn-more" data-ng-click="findContractInfos()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<detail-contract-info></detail-contract-info>

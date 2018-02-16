@@ -1,0 +1,96 @@
+@media only screen and (max-width: 780px){
+  #sg-blog-manage-wrap {
+    .sg-blog-manage-search-wrap{
+      .sg-g-search-wrap{
+        width: 100%;
+        select{
+          width: 100%;
+        }
+        form{
+          width: 100%;
+          margin-top: 5px;
+        }
+      }
+
+      .sg-btn-wrapper{
+        margin-top: 10px;
+      }
+    }
+
+    .sg-blog-manage-select-wrap{
+      width: 100%;
+      .sg-left{
+        width: 80%;
+
+        float: left;
+        select{
+          width: 33%;
+          margin-left: 0px;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .sg-blog-manage-item-wrap{
+      .sg-list-header{
+        display: none;
+      }
+
+      div.sg-list-content {
+        ul {
+          position: relative;
+          &.sg-list-normal{
+            display: none;
+          }
+          &.sg-list-responsive{
+            display: inline-block;
+          }
+          li {
+            height: 310px;
+            .sg-item-wrapper{
+              width: 100%;
+              float: none;
+              div.sg-item{
+                width: 50%;
+                .sg-list-card-title {
+                  display: inline-block;
+                  margin: 0;
+                  font-size: 12px;
+                  font-weight: 400;
+                  color: #8d93a6;
+                  width: 30%;
+                  text-align: left;
+                  padding-left: 5px;
+                }
+
+                .sg-list-card-item{
+                  width: 70%;
+                  display: inline-block;
+                }
+
+                &:nth-of-type(3){
+                  width: 100%;
+                  .sg-list-card-title{
+                    width: 15%;
+                  }
+                  .sg-list-card-item{
+                    width: 85%;
+                  }
+                }
+              }
+
+
+            }
+            .sg-item-btn-wrapper{
+              width: 100%;
+              float: none;
+              button.sg-blog{
+                width: 30%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

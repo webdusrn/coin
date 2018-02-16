@@ -1,0 +1,163 @@
+#sg-req-estimation-stats-wrap {
+  div.sg-tab-menu-wrap {
+    position: relative;
+    @include after-clear();
+    button.sg-tab-button {
+      position: relative;
+      display: block;
+      width: 25%;
+      height: 46px;
+      font-size: 18px;
+      float: left;
+      color: white;
+      background-color: #555a77;
+      -webkit-transition: background-color .1s;
+      -moz-transition: background-color .1s;
+      -ms-transition: background-color .1s;
+      -o-transition: background-color .1s;
+      transition: background-color .1s;
+      &:hover,
+      &.sg-active {
+        background-color: #464b69;
+      }
+      &:nth-of-type(1) {
+        border-top-left-radius: 6px;
+      }
+      &:nth-of-type(4) {
+        border-top-right-radius: 6px;
+      }
+    }
+  }
+  p.sg-explain {
+    margin-top: 10px;
+    padding: 0 36px;
+    color: #8d93a6;
+  }
+  div.sg-g-modal-content {
+    padding: 0 36px;
+    select.sgc-option {
+      display: block;
+      margin-right: 6px;
+      float: left;
+      &.sg-big {
+        width: 130px;
+      }
+    }
+    datepicker {
+      margin-right: 6px;
+      width: initial;
+      float: left;
+      input.sg-g-input {
+        width: 160px;
+        border-radius: 5px;
+        border: solid 1px #d5dbec;
+        padding-left: 8px;
+        background: white url(/pages/admin/assets/images/ic_corporate_date_24_2x.png) no-repeat;
+        background-size: 24px;
+        background-position: right 10px center;
+        line-height: 39px;
+        cursor: pointer;
+      }
+    }
+    div.sg-title-wrap {
+      padding: 15px 0;
+      width: 100%;
+      font-size: 0;
+      float: left;
+      h6.sg-title {
+        display: inline-block;
+        margin: 0;
+        font-size: 12px;
+        font-weight: 400;
+        color: #8d93a6;
+        text-align: center;
+        &:nth-of-type(1),
+        &:nth-of-type(11) {
+          width: 12%;
+        }
+        &:nth-of-type(2),
+        &:nth-of-type(3),
+        &:nth-of-type(4),
+        &:nth-of-type(5),
+        &:nth-of-type(6),
+        &:nth-of-type(9),
+        &:nth-of-type(10) {
+          width: 8%;
+        }
+        &:nth-of-type(7),
+        &:nth-of-type(8) {
+          width: 10%;
+        }
+      }
+    }
+    div.sg-item-wrap {
+      position: relative;
+      width: 100%;
+      float: left;
+      ul {
+        position: relative;
+        li {
+          position: relative;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          padding: 10px 0;
+          font-size: 0;
+          background-color: #f1f3f8;
+          &.sg-total-item {
+            background-color: #8d93a6;
+            div.sg-item {
+              color: white;
+            }
+          }
+          &:last-child {
+            margin-bottom: 0;
+          }
+          div.sg-item {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 400;
+            color: #8d93a6;
+            text-align: center;
+            &:nth-of-type(1),
+            &:nth-of-type(11) {
+              width: 12%;
+            }
+            &:nth-of-type(2),
+            &:nth-of-type(3),
+            &:nth-of-type(4),
+            &:nth-of-type(5),
+            &:nth-of-type(6),
+            &:nth-of-type(9),
+            &:nth-of-type(10) {
+              width: 8%;
+            }
+            &:nth-of-type(7),
+            &:nth-of-type(8) {
+              width: 10%;
+            }
+          }
+        }
+      }
+    }
+    div.sg-g-input-wrap {
+      margin-top: 10px;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #f1f3f8;
+      label.sg-g-label {
+        color: #555b77;
+      }
+      p.sg-g-text {
+        border-bottom: 1px solid #555b77;
+        padding-left: 0;
+        color: #555b77;
+        font-size: 16px;
+        text-align: right;
+      }
+    }
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    text-align: right;
+  }
+}

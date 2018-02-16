@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">주변기기 숨기기 시공 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.hideSurrounding">
+        <option value="" hidden selected disabled>-</option>
+        <option data-ng-repeat="item in enumHideSurroundings" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

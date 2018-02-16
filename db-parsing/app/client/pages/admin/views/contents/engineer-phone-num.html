@@ -1,0 +1,60 @@
+<div id="sg-engineer-phone-num-manage-wrap" data-ng-controller="EngineerPhoneNumCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">
+            {{ 'engineerPhoneNumManage' | translate }}
+        </div>
+
+        <div class="sg-engineer-phone-num-manage-search-wrap">
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findEngineerPhoneNums(true)">
+                    <input class="sgc-search-input" data-ng-model="form.searchItem" type="text" placeholder="{{ 'phoneNum' | translate }}">
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-engineer-phone-num-manage-select-wrap">
+            <div class="sg-left">
+                <select data-ng-model="form.category" class="sgc-option">
+                    <option data-ng-repeat="item in enumCategories" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select data-ng-model="form.type" class="sgc-option">
+                    <option data-ng-repeat="item in enumTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select data-ng-model="form.role" class="sgc-option">
+                    <option data-ng-repeat="item in enumRoles" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ engineerPhonNums.count }}</span></p>
+        </div>
+
+        <div class="sg-engineer-phone-num-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">{{ 'category' | translate }}</h6>
+                <h6 class="sg-header">{{ 'phoneNum' | translate }}</h6>
+                <h6 class="sg-header">{{ 'signUpCheck' | translate }}</h6>
+                <h6 class="sg-header">{{ 'noRole' | translate }}</h6>
+                <h6 class="sg-header">{{ 'signUpAt' | translate }}</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in engineerPhonNums.rows">
+                        <div class="sg-item">{{ item.category | translate }}</div>
+                        <div class="sg-item">{{ item.phoneNum }}</div>
+                        <div class="sg-item">{{ item.signUpCheck | returnSignUpCheck }}</div>
+                        <div class="sg-item">{{ (item.role | translate) || ('noData' | translate) }}</div>
+                        <div class="sg-item">{{ (item.signUpAt | microTimeToDateTime) || ('noData' | translate) }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button class="sgc-btn-more"  data-ng-click="findEngineerPhoneNums()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

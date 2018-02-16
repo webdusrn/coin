@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">매립형 여부</label>
+    <select class="sgc-option" data-ng-model="form.reclamation">
+        <option value="" hidden selected disabled>-</option>
+        <option data-ng-repeat="item in enumReclamations" value="{{ item }}">
+            {{ item }}
+        </option>
+    </select>
+</div>

@@ -1,0 +1,80 @@
+<div id="sg-option-manage-wrap" data-ng-controller="OptionCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">
+            조건부 기사 통계
+        </div>
+
+        <div class="sg-option-manage-search-wrap">
+            <select data-ng-model="form.searchField" class="sgc-option">
+                <option data-ng-repeat="item in enumSearchFields" value="{{ item }}">
+                    {{ item | translate }}
+                </option>
+            </select>
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findOptions(true)">
+                    <input class="sgc-search-input" data-ng-model="form.searchItem" type="text" placeholder="{{ 'typeKeywords' | translate }}">
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-option-manage-select-wrap">
+            <div class="sg-left">
+                <select data-ng-model="form.orderBy" class="sgc-option sg-order-by-select">
+                    <option data-ng-repeat="item in enumOrderBys" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select data-ng-model="form.sort" class="sgc-option">
+                    <option data-ng-repeat="item in enumSortTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select data-ng-model="form.type" class="sgc-option">
+                    <option data-ng-repeat="item in enumTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select data-ng-model="form.sido" class="sgc-option">
+                    <option data-ng-repeat="item in addressFields" value="{{ item.name }}">
+                        {{ item.alias }}
+                    </option>
+                </select>
+                <select data-ng-model="form.sigungu" class="sgc-option">
+                    <option data-ng-repeat="item in enumSigungus" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ options.count }}</span></p>
+        </div>
+        <div class="sg-option-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">{{ 'id' | translate }}&nbsp;</h6>
+                <h6 class="sg-header">{{ 'name' | translate }}&nbsp;</h6>
+                <h6 class="sg-header">{{ 'phoneNum' | translate }}&nbsp;</h6>
+                <h6 class="sg-header">{{ 'estimationTotalCount' | translate }}&nbsp;</h6>
+                <h6 class="sg-header">{{ 'estimationMatchCount' | translate }}&nbsp;</h6>
+                <h6 class="sg-header">{{ 'estimationStandbyCount' | translate }}&nbsp;</h6>
+                <h6 class="sg-header">{{ 'estimationCancelCount' | translate }}&nbsp;</h6>
+                <h6 class="sg-header">{{ 'estimationCloseCount' | translate }}</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in options.rows">
+                        <div class="sg-item">{{ item.id }}&nbsp;</div>
+                        <div class="sg-item">{{ item.name }}&nbsp;</div>
+                        <div class="sg-item">{{ item.phoneNum }}&nbsp;</div>
+                        <div class="sg-item">{{ item.totalCount }}&nbsp;</div>
+                        <div class="sg-item">{{ item.matchCount }}&nbsp;</div>
+                        <div class="sg-item">{{ item.standbyCount }}&nbsp;</div>
+                        <div class="sg-item">{{ item.cancelCount }}&nbsp;</div>
+                        <div class="sg-item">{{ item.closeCount }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button class="sgc-btn-more"  data-ng-click="findOptions()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

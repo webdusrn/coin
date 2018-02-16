@@ -1,0 +1,130 @@
+<script type="text/ng-template" id="myDetailContractInfo.html">
+    <div id="sg-detail-contract-info-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-g-modal-header">
+            <p>{{ '도급 기사 신청 상세' }} ({{ contractInfo.state | translate }})</p>
+        </div>
+        <div class="sg-g-modal-content">
+            <div class="sg-left sg-half">
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">상태</label>
+                    <p class="sg-g-text sg-state">
+                        <span class="sg-state" data-ng-class="contractInfo.state"></span>
+                        <span>{{ contractInfo.state | translate }}</span>
+                    </p>
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">항목</label>
+                    <p class="sg-g-text">{{ contractInfo.category | translate }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">기사명</label>
+                    <p class="sg-g-text">{{ contractInfo.user.name }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">기사번호</label>
+                    <p class="sg-g-text">{{ contractInfo.user.phoneNum | returnPhoneNum }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">도급 시작일</label>
+                    <p class="sg-g-text">{{ contractInfo.startDate ? (contractInfo.startDate | date: 'yyyy-MM-dd') : '-' }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">도급 종료일</label>
+                    <p class="sg-g-text">{{ contractInfo.endDate ? (contractInfo.endDate | date: 'yyyy-MM-dd') : '-' }}</p>
+                </div>
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">신청일</label>
+                    <p class="sg-g-text">{{ contractInfo.createdAt | microTimeToDateTime }}</p>
+                </div>
+            </div>
+            <div class="sg-left sg-half sg-last">
+                <div class="sg-g-input-wrap sg-contract-image">
+                    <label class="sg-g-label">이행보증 이미지</label>
+                    <img class="sg-image" data-ng-if="contractInfo.contractImageId" data-ng-src="{{ vm.returnImageSrc(contractInfo.contractImage) }}">
+                </div>
+            </div>
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">신청 옵션</label>
+                <ul class="sg-location-tag">
+                    <li><span>하루설치: {{ contractInfo.isCanInstallAmountPerDay }}</span></li>
+                    <li>
+                        <span>토요일: </span>
+                        <span data-ng-if="contractInfo.isCanInstallSaturday">가능</span>
+                        <span data-ng-if="!contractInfo.isCanInstallSaturday">불가능</span>
+                    </li>
+                    <li data-ng-if="contractInfo.isCanWallTvOwnBracket !== null">
+                        <span>브라켓: </span>
+                        <span data-ng-if="contractInfo.isCanWallTvOwnBracket">보유</span>
+                        <span data-ng-if="!contractInfo.isCanWallTvOwnBracket">미보유</span>
+                    </li>
+                    <li data-ng-if="contractInfo.isCanAirConditionerTopInstall !== null">
+                        <span>천정형: </span>
+                        <span data-ng-if="contractInfo.isCanAirConditionerTopInstall">가능</span>
+                        <span data-ng-if="!contractInfo.isCanAirConditionerTopInstall">불가능</span>
+                    </li>
+                    <li data-ng-if="contractInfo.isCanAirConditionerLargeInstall !== null">
+                        <span>업소용: </span>
+                        <span data-ng-if="contractInfo.isCanAirConditionerLargeInstall">가능</span>
+                        <span data-ng-if="!contractInfo.isCanAirConditionerLargeInstall">불가능</span>
+                    </li>
+                    <li data-ng-if="contractInfo.isCanAirConditionerMoveInstall !== null">
+                        <span>이전설치: </span>
+                        <span data-ng-if="contractInfo.isCanAirConditionerMoveInstall">가능</span>
+                        <span data-ng-if="!contractInfo.isCanAirConditionerMoveInstall">불가능</span>
+                    </li>
+                    <li data-ng-if="contractInfo.isCanAirConditionerNewInstall !== null">
+                        <span>신품설치: </span>
+                        <span data-ng-if="contractInfo.isCanAirConditionerNewInstall">가능</span>
+                        <span data-ng-if="!contractInfo.isCanAirConditionerNewInstall">불가능</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">신청 권역</label>
+                <ul class="sg-location-tag" data-ng-class="contractInfo.state">
+                    <li data-ng-repeat="item in contractInfo.sidoSigungus" data-ng-class="{'sg-select': item.select}" data-ng-click="selectLocation(item)">
+                        <span>{{ item.sido }}</span><span data-ng-if="item.sigungu"> {{ item.sigungu }}</span><span> {{ item.count }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sg-g-input-wrap" data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateUnauthorized || (contractInfo.state == CONTRACT_INFO.contractStateAuthorized && contractInfo.failMessage)">
+                <label class="sg-g-label">
+                    <span data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateStandby">비인증 사유</span>
+                    <span data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateAuthorized">미완료 사유</span>
+                </label>
+                <textarea class="sgc-input" data-ng-model="contractInfo.failMessage" rows="5" readonly></textarea>
+            </div>
+
+            <div class="sg-g-input-wrap" data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateStandby || contractInfo.state == CONTRACT_INFO.contractStateUpload">
+                <label class="sg-g-label"><strong>비인증 입력 항목</strong></label>
+                <textarea class="sgc-input" data-ng-model="form.failMessage" rows="5" placeholder="{{ '비인증 사유' }}"></textarea>
+            </div>
+            <div class="sg-g-input-wrap" data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateStandby">
+                <label class="sg-g-label"><strong>인증 입력 항목</strong></label>
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">시작일 {{ lastCompleteContractInfo ? ('(이전 종료일: ' + (lastCompleteContractInfo.endDate | date: 'yyyy-MM-dd') + ')') : '' }}</label>
+                    <datepicker date-format="yyyy-MM-dd">
+                        <input type="text" class="sgc-input sg-date" data-ng-model="form.startDate" placeholder="{{ '시작일' }}" readonly>
+                    </datepicker>
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">종료일</label>
+                    <p class="sg-g-text">{{ form.endDate | date: 'yyyy-MM-dd' }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-action" data-ng-click="authorization()" data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateStandby">인증</button>
+            <button type="button" class="sgc-btn-delete" data-ng-click="unauthorization()" data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateStandby">비인증</button>
+            <button type="button" class="sgc-btn-action" data-ng-click="complete()" data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateUpload">완료</button>
+            <button type="button" class="sgc-btn-delete" data-ng-click="uncomplete()" data-ng-if="contractInfo.state == CONTRACT_INFO.contractStateUpload">미완료</button>
+            <button type="button" class="sgc-btn-cancel sg-close" data-ng-click="cancel()">닫기</button>
+        </div>
+    </div>
+</script>

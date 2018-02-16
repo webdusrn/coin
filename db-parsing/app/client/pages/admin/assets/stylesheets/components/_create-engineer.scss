@@ -1,0 +1,268 @@
+#sg-create-engineer-wrap {
+  position: relative;
+  background-color: white;
+  div.sg-g-modal-header{
+    @include after-clear();
+    p{
+      margin-left: 35px;
+      margin-right: 35px;
+    }
+    div.sg-sign-up-type-wrap {
+      position: absolute;
+      top: 12px;
+      left: 120px;
+      @include after-clear();
+      div.sg-sign-up-type {
+        border-radius: 3px;
+        border: 1px solid #535353;
+        width: 48px;
+        height: 23px;
+        line-height: 21px;
+        text-align: center;
+        float: left;
+      }
+    }
+    div.sg-can-wrap {
+      position: absolute;
+      top: 12px;
+      right: 36px;
+      @include after-clear();
+      div.sg-can {
+        margin-left: 5px;
+        border-radius: 3px;
+        width: 48px;
+        height: 23px;
+        line-height: 23px;
+        color: white;
+        background-color: #535353;
+        text-align: center;
+        float: left;
+        &:first-child {
+          margin-left: 0;
+        }
+        &.sg-air-conditioner {
+          width: 80px;
+        }
+        &.sg-request {
+          background-color: #6d8fe4;
+        }
+        &.sg-authorized {
+          background-color: #51c7b5;
+        }
+      }
+    }
+  }
+  div.sg-g-modal-content {
+    padding: 0 36px;
+    padding-bottom: 20px;
+    background-color: #f4f6fa;
+    div.sg-g-input-wrap {
+      background-color: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      textarea {
+        resize: none;
+      }
+      div.sg-g-input-info {
+        background-color: white;
+        padding: 0px;
+        height: inherit;
+        width: 100%;
+        .sg-search-list-wrap{
+          padding-top: 0px;
+        }
+        div.sgc-input{
+          padding: 0px;
+          line-height: 34px;
+          height: 34px;
+        }
+        button.sg-delete-btn{
+          position: absolute;
+          width: 18px;
+          height: 18px;
+          right: 9px;
+          top: 8px;
+          border: none;
+          background: transparent center url("/pages/admin/assets/images/ic_cancel_18_@2x.png");
+          background-size: 100%;
+        }
+      }
+      label.sg-g-label {
+        height: 18px;
+        line-height: 18px;
+      }
+      input.sgc-input{
+        height: 34px;
+      }
+
+      p.sg-g-text{
+        color: #121428;
+        font-size: 16px;
+        border-bottom: 1px solid #d5dbec;
+        text-align: left;
+        padding-left: 0px;
+        &.sg-height-inherit{
+          height: inherit;
+        }
+        &.sg-shortage {
+          border-color: #e34a59;
+          color: #e34a59;
+        }
+      }
+      p.sg-textarea{
+        overflow: hidden;
+        white-space: pre-wrap;
+        height: 73px;
+        border-radius: 5px;
+        padding: 10px 16px;
+        border: solid 1px #d8def0;
+        font-size: 14px;
+
+      }
+
+      .sg-g-input-image{
+        width: 100%;
+        height: 65px;
+        border-radius: 5px;
+        background-color: #f1f3f8;
+        margin-top: 15px;
+        div.sg-image-label{
+          font-size: 16px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          color: #c7ccda;
+          position: absolute;
+          top: 20px;
+          left: 113px;
+          background: transparent url(/pages/admin/assets/images/ic_img_upload_34_27_2x.png) no-repeat;
+          background-size: 32px;
+          padding-left: 44px;
+          line-height: 25px;
+        }
+        div.sg-divide-line{
+          position: absolute;
+          top: 8.5px;
+          right: 215px;
+          width: 2px;
+          height: 48px;
+          background-color: #d5dbec;
+        }
+        button.sgc-btn-action{
+          position: absolute;
+          top: 14.5px;
+          right: 53px;
+          width: 110px;
+          height: 32px;
+          background-color: #6d8fe4;
+          border-color: #6d8fe4;
+        }
+      }
+      button.sg-image-delete{
+        position: absolute;
+        left: 313px;
+        width: 60px;
+        height: 25px;
+      }
+      img.sg-image {
+        width: 100%;
+        max-height: 184px;
+        object-fit: contain;
+      }
+
+      //.sg-width-45{
+      //  width: 45%;
+      //  .sg-label-top-margin {
+      //    margin-top: 15px;
+      //  }
+      //  .sg-image-delete{
+      //    position: absolute;
+      //    left: 313px;
+      //    width: 60px;
+      //    height: 25px;
+      //  }
+      //  img.sg-half-image {
+      //    width: 100%;
+      //    max-height: 200px;
+      //    object-fit: contain;
+      //  }
+      //  textarea {
+      //    resize: none;
+      //  }
+      //}
+
+      select.sgc-option{
+        width: 100%;
+        height: 42px;
+        border-radius: 5px;
+        background-color: #fff;
+        border: 1px solid #d5dbec;
+        padding-left: 8px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding-right: 32px;
+        cursor: pointer;
+        background-image: url(/assets/images/ic_arrow_down_border_14_11_2x.png);
+        background-repeat: no-repeat;
+        background-size: 14px 11px;
+        background-position: right 8px center;
+      }
+
+      .sg-textarea{
+        overflow: hidden;
+        white-space: pre-wrap;
+        height: 100px;
+        border-radius: 5px;
+        padding: 10px 16px;
+        border: 1px solid #d8def0;
+        font-size: 14px;
+      }
+
+      .sg-push-wrapper{
+        display: inline-block;
+        cursor: pointer;
+        .sg-g-check-image{
+          position: relative;
+          margin: 3px 10px;
+          width: 28px;
+          height: 28px;
+          background: transparent no-repeat 50%;
+          background-size: cover;
+          background-image: url(/pages/admin/assets/images/check_box_normal_28_2x.png);
+          float: left;
+          &.sg-active{
+            background-image: url(/pages/admin/assets/images/check_box_active_28_2x.png);
+          }
+        }
+        span{
+          line-height: 34px;
+        }
+      }
+
+
+    }
+  }
+  hr {
+    margin-top: $g-input-wrap-padding-top;
+    border: 0;
+    border-top: 1px solid $g-color-line;
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    @include after-clear();
+    button.sgc-btn-action {
+      display: block;
+      float: right;
+      &.sg-edit{
+        margin-right: 10px;
+        border: 1px solid #6d8fe4;
+        background-color: #6d8fe4;
+        &:hover{
+          border: 1px solid #5b7ed6;
+          background-color: #5b7ed6;
+        }
+      }
+    }
+  }
+
+}

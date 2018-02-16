@@ -1,0 +1,53 @@
+<script type="text/ng-template" id="myCreateBlogAccount.html">
+    <div id="sg-create-blog-account-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <form data-ng-submit="createBlogAccount()">
+            <div class="sg-g-modal-header">
+                <p>{{ 'createBlogAccount' | translate }}</p>
+            </div>
+            <div class="sg-g-modal-content">
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'blogAccountState' | translate }}</label>
+                    <select class="sgc-option" data-ng-model="form.state">
+                        <option value="" disabled selected hidden>{{ 'blogAccountState' | translate }}</option>
+                        <option data-ng-repeat="item in enumStates" value="{{ item }}">
+                            {{ item | translate }}
+                        </option>
+                    </select>
+                </div>
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'blogAccount' | translate }}</label>
+                    <input type="text" class="sgc-input" data-ng-model="form.naverAccount" placeholder="{{ 'blogAccount' | translate }}">
+                </div>
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'blogTemplateId' | translate }}</label>
+                    <input type="number" class="sgc-input" data-ng-model="form.blogTemplateId" placeholder="{{ 'blogTemplateId' | translate }}">
+                </div>
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'blogTitleItemNo' | translate }}</label>
+                    <input type="number" class="sgc-input" data-ng-model="form.blogTitleItemNo" placeholder="{{ 'blogTitleItemNo' | translate }}">
+                </div>
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'blogCategoryNo' | translate }}</label>
+                    <input type="number" class="sgc-input" data-ng-model="form.categoryNo" placeholder="{{ 'blogCategoryNo' | translate }}">
+                </div>
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'blogPostNum' | translate }}</label>
+                    <input type="number" class="sgc-input" data-ng-model="form.postNum" placeholder="{{ 'blogPostNum' | translate }}">
+                </div>
+            </div>
+
+            <div class="sg-g-button-wrap">
+                <button type="submit" class="sgc-btn-action">
+                    {{ 'create' | translate }}
+                </button>
+                <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">
+                    {{ 'close' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</script>

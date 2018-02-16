@@ -1,0 +1,72 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">설치 유형 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.type">
+        <option disabled hidden selected value="">-</option>
+        <option data-ng-repeat="item in enumTypes" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">요청자명 <span class="sg-essential">*</span></label>
+    <input type="text" class="sgc-input" data-ng-model="form.authorName" placeholder="-">
+</div>
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">방문 날짜 <span class="sg-essential">*</span></label>
+    <datepicker date-format="yyyy-MM-dd">
+        <input type="text" class="sgc-input" data-ng-model="form.visitDate" placeholder="-" readonly>
+    </datepicker>
+</div>
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">방문 시간대 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.visitTime">
+        <option disabled hidden selected value="">-</option>
+        <option data-ng-repeat="item in enumVisitTimes" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">시/도 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.installSido">
+        <option disabled hidden selected value="">-</option>
+        <option data-ng-repeat="item in enumInstallSidos" value="{{ item.name }}">
+            {{ item.name }}
+        </option>
+    </select>
+</div>
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">시/군/구 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.installSigungu">
+        <option disabled hidden selected value="">-</option>
+        <option data-ng-repeat="item in enumInstallSigungus" value="{{ item }}">
+            {{ item }}
+        </option>
+    </select>
+</div>
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">상세주소</label>
+    <input type="text" class="sgc-input" data-ng-model="form.installDetailAddress" placeholder="-">
+</div>
+<div class="sg-g-input-wrap sg-four" data-ng-if="form.type == REQ_ESTIMATION.typeMoveInstall">
+    <label class="sg-g-label">철거 시/도 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.separateSido">
+        <option disabled hidden selected value="">-</option>
+        <option data-ng-repeat="item in enumSeparateSidos" value="{{ item.name }}">
+            {{ item.name }}
+        </option>
+    </select>
+</div>
+<div class="sg-g-input-wrap sg-four" data-ng-if="form.type == REQ_ESTIMATION.typeMoveInstall">
+    <label class="sg-g-label">철거 시/군/구 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.separateSigungu">
+        <option disabled hidden selected value="">-</option>
+        <option data-ng-repeat="item in enumSeparateSigungus" value="{{ item }}">
+            {{ item }}
+        </option>
+    </select>
+</div>
+<div class="sg-g-input-wrap sg-four" data-ng-if="form.type == REQ_ESTIMATION.typeMoveInstall">
+    <label class="sg-g-label">철거 상세주소</label>
+    <input type="text" class="sgc-input" data-ng-model="form.separateDetailAddress" placeholder="-">
+</div>

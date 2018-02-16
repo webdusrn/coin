@@ -1,0 +1,53 @@
+#sg-biz-msg-wrap {
+
+}
+
+div.sg-biz-msg-select-wrap {
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid #d5dbec;
+  @include after-clear();
+  select.sgc-option {
+    margin-right: 6px;
+    width: 200px;
+    float: left;
+  }
+  input.sg-input {
+    border: solid 1px #d5dbec;
+    width: 200px;
+    background-color: white;
+    float: left;
+  }
+  button.sgc-btn-action {
+    height: 42px;
+    float: right;
+  }
+}
+
+div.sg-biz-msg-item-wrap {
+  position: relative;
+  padding-bottom: 15px;
+  border-top: 1px solid #d5dbec;
+  @include after-clear();
+  label.sg-label {
+    position: relative;
+    margin-right: 6px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+  }
+  input.sg-input {
+    border: solid 1px #d5dbec;
+    width: calc(100% - 206px);
+    background-color: white;
+    float: left;
+  }
+  textarea.sg-input {
+    border: solid 1px #d5dbec;
+    width: 100%;
+    background-color: white;
+    float: left;
+  }
+}

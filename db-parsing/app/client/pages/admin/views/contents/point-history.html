@@ -1,0 +1,70 @@
+<div id="sg-point-history-wrap" data-ng-controller="PointHistoryCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">
+            포인트 내역 관리
+        </div>
+
+        <div class="sg-point-history-manage-search-wrap">
+            <select class="sgc-option" data-ng-model="form.searchField">
+                <option data-ng-repeat="item in enumSearchFields" value="{{ item }}">
+                    {{ item | translate }}
+                </option>
+            </select>
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findPointHistories(true)">
+                    <input type="text" class="sgc-search-input" data-ng-model="form.searchItem" placeholder="{{ 'pointHistorySearchItem' | translate }}">
+                </form>
+            </div>
+            <button type="button" class="sgc-btn-action" data-ng-click="createPointHistory()">
+                {{ 'pointCharge' | translate }}
+            </button>
+        </div>
+
+        <div class="sg-point-history-manage-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option" data-ng-model="form.type">
+                    <option data-ng-repeat="item in enumTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ pointHistories.count }}</span></p>
+        </div>
+
+        <div class="sg-point-history-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">{{ 'name' | translate }}</h6>
+                <h6 class="sg-header">{{ 'phoneNum' | translate }}</h6>
+                <h6 class="sg-header">{{ 'pointHistoryType' | translate }}</h6>
+                <h6 class="sg-header">{{ 'cash' | translate }}</h6>
+                <h6 class="sg-header">{{ 'oldSgCash' | translate }}</h6>
+                <h6 class="sg-header">{{ 'oldSgDeposit' | translate }}</h6>
+                <h6 class="sg-header">{{ 'newSgCash' | translate }}</h6>
+                <h6 class="sg-header">{{ 'newSgDeposit' | translate }}</h6>
+                <h6 class="sg-header">{{ 'requestedAt' | translate }}</h6>
+                <h6 class="sg-header">{{ 'pointHistoryCreatedAt' | translate }}</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in pointHistories.rows" data-ng-class="{'sg-charge': item.estimation && item.estimation.estimationItems[0].isChargeTarget}" data-ng-click="detailPointHistory(item, 'lg')">
+                        <div class="sg-item sg-name"><span class="sg-name">{{ item.user.name }}</span><span class="sg-black">({{ item.user.id }}) {{ item.user.name }}</span></div>
+                        <div class="sg-item">{{ item.user.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item">{{ item.type | translate}}</div>
+                        <div class="sg-item">{{ item.cash | number }}</div>
+                        <div class="sg-item">{{ item.oldSgCash | number }}</div>
+                        <div class="sg-item">{{ item.oldSgDeposit | number }}</div>
+                        <div class="sg-item">{{ item.newSgCash | number }}</div>
+                        <div class="sg-item">{{ item.newSgDeposit | number }}</div>
+                        <div class="sg-item">{{ (item.requestedAt | microTimeToDateTime) || ('noData' | translate) }}</div>
+                        <div class="sg-item">{{ item.createdAt | microTimeToDateTime }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button type="button" class="sgc-btn-more" data-ng-click="findPointHistories()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<detail-application></detail-application>
+<create-point-history></create-point-history>

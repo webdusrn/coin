@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">보일러 유형 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.boilerType">
+        <option value="" disabled hidden selected>-</option>
+        <option data-ng-repeat="item in enumBoilerTypes" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

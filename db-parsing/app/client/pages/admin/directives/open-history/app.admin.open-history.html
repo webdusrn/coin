@@ -1,0 +1,62 @@
+<script type="text/ng-template" id="myOpenHistory.html">
+    <div id="sg-open-history-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-g-modal-header">
+            <p>{{ 'pointHistories' | translate }}</p>
+        </div>
+        <div class="sg-g-modal-content">
+            <div class="sg-engineer-info">
+                <div class="sg-g-input-wrap sg-four">
+                    <label class="sg-g-label">{{ 'name' | translate }}</label>
+                    <p class="sg-g-text">{{ pointHistories.rows[0].user.name }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-four">
+                    <label class="sg-g-label">{{ 'phoneNum' | translate }}</label>
+                    <p class="sg-g-text">{{ pointHistories.rows[0].user.phoneNum | returnPhoneNum }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-four">
+                    <label class="sg-g-label">{{ 'sgCash' | translate }}</label>
+                    <p class="sg-g-text">{{ pointHistories.rows[0].user.engineerInfo.sgCash | number }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-four sg-last">
+                    <label class="sg-g-label">{{ 'sgDeposit' | translate }}</label>
+                    <p class="sg-g-text">{{ pointHistories.rows[0].user.engineerInfo.sgDeposit | number }}</p>
+                </div>
+            </div>
+            <div class="sg-point-history-list">
+                <div class="sg-list-header">
+                    <h6 class="sg-header">{{ 'pointHistoryType' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'cash' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'oldSgCash' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'oldSgDeposit' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'newSgCash' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'newSgDeposit' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'requestedAt' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'pointHistoryCreatedAt' | translate }}</h6>
+                </div>
+                <div class="sg-list-content">
+                    <ul>
+                        <li data-ng-repeat="item in pointHistories.rows">
+                            <div class="sg-item">{{ item.type | translate }}</div>
+                            <div class="sg-item">{{ item.cash | number }}</div>
+                            <div class="sg-item">{{ item.oldSgCash | number }}</div>
+                            <div class="sg-item">{{ item.oldSgDeposit | number }}</div>
+                            <div class="sg-item">{{ item.newSgCash | number }}</div>
+                            <div class="sg-item">{{ item.newSgDeposit | number }}</div>
+                            <div class="sg-item">{{ (item.requestedAt | microTimeToDateTime) || ('noData' | translate) }}</div>
+                            <div class="sg-item">{{ item.createdAt | microTimeToDateTime }}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">
+                {{ 'close' | translate }}
+            </button>
+        </div>
+    </div>
+</script>

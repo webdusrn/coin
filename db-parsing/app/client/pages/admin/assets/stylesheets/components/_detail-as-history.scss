@@ -1,0 +1,77 @@
+#sg-detail-as-history-wrap {
+  div.sg-g-modal-header {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    p {
+      margin-left: 36px;
+    }
+  }
+  div.sg-g-modal-content {
+    padding: 20px 36px 20px 36px;
+    background-color: #f4f6fa;
+    div.sg-g-input-wrap {
+      margin-bottom: 10px;
+      padding: 15px;
+      background-color: white;
+      &.sg-two-three {
+        width: calc(66.666% - 4px);
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      label.sg-g-label {
+        color: #464b69;
+      }
+      p.sg-g-text {
+        border-bottom: 1px solid #d5dbec;
+        padding-left: 0;
+        color: #464b69;
+        &.sg-state {
+          padding-left: 22px;
+        }
+        span.sg-state {
+          position: absolute;
+          top: 60px;
+          left: 18px;
+          border-radius: 50%;
+          width: 12px;
+          height: 12px;
+          &.sg-standby {
+            background-color: #8d93a6;
+          }
+          &.sg-visit-booked {
+            background-color: #6d8fe4;
+          }
+          &.sg-complete {
+            background-color: #50c8b5;
+          }
+          &.sg-over {
+            background-color: #e34959;
+          }
+        }
+      }
+      div.sg-left {
+        font-size: 0;
+        select.sgc-option {
+          margin-right: 6px;
+          width: 98px;
+          font-size: 14px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    @include after-clear();
+    button {
+      margin-right: 6px;
+      float: left;
+    }
+    button.sg-close {
+      float: right;
+    }
+  }
+}

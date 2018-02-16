@@ -1,0 +1,76 @@
+<div id="sg-premium-info-wrap" data-ng-controller="PremiumInfoCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">프리미엄 기사 관리</div>
+
+        <button type="button" class="sgc-btn-action sg-price-button" data-ng-click="openPrice('md')">가격 관리</button>
+
+        <div class="sg-premium-info-manage-search-wrap">
+            <select class="sgc-option" data-ng-model="form.searchField">
+                <option data-ng-repeat="item in enumSearchFields" value="{{ item }}">
+                    {{ item | translate }}
+                </option>
+            </select>
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findPremiumInfos(true)">
+                    <input type="text" class="sgc-search-input" data-ng-model="form.searchItem" placeholder="검색어">
+                </form>
+            </div>
+        </div>
+        <div class="sg-premium-info-manage-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option" data-ng-model="form.state">
+                    <option data-ng-repeat="item in enumStates" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.category">
+                    <option data-ng-repeat="item in enumCategories" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.plan">
+                    <option data-ng-repeat="item in enumPlans" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ premiumInfos.count }}</span></p>
+        </div>
+        <div class="sg-premium-info-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">상태</h6>
+                <h6 class="sg-header">항목</h6>
+                <h6 class="sg-header">플랜</h6>
+                <h6 class="sg-header">기사명</h6>
+                <h6 class="sg-header">기사번호</h6>
+                <h6 class="sg-header">가격</h6>
+                <h6 class="sg-header">결제 만료일</h6>
+                <h6 class="sg-header">프리미엄 시작일</h6>
+                <h6 class="sg-header">프리미엄 종료일</h6>
+                <h6 class="sg-header">신청일</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in premiumInfos.rows" data-ng-click="detailPremiumInfo(item, $index, 'lg')">
+                        <div class="sg-item"><span class="sg-state" data-ng-class="item.state"></span></div>
+                        <div class="sg-item">{{ item.state | translate }}</div>
+                        <div class="sg-item">{{ item.category | translate }}</div>
+                        <div class="sg-item">{{ item.plan }}</div>
+                        <div class="sg-item">{{ item.user.name }}</div>
+                        <div class="sg-item">{{ item.user.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item">{{ item.price ? (item.price | number) : '-' }}</div>
+                        <div class="sg-item">{{ item.expirationDate ? (item.expirationDate | date: 'yyyy-MM-dd HH:mm') : '-' }}</div>
+                        <div class="sg-item">{{ item.startDate ? (item.startDate | date: 'yyyy-MM-dd') : '-' }}</div>
+                        <div class="sg-item">{{ item.endDate ? (item.endDate | date: 'yyyy-MM-dd') : '-' }}</div>
+                        <div class="sg-item">{{ item.createdAt | microTimeToDate }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button type="button" class="sgc-btn-more" data-ng-click="findPremiumInfos()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<premium-price></premium-price>
+<detail-premium-info></detail-premium-info>

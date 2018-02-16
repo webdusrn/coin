@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" class="ng-app:app" lang="<%= params.language %>">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <link rel="icon" type="image/png" href="/pages/admin/assets/images/favi.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/pages/admin/assets/images/favi.png" sizes="16x16"/>
+    <base href="/">
+    <title>쓱싹</title>
+    <script type="text/javascript">
+        window.meta = <%- JSON.stringify(params.meta || {}) %>;
+        window.session = <%- JSON.stringify(params.session|| {}) %>;
+        window.oauth = <%- JSON.stringify(params.oauth || {}) %>;
+    </script>
+    <link rel="stylesheet" href="//cdn3.slogup.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body data-ng-controller="AdminCtrl">
+<ng-include src="'modules/common/base/loading-handler/views/core.loading-handler.html'"></ng-include>
+<ng-include src="'modules/common/base/alert-dialog/views/core.alert-dialog.html'"></ng-include>
+<div id="sg-main-wrap">
+    <ng-include src="'<%= params.meta.std.templatePath %>admin/views/layouts/header.html'"></ng-include>
+    <div id="sg-main-menu-wrap" data-ng-class="{'sg-logged-in': vm.session && vm.session.id}">
+        <ng-include src="'<%= params.meta.std.templatePath %>admin/views/layouts/navigation.html'"></ng-include>
+    </div>
+    <section id="sg-main-contents-wrap">
+        <div id="sg-main-contents" ui-view="contents"></div>
+    </section>
+
+    <!--<div data-ng-include src="'pages/admin/views/layouts/login.html'"></div>-->
+    <div data-ng-include src="'modules/common/base/alert-dialog/views/core.alert-dialog.html'"></div>
+    <div data-ng-include src="'modules/common/base/loading-handler/views/core.loading-handler.html'"></div>
+</div>
+</body>
+<script src="//cdn1.slogup.com/jquery/3.1.0/jquery.min.js"></script>
+<script src="//cdn2.slogup.com/angularjs/1.5.8/angular.min.js"></script>
+<script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD-zX3f2XiPBz_BEhJsx8sSaZuEnVwt9tg"></script>
+<!-- inject:js -->
+<!-- endinject -->
+</html>

@@ -1,0 +1,134 @@
+<div id="sg-engineer-manage-wrap" data-ng-controller="EngineerCtrl">
+    <div class="sgc-container">
+        <h2 class="sg-engineer-title sgc-titles">
+            기사 관리
+        </h2>
+
+        <div class="sg-engineer-manage-search-wrap">
+            <select ng-model="form.searchField" class="sgc-option">
+                <option ng-selected="$first" ng-repeat="x in engineerEnumSearchFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <div class="sg-g-search-wrap">
+                <form ng-submit="findEngineer(true)">
+                    <input class="sgc-search-input" ng-model="form.searchItem" type="text" placeholder="{{'typeKeywords' | translate}}">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="sg-engineer-manage-select-wrap ">
+            <select ng-model="form.verifyType" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{"verifyType" | translate}}</option>
+                <option ng-selected="$first" ng-repeat="x in engineerVerifyFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.needScreeningType" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{"screeningType" | translate}}</option>
+                <option ng-selected="$first" ng-repeat="x in engineerNeedScreeningFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.orderBy" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{"orderBy" | translate}}</option>
+                <option ng-selected="$first" ng-repeat="x in orderByEnumFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.signUpType" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{"signUpType" | translate}}</option>
+                <option ng-selected="$first" ng-repeat="x in enumSignUpTypes" value="{{x}}">{{x | translate}}</option>
+            </select>
+        </div>
+
+        <div class="sg-engineer-manage-select-wrap">
+            <select ng-model="form.canAirConditionerState" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{ 'canAirConditionerState' | translate }}</option>
+                <option ng-selected="$first" ng-repeat="x in enumCanStates" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.canAirConditionerCleanState" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{ 'canAirConditionerCleanState' | translate }}</option>
+                <option ng-selected="$first" ng-repeat="x in enumCanStates" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.canWallTvState" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{ 'canWallTvState' | translate }}</option>
+                <option ng-selected="$first" ng-repeat="x in enumCanStates" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.canDoorLockState" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{ 'canDoorLockState' | translate }}</option>
+                <option ng-selected="$first" ng-repeat="x in enumCanStates" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.canWindowScreenState" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{ 'canWindowScreenState' | translate }}</option>
+                <option ng-selected="$first" ng-repeat="x in enumCanStates" value="{{x}}">{{x | translate}}</option>
+            </select>
+
+            <select ng-model="form.canBoilerState" class="sgc-option sg-left" data-ng-change="findEngineer(true)">
+                <option value="">{{ 'canBoilerState' | translate }}</option>
+                <option ng-selected="$first" ng-repeat="x in enumCanStates" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <p class="sgc-total">Total <span>{{engineers.count}}</span></p>
+        </div>
+
+        <div class="sg-engineer-item-wrap sg-engineer-list">
+
+            <div class="sg-engineer-manage-main-item " data-ng-repeat="item in engineers.rows" data-ng-click="createEngineerOpen('lg', item, $index)">
+
+                <div class="sg-engineer-manage-main-item-top">
+                    <div class="sg-needScreening" data-ng-if="item.engineerInfo.needScreening == true">
+                        <button class="sg-btn-false" >{{ 'screening' | translate }}</button>
+                    </div>
+                    <div class="sg-engineer-name">({{item.id}}) {{item.name}}</div>
+                    <div class="sg-engineer-role" data-ng-class="{'sg-authorized': item.role == vm.USER.roleEngineerAuthorized}">{{item.role| translate}}</div>
+                </div>
+
+                <div class="sg-engineer-item-body ">
+                    <img class="sg-margin-bottom" ng-src="{{vm.returnImageSrc(item.engineerInfo.idImage)}}">
+                    <span>신분증</span>
+                    <img class="sg-margin-bottom" ng-src="{{vm.returnImageSrc(item.engineerInfo.profileImage)}}">
+                    <span>프로필</span>
+                    <img class="sg-margin-bottom" ng-src="{{vm.returnImageSrc(item.engineerInfo.licenseImage)}}">
+                    <span>에어컨자격증</span>
+                    <img class="sg-margin-bottom" ng-src="{{vm.returnImageSrc(item.engineerInfo.boilerLicenseImage)}}">
+                    <span>보일러자격증</span>
+                    <img ng-src="{{vm.returnImageSrc(item.engineerInfo.constructImage)}}">
+                    <span>건설업등록증</span>
+                    <img ng-src="{{vm.returnImageSrc(item.engineerInfo.businessLicenseImage)}}">
+                    <span>사업자등록증</span>
+                </div>
+
+                <div class="sg-engineer-item-bottom">
+                    <div class="sg-engineer-can-wrap">
+                        <div class="sg-can sg-air-conditioner" data-ng-class="{'sg-request': item.engineerInfo.canAirConditionerState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': item.engineerInfo.canAirConditionerState == vm.ENGINEERINFO.canStateAuthorized, 'sg-unauthorized': item.engineerInfo.canAirConditionerState == vm.ENGINEERINFO.canStateUnauthorized}">{{ 'canAirConditionerState' | translate }}</div>
+                        <div class="sg-can sg-air-conditioner" data-ng-class="{'sg-request': item.engineerInfo.canAirConditionerCleanState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': item.engineerInfo.canAirConditionerCleanState == vm.ENGINEERINFO.canStateAuthorized, 'sg-unauthorized': item.engineerInfo.canAirConditionerCleanState == vm.ENGINEERINFO.canStateUnauthorized}">{{ 'canAirConditionerCleanState' | translate }}</div>
+                        <div class="sg-can" data-ng-class="{'sg-request': item.engineerInfo.canWallTvState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': item.engineerInfo.canWallTvState == vm.ENGINEERINFO.canStateAuthorized, 'sg-unauthorized': item.engineerInfo.canWallTvState == vm.ENGINEERINFO.canStateUnauthorized}">{{ 'canWallTvState' | translate }}</div>
+                        <div class="sg-can" data-ng-class="{'sg-request': item.engineerInfo.canDoorLockState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': item.engineerInfo.canDoorLockState == vm.ENGINEERINFO.canStateAuthorized, 'sg-unauthorized': item.engineerInfo.canDoorLockState == vm.ENGINEERINFO.canStateUnauthorized}">{{ 'canDoorLockState' | translate }}</div>
+                        <div class="sg-can" data-ng-class="{'sg-request': item.engineerInfo.canWindowScreenState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': item.engineerInfo.canWindowScreenState == vm.ENGINEERINFO.canStateAuthorized, 'sg-unauthorized': item.engineerInfo.canWindowScreenState == vm.ENGINEERINFO.canStateUnauthorized}">{{ 'canWindowScreenState' | translate }}</div>
+                        <div class="sg-can" data-ng-class="{'sg-request': item.engineerInfo.canBoilerState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': item.engineerInfo.canBoilerState == vm.ENGINEERINFO.canStateAuthorized, 'sg-unauthorized': item.engineerInfo.canBoilerState == vm.ENGINEERINFO.canStateUnauthorized}">{{ 'canBoilerState' | translate }}</div>
+                    </div>
+                </div>
+
+                <div class="sg-engineer-item-bottom">
+                    <div class="sg-engineer-point-wrap">
+                        <div class="sg-deposit" data-ng-if="item.engineerInfo.maxSgDeposit"
+                             data-ng-class="{'sg-shortage': item.engineerInfo.sgDeposit != item.engineerInfo.maxSgDeposit}">보증금: {{ item.engineerInfo.sgDeposit | number }}<span data-ng-if="item.engineerInfo.sgDeposit != item.engineerInfo.maxSgDeposit"> / {{ item.engineerInfo.maxSgDeposit | number }}</span></div>
+                        <div class="sg-cash">포인트: {{ item.engineerInfo.sgCash | number }}</div>
+                    </div>
+                </div>
+
+                <div class="sg-engineer-item-bottom">
+                    <div class="sg-engineer-sign-up-type-wrap">
+                        <div class="sg-sign-up-type">{{ item.engineerInfo.signUpType | translate }}</div>
+                    </div>
+                    <div class="sg-engineer-createdAt " >{{item.createdAt/1000 | timestampToDate}}</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="sg-more-wrapper" data-ng-if="more">
+            <button class="sg-btn-more"  data-ng-click="findEngineer()">{{ 'more' | translate }}</button>
+        </div>
+    </div>
+</div>
+<create-engineer></create-engineer>

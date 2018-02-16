@@ -1,0 +1,50 @@
+<script type="text/ng-template" id="myMemo.html">
+    <div id="sg-detail-application-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <form name="createPopupForm" novalidate>
+            <div class="sg-g-modal-header">
+                <p class="sg-essential-input sg-left" >{{ 'memo' | translate }}</p>
+            </div>
+            <div class="sg-g-modal-content">
+
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'name' | translate }}</label>
+                    <p class="sg-g-text" >{{memo.nick}}</p>
+                </div>
+
+                <div class="sg-g-input-wrap" data-ng-class="{'sg-half': memo.productPrice}">
+                    <label class="sg-g-label">{{ '설치가격' }}<span data-ng-if="memo.isCash"> (현금가)</span><span data-ng-if="isMoreCharge"> (추가금액발생)</span></label>
+                    <p class="sg-g-text" style="text-align: right;">{{memo.price | number}}원</p>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half sg-last" data-ng-if="memo.productPrice">
+                    <label class="sg-g-label">{{ '제품가격' }}</label>
+                    <p class="sg-g-text" style="text-align: right;">{{memo.productPrice | number}}원</p>
+                </div>
+
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'memo' | translate }}</label>
+                    <textarea class="sgc-input" rows="5"  data-ng-model="memo.memo" placeholder="{{ 'memo' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap">
+                    <label class="sg-g-label">{{ 'createdAt' | translate }}</label>
+                    <p class="sg-g-text" >{{memo.createdAt/1000 | timestampToDate: "time" }}</p>
+                </div>
+
+            </div>
+
+            <div class="sg-g-button-wrap">
+                <button type="submit"
+                        class="sgc-btn-action"
+                        data-ng-disabled="vm.input.$invalid"
+                        data-ng-click="cancel()">
+                    {{ 'close' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</script>

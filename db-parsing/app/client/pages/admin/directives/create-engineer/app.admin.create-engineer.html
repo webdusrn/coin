@@ -1,0 +1,235 @@
+<script type="text/ng-template" id="myCreateEngineer.html">
+    <div id="sg-create-engineer-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <form name="createPopupForm" data-ng-submit="updateEngineer()" novalidate>
+            <div class="sg-g-modal-header">
+                <p class="sg-essential-input sg-left" >{{ 'engineerInfo' | translate }}</p>
+                <div class="sg-sign-up-type-wrap">
+                    <div class="sg-sign-up-type">{{ vm.input.signUpType | translate }}</div>
+                </div>
+                <div class="sg-can-wrap" data-ng-if="vm.input.canAirConditionerState">
+                    <div class="sg-can sg-air-conditioner" data-ng-class="{'sg-request': vm.input.canAirConditionerState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': vm.input.canAirConditionerState == vm.ENGINEERINFO.canStateAuthorized}">{{ 'canAirConditionerState' | translate }}</div>
+                    <div class="sg-can sg-air-conditioner" data-ng-class="{'sg-request': vm.input.canAirConditionerCleanState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': vm.input.canAirConditionerCleanState == vm.ENGINEERINFO.canStateAuthorized}">{{ 'canAirConditionerCleanState' | translate }}</div>
+                    <div class="sg-can" data-ng-class="{'sg-request': vm.input.canWallTvState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': vm.input.canWallTvState == vm.ENGINEERINFO.canStateAuthorized}">{{ 'canWallTvState' | translate }}</div>
+                    <div class="sg-can" data-ng-class="{'sg-request': vm.input.canDoorLockState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': vm.input.canDoorLockState == vm.ENGINEERINFO.canStateAuthorized}">{{ 'canDoorLockState' | translate }}</div>
+                    <div class="sg-can" data-ng-class="{'sg-request': vm.input.canWindowScreenState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': vm.input.canWindowScreenState == vm.ENGINEERINFO.canStateAuthorized}">{{ 'canWindowScreenState' | translate }}</div>
+                    <div class="sg-can" data-ng-class="{'sg-request': vm.input.canBoilerState == vm.ENGINEERINFO.canStateRequest, 'sg-authorized': vm.input.canBoilerState == vm.ENGINEERINFO.canStateAuthorized}">{{ 'canBoilerState' | translate }}</div>
+                </div>
+            </div>
+            <div class="sg-g-modal-content">
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">{{ 'name' | translate }}</label>
+                    <p class="sg-g-text" >{{vm.engineer.name}}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">{{ 'phone'  | translate }}</label>
+                    <p class="sg-g-text" >{{vm.engineer.phoneNum | returnPhoneNum}}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-three sg-last">
+                    <label class="sg-g-label">{{ 'createdAt' | translate }}</label>
+                    <p class="sg-g-text" >{{vm.input.createdAt}}</p>
+                </div>
+
+
+                <!--<div class="sg-g-input-wrap sg-one sg-last">-->
+                    <!--<div class="sg-width-45 sg-right">-->
+                        <!--<label class="sg-g-label">{{ 'radius' | translate }}</label>-->
+                        <!--<p class="sg-g-text" >{{vm.input.radius}}</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="sg-g-input-wrap sg-two">-->
+                    <!--<div class="sg-width-45 sg-left">-->
+
+                        <!--<label class="sg-g-label">{{ '지번' | translate }}</label>-->
+                        <!--<p class="sg-g-text sg-height-inherit" >{{vm.input.jibunAddress}}</p>-->
+
+
+                        <!--<label class="sg-g-label sg-label-top-margin">{{ '도로명' | translate }}</label>-->
+                        <!--<p class="sg-g-text sg-height-inherit" >{{vm.input.roadAddress}}</p>-->
+
+                        <!--<label class="sg-g-label sg-label-top-margin">{{ 'detailAddress' | translate }}</label>-->
+                        <!--<p class="sg-g-text sg-height-inherit" >{{vm.input.detailAddress}}</p>-->
+
+                    <!--</div>-->
+
+                    <!--<div class="sg-width-45 sg-right">-->
+                        <!--<label class="sg-g-label">{{ 'addressFailMessage' | translate }}</label>-->
+                        <!--<textarea class="sgc-input" rows="8"  data-ng-model="vm.input.addressFailMessage" placeholder="{{ 'addressFailMessage' | translate }}"></textarea>-->
+
+                    <!--</div>-->
+
+                <!--</div>-->
+
+
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">{{ 'identification' | translate }}</label>
+                    <button type="button" class="sgc-btn-delete sg-image-delete"  data-ng-if="vm.input.idImage" data-ng-click="deleteImage('id')">삭제</button>
+                    <img class="sg-image" data-ng-src="{{ vm.returnImageSrc(vm.input.idImage) }}">
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">{{ 'idImageFailMessage' | translate }}</label>
+                    <textarea class="sgc-input" rows="8"  data-ng-model="vm.input.idImageFailMessage" placeholder="{{ 'idImageFailMessage' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">{{ 'profileImage' | translate }}</label>
+                    <button type="button" class="sgc-btn-delete sg-image-delete"  data-ng-if="vm.input.profileImage" data-ng-click="deleteImage('profile')">삭제</button>
+                    <img class="sg-image" data-ng-src="{{ vm.returnImageSrc(vm.input.profileImage) }}">
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">{{ 'profileImageFailMessage' | translate }}</label>
+                    <textarea class="sgc-input" rows="8"  data-ng-model="vm.input.profileImageFailMessage" placeholder="{{ 'profileImageFailMessage' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">{{ 'airConditionerLicenseImage' | translate }}</label>
+                    <button type="button" class="sgc-btn-delete sg-image-delete"  data-ng-if="vm.input.licenseImage" data-ng-click="deleteImage('air')">삭제</button>
+                    <img class="sg-image" data-ng-src="{{ vm.returnImageSrc(vm.input.licenseImage) }}">
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">{{ 'licenseImageFailMessage' | translate }}</label>
+                    <textarea class="sgc-input" rows="8"  data-ng-model="vm.input.licenseImageFailMessage" placeholder="{{ 'licenseImageFailMessage' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">{{ 'boilerLicenseImage' | translate }}</label>
+                    <button type="button" class="sgc-btn-delete sg-image-delete"  data-ng-if="vm.input.boilerLicenseImage" data-ng-click="deleteImage('boiler')">삭제</button>
+                    <img class="sg-image" data-ng-src="{{ vm.returnImageSrc(vm.input.boilerLicenseImage) }}">
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">{{ 'boilerLicenseImageFailMessage' | translate }}</label>
+                    <textarea class="sgc-input" rows="8"  data-ng-model="vm.input.boilerLicenseImageFailMessage" placeholder="{{ 'boilerLicenseImageFailMessage' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">{{ 'constructImage' | translate }}</label>
+                    <button type="button" class="sgc-btn-delete sg-image-delete" data-ng-if="vm.input.constructImage" data-ng-click="deleteImage('construct')">삭제</button>
+                    <img class="sg-image" data-ng-src="{{ vm.returnImageSrc(vm.input.constructImage) }}">
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">{{ 'constructImageFailMessage' | translate }}</label>
+                    <textarea class="sgc-input" rows="8"  data-ng-model="vm.input.constructImageFailMessage" placeholder="{{ 'constructImageFailMessage' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">{{ 'businessLicenseImage' | translate }}</label>
+                    <button type="button" class="sgc-btn-delete sg-image-delete" data-ng-if="vm.input.businessLicenseImage" data-ng-click="deleteImage('business')">삭제</button>
+                    <img class="sg-image" data-ng-src="{{ vm.returnImageSrc(vm.input.businessLicenseImage) }}">
+                </div>
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">{{ 'businessLicenseImageFailMessage' | translate }}</label>
+                    <textarea class="sgc-input" rows="8"  data-ng-model="vm.input.businessLicenseImageFailMessage" placeholder="{{ 'businessLicenseImageFailMessage' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half">
+                    <label class="sg-g-label">{{ 'memo' | translate }}</label>
+                    <textarea class="sgc-input" rows="5" placeholder="{{ 'memo' | translate }}" data-ng-model="vm.input.memo"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-half sg-last">
+                    <label class="sg-g-label">{{ 'etcFailMessage' | translate }}</label>
+                    <textarea class="sgc-input" rows="5"  data-ng-model="vm.input.etcFailMessage" placeholder="{{ 'etcFailMessage' | translate }}"></textarea>
+                </div>
+
+                <div class="sg-g-input-wrap sg-one sg-last">
+                    <label class="sg-g-label">{{ 'baseAuthorized' | translate }} <p class="sg-essential" >*</p> </label>
+                    <select ng-model="vm.input.role" class="sgc-option">
+                        <option value="roleC">{{"roleC" | translate}}</option>
+                        <option value="roleD">{{"roleD" | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="sg-g-input-wrap sg-five">
+                    <label class="sg-g-label">{{ 'engineerIdState' | translate }}</label>
+                    <select ng-model="vm.input.idState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumIdStates"></select>
+                </div>
+
+                <div class="sg-g-input-wrap sg-five">
+                    <label class="sg-g-label">{{ 'engineerLicenseState' | translate }}</label>
+                    <select ng-model="vm.input.licenseState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumLicenseStates"></select>
+                </div>
+
+                <div class="sg-g-input-wrap sg-five">
+                    <label class="sg-g-label">{{ 'engineerBoilerLicenseState' | translate }}</label>
+                    <select ng-model="vm.input.boilerLicenseState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumLicenseStates"></select>
+                </div>
+
+                <div class="sg-g-input-wrap sg-five">
+                    <label class="sg-g-label">{{ 'engineerConstructState' | translate }}</label>
+                    <select ng-model="vm.input.constructState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumBusinessLicenseStates"></select>
+                </div>
+
+                <div class="sg-g-input-wrap sg-five sg-last">
+                    <label class="sg-g-label">{{ 'engineerBusinessLicenseState' | translate }}</label>
+                    <select ng-model="vm.input.businessLicenseState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumBusinessLicenseStates"></select>
+                </div>
+
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">{{ 'canAirConditionerState' | translate }}</label>
+                    <select ng-model="vm.input.canAirConditionerState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumCanStates"></select>
+                </div>
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">{{ 'canAirConditionerCleanState' | translate }}</label>
+                    <select ng-model="vm.input.canAirConditionerCleanState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumCanStates"></select>
+                </div>
+                <div class="sg-g-input-wrap sg-three sg-last">
+                    <label class="sg-g-label">{{ 'canWallTvState' | translate }}</label>
+                    <select ng-model="vm.input.canWallTvState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumCanStates"></select>
+                </div>
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">{{ 'canDoorLockState' | translate }}</label>
+                    <select ng-model="vm.input.canDoorLockState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumCanStates"></select>
+                </div>
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">{{ 'canWindowScreenState' | translate }}</label>
+                    <select ng-model="vm.input.canWindowScreenState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumCanStates"></select>
+                </div>
+                <div class="sg-g-input-wrap sg-three sg-last">
+                    <label class="sg-g-label">{{ 'canBoilerState' | translate }}</label>
+                    <select ng-model="vm.input.canBoilerState" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumCanStates"></select>
+                </div>
+
+                <!--<div class="sg-g-input-wrap sg-one sg-last">-->
+                    <!--<label class="sg-g-label">{{ 'engineerState' | translate }}</label>-->
+                    <!--<select ng-model="vm.input.state" class="sgc-option" ng-options="data | translate for data in vm.ENGINEERINFO.enumStates" >-->
+                    <!--</select>-->
+                <!--</div>-->
+
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">보증금</label>
+                    <p class="sg-g-text" data-ng-class="{'sg-shortage': vm.input.maxSgDeposit && vm.input.sgDeposit != vm.input.maxSgDeposit}">{{ vm.input.sgDeposit | number }}<span data-ng-if="vm.input.maxSgDeposit"> / {{ vm.input.maxSgDeposit | number }}</span></p>
+                </div>
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">포인트</label>
+                    <p class="sg-g-text">{{ vm.input.sgCash | number }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-three sg-last">
+                    <label class="sg-g-label" style="margin-top: 8px;">푸시여부</label>
+                    <div class="sg-push-wrapper" data-ng-click="changeIsUsePush()">
+                        <div class="sg-g-check-image" data-ng-class="{'sg-active': vm.input.isUsePush}"></div>
+                        <span>푸시 전송 사용</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sg-g-button-wrap">
+                <button type="button"
+                        class="sgc-btn-action sg-close"
+                        data-ng-disabled="vm.input.$invalid"
+                        data-ng-click="cancel()">
+                    {{ 'close' | translate }}
+                </button>
+                <button type="submit"
+                        class="sgc-btn-action sg-edit"
+                        data-ng-disabled="vm.input.$invalid">
+                    {{ 'edit' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
+</script>

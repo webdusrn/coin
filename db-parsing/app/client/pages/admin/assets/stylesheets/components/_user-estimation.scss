@@ -1,0 +1,243 @@
+#sg-user-estimations-wrap {
+  position: relative;
+  background-color: white;
+  div.sg-g-modal-header{
+    @include after-clear();
+    p{
+      margin-left: 35px;
+      margin-right: 35px;
+    }
+  }
+  div.sg-g-modal-content {
+    padding: 10px 36px 30px;
+    background-color: #f4f6fa;
+    div.sg-g-input-wrap {
+
+      &.sg-width-45{
+        width: 47%;
+        margin-right: 20px;
+        .sg-label-top-margin{
+          margin-top: 15px;
+        }
+        img.sg-half-image{
+          max-width: 430px;
+        }
+
+        &.sg-last{
+          margin-right: 0px;
+          margin-left: 20px;
+        }
+      }
+
+      div.sg-g-input-info {
+        background-color: white;
+        padding: 0px;
+        height: inherit;
+        width: 100%;
+        .sg-search-list-wrap{
+          padding-top: 0px;
+        }
+        div.sgc-input{
+          padding: 0px;
+          line-height: 34px;
+          height: 34px;
+        }
+        button.sg-delete-btn{
+          position: absolute;
+          width: 18px;
+          height: 18px;
+          right: 9px;
+          top: 8px;
+          border: none;
+          background: transparent center url("/pages/admin/assets/images/ic_cancel_18_@2x.png");
+          background-size: 100%;
+        }
+      }
+      label.sg-g-label {
+        height: 18px;
+        line-height: 18px;
+      }
+      input.sgc-input{
+        height: 34px;
+      }
+
+      p.sg-g-text{
+        color: #121428;
+        font-size: 16px;
+        border-bottom: 1px solid #d5dbec;
+        text-align: left;
+        padding-left: 0px;
+      }
+      p.sg-textarea{
+        overflow: hidden;
+        white-space: pre-wrap;
+        height: 73px;
+        border-radius: 5px;
+        padding: 10px 16px;
+        border: solid 1px #d8def0;
+        font-size: 14px;
+
+      }
+
+      .sg-g-input-image{
+        width: 100%;
+        height: 65px;
+        border-radius: 5px;
+        background-color: #f1f3f8;
+        margin-top: 15px;
+        div.sg-image-label{
+          font-size: 16px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          color: #c7ccda;
+          position: absolute;
+          top: 20px;
+          left: 113px;
+          background: transparent url(/pages/admin/assets/images/ic_img_upload_34_27_2x.png) no-repeat;
+          background-size: 32px;
+          padding-left: 44px;
+          line-height: 25px;
+        }
+        div.sg-divide-line{
+          position: absolute;
+          top: 8.5px;
+          right: 215px;
+          width: 2px;
+          height: 48px;
+          background-color: #d5dbec;
+        }
+        button.sgc-btn-action{
+          position: absolute;
+          top: 14.5px;
+          right: 53px;
+          width: 110px;
+          height: 32px;
+          background-color: #6d8fe4;
+          border-color: #6d8fe4;
+        }
+      }
+
+      div.sg-image-wrapper{
+        max-width: 828px;
+      }
+
+      .sg-estimations-wrapper{
+        @include after-clear();
+      }
+    }
+
+    .sg-estimations-wrapper{
+      padding: 20px;
+      background-color: white;
+      margin-top: 10px;
+      &:hover{
+        outline: solid 1px #6d8fe4;
+      }
+      @include after-clear();
+      ul{
+        background-color: #efefef;
+        padding: 20px 36px;
+        .sg-estimations-item-header{
+          @include after-clear();
+          font-size: 12px;
+          font-weight: 400;
+          font-style: normal;
+          font-stretch: normal;
+          color: #8d93a6;
+          padding: 14px 0 10px 14px;
+          text-align: left;
+          div{
+            &.sg-state {
+              width: 20px;
+              height: 10px;
+            }
+            width: 192px;
+            float: left;
+            margin-right: 22px;
+            padding-left: 5px;
+            text-align: left;
+          }
+        }
+        li.sg-estimation-info{
+          @include after-clear();
+          padding: 0;
+          border: 0;
+          border-radius: 5px;
+          div.sg-estimation-item-body{
+            @include after-clear();
+            .sg-calculation-item-contents{
+              @include after-clear();
+              border: 1px solid #ebeef7;
+              border-radius: 5px;
+              padding: 0 13px;
+              height: 40px;
+              line-height: 40px;
+              background-color: #fff;
+              font-size: 14px;
+              font-weight: 400;
+              font-style: normal;
+              font-stretch: normal;
+              color: #121428;
+              margin-top: 5px;
+              div{
+                width: 192px;
+                float: left;
+                margin-right: 22px;
+                padding-left: 5px;
+                text-align: left;
+                &.sg-state{
+                  width: 20px;
+                  height: 40px;
+
+                  div.sg-req-estimation-standby{
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: #fcbe30;
+                    margin-top: 13px;
+                  }
+
+                  div.sg-req-estimation-match{
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: #88bb3c;
+                    margin-top: 13px;
+
+                  }
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  hr {
+    margin-top: $g-input-wrap-padding-top;
+    border: 0;
+    border-top: 1px solid $g-color-line;
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    text-align: right;
+    button.sg-g-button {
+      width: 120.2px;
+      height: 40px;
+      border-radius: 5px;
+      background-color: $greeny-blue-two;
+      &.prev {
+        background-color: #8d93a6;
+        &:hover {
+          background-color: #5a5f6e;
+        }
+      }
+      &:hover {
+        background-color: $greeny-blue-two-hover;
+      }
+    }
+  }
+
+}

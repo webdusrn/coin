@@ -1,0 +1,7 @@
+@mixin font-style($font-size:15px, $color: white, $font-weight:initial, $font-style:normal, $font-stretch:normal) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  font-style: $font-style;
+  font-stretch: $font-stretch;
+  color: $color;
+}

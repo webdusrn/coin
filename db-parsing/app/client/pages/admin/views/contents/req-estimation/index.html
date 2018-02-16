@@ -1,0 +1,79 @@
+<div id="sg-req-estimation-manage-wrap" data-ng-controller="ReqEstimationCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">설치 신청 관리</div>
+
+        <button type="button" class="sgc-btn-action sg-req-estimation-stats-button" data-ng-click="openStats('big')">
+            통계
+        </button>
+
+        <div class="sg-req-estimation-manage-search-wrap">
+            <select class="sgc-option" data-ng-model="form.searchField">
+                <option data-ng-repeat="item in enumSearchFields" value="{{ item }}">
+                    {{ item | translate }}
+                </option>
+            </select>
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findReqEstimations(true)">
+                    <input type="text" class="sgc-search-input" data-ng-model="form.searchItem" placeholder="검색어">
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-req-estimation-manage-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option sg-big" data-ng-model="form.type">
+                    <option data-ng-repeat="item in enumTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option sg-big" data-ng-model="form.requestType">
+                    <option data-ng-repeat="item in enumRequestTypes" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+                <select class="sgc-option sg-big" data-ng-if="form.requestType" data-ng-model="form.state">
+                    <option data-ng-repeat="item in enumStates" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ reqEstimations.count }}</span></p>
+        </div>
+
+        <div class="sg-req-estimation-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">신청 유형</h6>
+                <h6 class="sg-header">신청 방식</h6>
+                <h6 class="sg-header">상태</h6>
+                <h6 class="sg-header">요청자명</h6>
+                <h6 class="sg-header">연락처</h6>
+                <h6 class="sg-header">시/도</h6>
+                <h6 class="sg-header">시/군/구</h6>
+                <h6 class="sg-header">콜 수</h6>
+                <h6 class="sg-header">설치날짜</h6>
+                <h6 class="sg-header">신청날짜</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in reqEstimations.rows" data-ng-click="openDetailReqEstimation('lg', item)">
+                        <div class="sg-item">{{ item.type | translate }}</div>
+                        <div class="sg-item"><span data-ng-class="{'sg-call': item.requestType == REQ_CALL, 'sg-premium': item.requestType == REQ_PREMIUM, 'sg-contract': item.requestType == REQ_CONTRACT}">{{ item.requestType }}</span></div>
+                        <div class="sg-item">{{ item.state | translate }}</div>
+                        <div class="sg-item">{{ item.authorName }}</div>
+                        <div class="sg-item">{{ item.author.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item">{{ item.installSido }}</div>
+                        <div class="sg-item">{{ item.installSigungu }}</div>
+                        <div class="sg-item">{{ item.callCount }}</div>
+                        <div class="sg-item">{{ item.transactionState == REQ_ESTIMATION.transactionStateSuccess ? (item.updatedAt | microTimeToDate) : '-' }}</div>
+                        <div class="sg-item">{{ item.createdAt | microTimeToDateTime }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button type="button" class="sgc-btn-more" data-ng-click="findReqEstimations()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<req-estimation-stats></req-estimation-stats>
+<detail-req-estimation></detail-req-estimation>

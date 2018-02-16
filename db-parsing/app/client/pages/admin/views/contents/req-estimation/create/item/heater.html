@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">냉난방기 여부 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.heater">
+        <option disabled hidden selected value="">-</option>
+        <option data-ng-repeat="item in enumHeaters" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

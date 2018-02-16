@@ -1,0 +1,176 @@
+@import "../../../../../../core/client/assets/stylesheets/import";
+@import '../../../../../../core/client/assets/stylesheets/components';
+@import "_mixin.scss";
+//@import "keyframes";
+//@import "animations";
+//@import "hovers";
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import "_constants.scss";
+
+html {
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+html,
+body,
+#sg-main-wrap {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 100%;
+    color: $g-color-black;
+    background-color: $g-color-white;
+}
+
+h1, h2, h3, h4, h5, ul, li, p {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+textarea,
+select,
+input,
+button {
+    outline: none !important;
+    border-radius: 0;
+    border: 0;
+    padding: 0;
+}
+
+select {
+    border-radius: 0;
+}
+
+hr {
+    margin: 0;
+    border: 1px solid $g-color-line;
+    border-top: 0;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+label {
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin: 0;
+}
+
+.sg-outer {
+    position: relative;
+    display: table;
+    width: 100%;
+    height: 100%;
+    background-color: $g-color-background-gray;
+    .sg-inner {
+        position: relative;
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+#sg-main-wrap {
+    padding-top: $g-header-size;
+    background-color: $g-color-background-gray;
+    color: $g-color-black;
+    height: 100%;
+    @include after-clear();
+    .sg-navigation-wrap, .sg-navigation-wrap-hide {
+        position: fixed;
+        //top: $g-header-size;
+        top: 0;
+        left: 0;
+        width: $g-menu-size;
+        height: 100%;
+        background-color: $g-color-navigation;
+        overflow-y: auto;
+        ng-include {
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+        @include translate3d(0, 0, 0);
+        @media screen and (max-width: $web-container-size) {
+            @include transition(all, .2s, ease-in-out, 0s);
+        }
+
+    }
+    .sg-navigation-wrap-hide {
+        //left: -100%;
+        @media screen and (max-width: $web-container-size) {
+            @include translate3d(-100%, 0, 0);
+            top: 0;
+        }
+
+        top: $g-header-size;
+    }
+    #sg-main-contents-wrap {
+
+        @media screen and (min-width: $web-container-size) {
+            padding-left: 200px;
+        }
+
+        overflow: auto;
+        position: relative;
+        height: 100%;
+        @include after-clear();
+        #sg-main-contents {
+            position: relative;
+            //margin-left: $g-menu-size;
+            //width: $g-without-menu-size;
+            height: 100%;
+            background-color: $g-color-background-gray;
+            .container {
+                width: 100%;
+            }
+
+            @media screen and (max-width: $web-min-width) {
+                margin-left: 0;
+            }
+            @include transition(all, .2s, ease-in-out, 0s);
+        }
+    }
+}
+
+.modal-content {
+    margin-top: 120px;
+    border: none;
+    box-shadow: none;
+}
+
+@import "common";
+@import "override";
+@import "layouts/header";
+@import "layouts/navigation";
+@import "components";
+@import "pages/engineer/index";
+@import "pages/req-estimation";
+@import "pages/users/index";
+@import "pages/option";
+@import "pages/blog";
+@import "pages/engineer-phone-num";
+@import "pages/point-history";
+@import "pages/install-cs";
+@import "pages/vbank";
+@import "pages/biz-msg";
+@import "pages/as-history";
+@import "pages/premium-info";
+@import "pages/contract-info";
+@import "pages/req-estimation-create";
+@import "responsives";

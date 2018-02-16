@@ -1,0 +1,129 @@
+<script type="text/ng-template" id="myDetailPremiumInfo.html">
+    <div id="sg-detail-premium-info-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-g-modal-header">
+            <p>{{ '프리미엄 기사 신청 상세' }} ({{ premiumInfo.state | translate }})</p>
+        </div>
+        <div class="sg-g-modal-content">
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">상태</label>
+                <p class="sg-g-text sg-state">
+                    <span class="sg-state" data-ng-class="premiumInfo.state"></span>
+                    <span>{{ premiumInfo.state | translate }}</span>
+                </p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">항목</label>
+                <p class="sg-g-text">{{ premiumInfo.category | translate }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">플랜</label>
+                <p class="sg-g-text">{{ premiumInfo.plan }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four sg-last">
+                <label class="sg-g-label">가격</label>
+                <p class="sg-g-text">{{ premiumInfo.price ? (premiumInfo.price | number) : '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">기사명</label>
+                <p class="sg-g-text">{{ premiumInfo.user.name }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">기사 연락처</label>
+                <p class="sg-g-text">{{ premiumInfo.user.phoneNum | returnPhoneNum }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">프리미엄 시작일</label>
+                <p class="sg-g-text">{{ premiumInfo.startDate ? (premiumInfo.startDate | date: 'yyyy-MM-dd') : '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four sg-last">
+                <label class="sg-g-label">프리미엄 종료일</label>
+                <p class="sg-g-text">{{ premiumInfo.endDate ? (premiumInfo.endDate | date: 'yyyy-MM-dd') : '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-half">
+                <label class="sg-g-label">신청일</label>
+                <p class="sg-g-text">{{ premiumInfo.createdAt | microTimeToDateTime }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-half sg-last">
+                <label class="sg-g-label">결제 만료일</label>
+                <p class="sg-g-text">{{ premiumInfo.expirationDate ? (premiumInfo.expirationDate | date: 'yyyy-MM-dd HH:mm') : '-' }}</p>
+            </div>
+
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">신청 옵션</label>
+                <ul class="sg-location-tag">
+                    <li><span>하루설치: {{ premiumInfo.isCanInstallAmountPerDay }}</span></li>
+                    <li data-ng-if="premiumInfo.isCanWallTvOwnBracket !== null">
+                        <span>브라켓: </span>
+                        <span data-ng-if="premiumInfo.isCanWallTvOwnBracket">보유</span>
+                        <span data-ng-if="!premiumInfo.isCanWallTvOwnBracket">미보유</span>
+                    </li>
+                    <li data-ng-if="premiumInfo.isCanAirConditionerTopInstall !== null">
+                        <span>천정형: </span>
+                        <span data-ng-if="premiumInfo.isCanAirConditionerTopInstall">가능</span>
+                        <span data-ng-if="!premiumInfo.isCanAirConditionerTopInstall">불가능</span>
+                    </li>
+                    <li data-ng-if="premiumInfo.isCanAirConditionerLargeInstall !== null">
+                        <span>업소용: </span>
+                        <span data-ng-if="premiumInfo.isCanAirConditionerLargeInstall">가능</span>
+                        <span data-ng-if="!premiumInfo.isCanAirConditionerLargeInstall">불가능</span>
+                    </li>
+                    <li data-ng-if="premiumInfo.isCanAirConditionerMoveInstall !== null">
+                        <span>이전설치: </span>
+                        <span data-ng-if="premiumInfo.isCanAirConditionerMoveInstall">가능</span>
+                        <span data-ng-if="!premiumInfo.isCanAirConditionerMoveInstall">불가능</span>
+                    </li>
+                    <li data-ng-if="premiumInfo.isCanAirConditionerNewInstall !== null">
+                        <span>신품설치: </span>
+                        <span data-ng-if="premiumInfo.isCanAirConditionerNewInstall">가능</span>
+                        <span data-ng-if="!premiumInfo.isCanAirConditionerNewInstall">불가능</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">신청 권역 {{ premiumInfo.state == PREMIUM_INFO.premiumStateStandby ? '(승인 가격: ' + (premiumInfo.premiumPrice | number) + ')' : '' }}</label>
+                <ul class="sg-location-tag" data-ng-class="premiumInfo.state">
+                    <li data-ng-repeat="item in premiumInfo.sidoSigungus" data-ng-class="{'sg-select': item.select}" data-ng-click="selectLocation(item)">
+                        <span>{{ item.sido }}</span><span data-ng-if="item.sigungu"> {{ item.sigungu }}</span><span> {{ item.count }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sg-g-input-wrap" data-ng-if="premiumInfo.state == PREMIUM_INFO.premiumStateUnauthorized">
+                <label class="sg-g-label">비인증 사유</label>
+                <textarea class="sgc-input" data-ng-model="form.failMessage" rows="5" readonly></textarea>
+            </div>
+
+            <div class="sg-g-input-wrap" data-ng-if="premiumInfo.state == PREMIUM_INFO.premiumStateStandby">
+                <label class="sg-g-label"><strong>비인증 입력 항목</strong></label>
+                <textarea class="sgc-input" data-ng-model="form.failMessage" rows="5" placeholder="{{ '비인증 사유' }}"></textarea>
+            </div>
+            <div class="sg-g-input-wrap" data-ng-if="premiumInfo.state == PREMIUM_INFO.premiumStateStandby">
+                <label class="sg-g-label"><strong>인증 입력 항목</strong></label>
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">시작일 {{ lastCompletePremiumInfo ? ('(이전 종료일: ' + (lastCompletePremiumInfo.endDate | date: 'yyyy-MM-dd') + ')') : '' }}</label>
+                    <datepicker date-format="yyyy-MM-dd">
+                        <input type="text" class="sgc-input sg-date" data-ng-model="form.startDate" placeholder="{{ '시작일' }}" readonly>
+                    </datepicker>
+                </div>
+                <div class="sg-g-input-wrap sg-three">
+                    <label class="sg-g-label">종료일</label>
+                    <p class="sg-g-text">{{ form.endDate | date: 'yyyy-MM-dd' }}</p>
+                </div>
+                <div class="sg-g-input-wrap sg-three sg-last">
+                    <label class="sg-g-label">결제 유효기간 일수 (1 ~ 7)</label>
+                    <input type="number" class="sgc-input" data-ng-model="form.expirationDay" placeholder="{{ '결제 유효일수' }}">
+                </div>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-action" data-ng-click="authorization()" data-ng-if="premiumInfo.state == PREMIUM_INFO.premiumStateStandby">인증</button>
+            <button type="button" class="sgc-btn-delete" data-ng-click="unauthorization()" data-ng-if="premiumInfo.state == PREMIUM_INFO.premiumStateStandby">비인증</button>
+            <button type="button" class="sgc-btn-cancel sg-close" data-ng-click="cancel()">닫기</button>
+        </div>
+    </div>
+</script>

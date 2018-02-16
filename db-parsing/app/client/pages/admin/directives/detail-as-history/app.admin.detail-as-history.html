@@ -1,0 +1,109 @@
+<script type="text/ng-template" id="myDetailAsHistory.html">
+    <div id="sg-detail-as-history-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-g-modal-header">
+            <p>{{ 'A/S 문의 상세' }}</p>
+        </div>
+        <div class="sg-g-modal-content">
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">신청자명</label>
+                <p class="sg-g-text">{{ asHistory.reqEstimation.authorName }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">신청자 연락처</label>
+                <p class="sg-g-text">{{ asHistory.author.phoneNum | returnPhoneNum }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">기사명</label>
+                <p class="sg-g-text">{{ asHistory.engineer.name }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four sg-last">
+                <label class="sg-g-label">기사 연락처</label>
+                <p class="sg-g-text">{{ asHistory.engineer.phoneNum | returnPhoneNum }}</p>
+            </div>
+
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">A/S 문의 상태</label>
+                <p class="sg-g-text sg-state">
+                    <span class="sg-state" data-ng-class="{'sg-standby': asHistory.asState == AS_HISTORY.asStateStandby, 'sg-visit-booked': asHistory.asState == AS_HISTORY.asStateVisitBooked && todayZero < (asHistory.visitDate | dateToTimestamp), 'sg-complete': asHistory.asState == AS_HISTORY.asStateComplete, 'sg-over': asHistory.asState == AS_HISTORY.asStateVisitBooked && todayZero >= (asHistory.visitDate | dateToTimestamp)}"></span>
+                    <span data-ng-if="asHistory.asState == AS_HISTORY.asStateVisitBooked && todayZero < (asHistory.visitDate | dateToTimestamp)">{{ asHistory.asState | translate }}</span>
+                    <span data-ng-if="asHistory.asState == AS_HISTORY.asStateVisitBooked && todayZero >= (asHistory.visitDate | dateToTimestamp)">예약일지남</span>
+                    <span data-ng-if="asHistory.asState != AS_HISTORY.asStateVisitBooked">{{ asHistory.asState | translate }}</span>
+                </p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">통화 상태</label>
+                <p class="sg-g-text">{{ asHistory.asCallState | translate }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">신청 유형</label>
+                <p class="sg-g-text">{{ asHistory.reqEstimation.type | translate }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four sg-last">
+                <label class="sg-g-label">신청 지역</label>
+                <p class="sg-g-text">{{ asHistory.reqEstimation.installSido + ' ' + (asHistory.reqEstimation.installSigungu ? asHistory.reqEstimation.installSigungu : '') }}</p>
+            </div>
+
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">문제 발생일</label>
+                <p class="sg-g-text">{{ asHistory.asProblemOccurredAt | date: 'yyyy-MM-dd' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">신청일</label>
+                <p class="sg-g-text">{{ asHistory.createdAt | microTimeToDateTime }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three sg-last">
+                <label class="sg-g-label">통화 요청일</label>
+                <p class="sg-g-text">{{ asHistory.asCalledAt ? (asHistory.asCalledAt | date: 'yyyy-MM-dd HH:mm') : '-' }}</p>
+            </div>
+
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">방문일</label>
+                <p class="sg-g-text">{{ asHistory.visitDate ? (asHistory.visitDate | date: 'yyyy-MM-dd HH:mm') : '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">방문예약 설정일</label>
+                <p class="sg-g-text">{{ asHistory.asVisitBookedAt ? (asHistory.asVisitBookedAt | date: 'yyyy-MM-dd HH:mm') : '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three sg-last">
+                <label class="sg-g-label">완료 설정일</label>
+                <p class="sg-g-text">{{ asHistory.asCompletedAt ? (asHistory.asCompletedAt | date: 'yyyy-MM-dd HH:mm') : '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">기사 ID ({{ form.engineerName }})</label>
+                <input type="text" class="sgc-input" data-ng-model="form.engineerId" placeholder="{{ '기사 ID' }}">
+            </div>
+            <div class="sg-g-input-wrap sg-two-three sg-last">
+                <label class="sg-g-label">방문일</label>
+                <div class="sg-left">
+                    <select class="sgc-option" data-ng-model="form.visitYear">
+                        <option data-ng-repeat="item in enumYears" value="{{ item }}">{{ item }}</option>
+                    </select>
+                    <select class="sgc-option" data-ng-model="form.visitMonth">
+                        <option data-ng-repeat="item in enumMonths" value="{{ item }}">{{ item }}</option>
+                    </select>
+                    <select class="sgc-option" data-ng-model="form.visitDate">
+                        <option data-ng-repeat="item in enumDates" value="{{ item }}">{{ item }}</option>
+                    </select>
+                    <select class="sgc-option" data-ng-model="form.visitHour">
+                        <option data-ng-repeat="item in enumHours" value="{{ item }}">{{ item }}</option>
+                    </select>
+                    <select class="sgc-option" data-ng-model="form.visitMinutes">
+                        <option data-ng-repeat="item in enumMinutes" value="{{ item }}">{{ item }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-more" data-ng-click="updateCallState(false)">통화대기</button>
+            <button type="button" class="sgc-btn-more" data-ng-click="updateCallState(true)">통화완료</button>
+            <button type="button" class="sgc-btn-cancel" data-ng-click="updateStandby()">기본상태로</button>
+            <button type="button" class="sgc-btn-delete" data-ng-click="updateBookVisit()">방문예약</button>
+            <button type="button" class="sgc-btn-action" data-ng-click="updateComplete()">해결완료</button>
+            <button type="button" class="sgc-btn-cancel sg-close" data-ng-click="cancel()">닫기</button>
+        </div>
+    </div>
+</script>

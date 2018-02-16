@@ -1,0 +1,112 @@
+<script type="text/ng-template" id="myDetailInstallCs.html">
+    <div id="sg-detail-install-cs-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-g-modal-header">
+            <p>{{ '설치 CS 상세' }} ({{ installCs.adminState | translate }})</p>
+        </div>
+        <div class="sg-g-modal-content">
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">요청상태</label>
+                <p class="sg-g-text">{{ installCs.csState }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">신청자명</label>
+                <p class="sg-g-text">{{ installCs.authorName }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three sg-last">
+                <label class="sg-g-label">신청자번호</label>
+                <p class="sg-g-text">{{ installCs.author.phoneNum | returnPhoneNum }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">설치유형</label>
+                <p class="sg-g-text">{{ installCs.type | translate }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three">
+                <label class="sg-g-label">시도</label>
+                <p class="sg-g-text">{{ installCs.installSido }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-three sg-last">
+                <label class="sg-g-label">시군구</label>
+                <p class="sg-g-text">{{ installCs.installSigungu || '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">설치완료 요청 정보</label>
+                <p class="sg-g-text" data-ng-if="!installCs.requestInstall && installCs.adminState != REQ_ESTIMATION.adminStateComplete">기사 기억 안남</p>
+                <p class="sg-g-text" data-ng-if="!installCs.requestInstall && installCs.adminState == REQ_ESTIMATION.adminStateComplete">요청 없음</p>
+                <ul data-ng-if="installCs.requestInstall">
+                    <li class="sg-list-header" data-ng-if="installCs.requestInstall">
+                        <p class="sg-header">실거래상태</p>
+                        <p class="sg-header">기사명</p>
+                        <p class="sg-header">기사번호</p>
+                        <p class="sg-header">설치금액</p>
+                        <p class="sg-header">상품금액</p>
+                        <p class="sg-header sg-width-12">처리</p>
+                    </li>
+                    <li class="sg-list-item">
+                        <p class="sg-item">{{ installCs.requestInstall.estimation.transactionState | translate }}</p>
+                        <p class="sg-item">{{ installCs.requestInstall.estimation.author.name }}</p>
+                        <p class="sg-item">{{ installCs.requestInstall.estimation.author.phoneNum | returnPhoneNum }}</p>
+                        <p class="sg-item">{{ installCs.requestInstall.estimation.estimationItems[0].price | number }}</p>
+                        <p class="sg-item">{{ installCs.requestInstall.estimation.estimationItems[0].productPrice | number }}</p>
+                        <p class="sg-item sg-padding sg-width-12"><button type="button" class="sgc-btn-delete" data-ng-click="deleteRequestInstall()">요청취소</button></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">연결 기사 목록</label>
+                <ul>
+                    <li class="sg-list-header">
+                        <p class="sg-header">실거래상태</p>
+                        <p class="sg-header">기사명</p>
+                        <p class="sg-header">기사번호</p>
+                        <p class="sg-header">설치금액</p>
+                        <p class="sg-header">상품금액</p>
+                        <p class="sg-header sg-width-12">처리</p>
+                    </li>
+                    <li class="sg-list-item" data-ng-repeat="item in installCs.matchEstimations">
+                        <p class="sg-item">{{ item.transactionState | translate }}</p>
+                        <p class="sg-item">{{ item.author.name }}</p>
+                        <p class="sg-item">{{ item.author.phoneNum | returnPhoneNum }}</p>
+                        <p class="sg-item">{{ item.matchEstimationItems[0].price | number }}</p>
+                        <p class="sg-item">{{ item.matchEstimationItems[0].productPrice | number }}</p>
+                        <p class="sg-item sg-padding sg-width-12"><button type="button" class="sgc-btn-delete" data-ng-click="setEstimationSuccess(item)">설치완료</button></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">어드민 메모 (최신순 정렬)</label>
+                <form class="sg-cs-memo-wrap" data-ng-submit="createCsMemo()">
+                    <select class="sgc-option" data-ng-model="form.csMemoState">
+                        <option value="" disabled selected hidden>메모유형</option>
+                        <option data-ng-repeat="item in enumCsMemoStates" value="{{ item }}">
+                            {{ item | translate }}
+                        </option>
+                    </select>
+                    <input type="text" class="sgc-input" data-ng-model="form.csMemo" placeholder="{{ '메모내용' }}">
+                    <button type="submit" class="sgc-btn-more">등록</button>
+                </form>
+                <ul data-ng-if="csMemos.count">
+                    <li class="sg-list-header">
+                        <p class="sg-header sg-memo">메모상태</p>
+                        <p class="sg-header sg-memo">메모내용</p>
+                        <p class="sg-header sg-memo">메모작성일</p>
+                        <p class="sg-header sg-memo">처리</p>
+                    </li>
+                    <li class="sg-list-item" data-ng-repeat="item in csMemos.rows">
+                        <p class="sg-item sg-memo">{{ item.csMemoState | translate }}</p>
+                        <p class="sg-item sg-memo">{{ item.csMemo }}</p>
+                        <p class="sg-item sg-memo">{{ item.createdAt | microTimeToDate }}</p>
+                        <p class="sg-item sg-memo sg-padding"><button type="button" class="sgc-btn-cancel" data-ng-click="deleteCsMemo(item, $index)">삭제</button></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-action" data-ng-click="complete()">{{ '처리완료' }}</button>
+            <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">닫기</button>
+        </div>
+    </div>
+</script>

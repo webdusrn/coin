@@ -1,0 +1,182 @@
+button.sg-cs-btn {
+    width: 120px;
+    height: 40px;
+
+    border-radius: 3px;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    &.sg-cs-action {
+        background-color: $dowado-color;
+        &:hover {
+            background-color: $dowado-hover-color;
+        }
+    }
+
+    &.sg-cs-cancel {
+        background-color: $dowado-font-grey-color;
+        &:hover {
+            background-color: $dowado-font-grey-hover-color;
+        }
+    }
+
+    &.sg-cs-delete {
+        background-color: #c7515c;
+        &:hover {
+            background-color: #b34852;
+        }
+    }
+
+    &.sg-more-btn {
+        background-color: #abb7d6;
+        &:hover {
+            background-color: #9dacd2;
+            color: white;
+        }
+    }
+
+    &.sg-cs-border {
+        &.sg-cs-action {
+            border: 1px solid $dowado-color;
+            &:hover {
+                background-color: $dowado-color;
+                color: white;
+            }
+        }
+
+        &.sg-cs-cancel {
+            border: 1px solid $dowado-font-grey-color;
+            &:hover {
+                background-color: $dowado-font-grey-color;
+                color: white;
+            }
+        }
+
+        &.sg-cs-delete {
+            border: 1px solid #c7515c;
+            &:hover {
+                background-color: #c7515c;
+                color: white;
+            }
+        }
+
+        &.sg-more-btn {
+            border: 1px solid #abb7d6;
+            &:hover {
+                background-color: #abb7d6;
+                color: white;
+            }
+        }
+    }
+}
+
+.sg-action-btn {
+    width: 120px;
+    height: 40px;
+
+    border-radius: 3px;
+    color: white;
+
+    line-height: 40px;
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    background-color: $dowado-color;
+    &:hover {
+        background-color: $dowado-hover-color;
+    }
+}
+
+.sg-cancel-btn {
+    width: 120px;
+    height: 40px;
+
+    border-radius: 3px;
+    color: white;
+
+    line-height: 40px;
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    background-color: $dowado-font-grey-color;
+    &:hover {
+        background-color: $dowado-font-grey-hover-color;
+    }
+}
+
+.sg-delete-btn {
+    width: 120px;
+    height: 40px;
+
+    border-radius: 3px;
+    color: white;
+
+    line-height: 40px;
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    background-color: #c7515c;
+    &:hover {
+        background-color: #b34852;
+    }
+}
+
+.sg-delete-border-btn {
+    width: 120px;
+    height: 40px;
+
+    border-radius: 3px;
+    color: #c7515c;
+
+    line-height: 40px;
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    border: 1px solid #c7515c;
+    &:hover {
+        background-color: #c7515c;
+        color: white;
+    }
+}
+
+.sg-more-btn {
+    width: 120px;
+    height: 40px;
+
+    border-radius: 3px;
+    color: white;
+
+    line-height: 40px;
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    cursor: pointer;
+
+    background-color: #abb7d6;
+    &:hover {
+        background-color: #9dacd2;
+        color: white;
+    }
+}

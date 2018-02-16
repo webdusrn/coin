@@ -1,0 +1,91 @@
+#sg-open-history-wrap {
+  div.sg-g-modal-header {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    p {
+      margin-left: 36px;
+    }
+  }
+  div.sg-g-modal-content {
+    position: relative;
+    padding: 0;
+    div.sg-engineer-info {
+      padding: 0 36px 20px 36px;
+      @include after-clear();
+      p.sg-g-text {
+        color: #121428;
+        font-size: 16px;
+        border-bottom: 1px solid #d5dbec;
+        text-align: left;
+        padding-left: 0;
+      }
+    }
+    div.sg-point-history-list {
+      padding: 20px 36px;
+      background-color: #efefef;
+      div.sg-list-header {
+        padding-bottom: 15px;
+        font-size: 0;
+        h6.sg-header {
+          display: inline-block;
+          margin: 0;
+          font-size: 12px;
+          font-weight: 400;
+          color: #8d93a6;
+          width: 10%;
+          text-align: center;
+          &:nth-of-type(7),
+          &:nth-of-type(8) {
+            width: 20%;
+          }
+        }
+      }
+      div.sg-list-content {
+        ul {
+          position: relative;
+          li {
+            position: relative;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid white;
+            height: 50px;
+            background-color: white;
+            cursor: pointer;
+            @include after-clear();
+            -webkit-transition: border-color .1s;
+            -moz-transition: border-color .1s;
+            -ms-transition: border-color .1s;
+            -o-transition: border-color .1s;
+            transition: border-color .1s;
+            &:hover {
+              border-color: #6d8fe4;
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+            div.sg-item {
+              position: relative;
+              width: 10%;
+              height: 100%;
+              line-height: 48px;
+              text-align: center;
+              color: #8d93a6;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              float: left;
+              &:nth-of-type(7),
+              &:nth-of-type(8) {
+                width: 20%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    text-align: right;
+  }
+}

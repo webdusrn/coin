@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">방충망 종류 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.windowScreenType">
+        <option value="" disabled hidden selected>-</option>
+        <option data-ng-repeat="item in enumWindowScreenTypes" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

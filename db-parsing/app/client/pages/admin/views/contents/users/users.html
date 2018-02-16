@@ -1,0 +1,97 @@
+<div id="sg-user-manage" ng-controller="adminUserCtrl" data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}" class="">
+    <div class="sg-user-manage-container">
+        <div class="sg-user-manage-title sgc-titles ">
+            유저 관리
+        </div>
+
+        <div class="sg-user-manage-menu">
+            <div class="sg-user-manage-menu-search">
+                <form ng-submit="findUsers()" class="ng-pristine ng-valid">
+                    <input class="sgc-search-input " ng-model="params.searchItem" type="text"
+                           placeholder="{{ 'userSearchPlaceholder' | translate }}">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-user-manage-main">
+            <div class="sg-user-manage-main-top">
+                <div class="sg-user-manage-main-top-total sgc-total">Total <span>{{count}}</span></div>
+            </div>
+
+            <div class="sg-user-manage-main-list">
+
+                <div class="sg-user-manage-main-list-top">
+                    <div class="sg-user-manage-main-list-top-img">
+                    </div>
+                    <div class="sg-user-manage-main-list-top-aid ">
+                        아이디
+                    </div>
+                    <div class="sg-user-manage-main-list-top-created-at ">
+                        가입일
+                    </div>
+                    <div class="sg-user-manage-main-list-top-data-created-at ">
+                        최근 견적 생성일
+                    </div>
+                    <div class="sg-user-manage-main-list-top-data-matched-at ">
+                        최근 매칭일
+                    </div>
+
+                    <div class="sg-user-manage-main-list-top-more">
+
+                    </div>
+                </div>
+
+
+                <div class="sg-user-manage-main-list-item "  data-ng-repeat="item in userList" ng-click="userEstimationInfo('lg', item)">
+
+                    <div class="sg-user-manage-main-list-item-img " >
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-aid-container">
+                        <div class="sg-user-manage-main-list-item-aid-text  " >
+                            {{item.phoneNum | returnPhoneNum}}
+                        </div>
+                    </div>
+
+
+                    <div class="sg-user-manage-main-list-item-created-at-container">
+                        <div class="sg-user-manage-main-list-item-created-at-text ">
+                            {{item.createdAt/1000 | timestampToDate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-created-at-container">
+                        <div class="sg-user-manage-main-list-item-created-at-text ">
+                            {{item.dates.createdAt/1000 | timestampToDate | translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-created-at-container">
+                        <div class="sg-user-manage-main-list-item-created-at-text ">
+                            {{item.dates.matchedAt/1000 | timestampToDate | translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-option-container">
+                        <div class="sg-user-manage-main-list-item-option-btn" >
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="sg-user-manage-main-more-container" data-ng-show="lastId != 0">
+                <button class="sg-btn-more"  data-ng-click="findUsers(lastId)">{{ 'more' | translate }}</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<user-estimations></user-estimations>
+<update-application></update-application>

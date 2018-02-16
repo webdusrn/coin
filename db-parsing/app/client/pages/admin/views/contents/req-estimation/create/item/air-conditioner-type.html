@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">에어컨 종류 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.airConditionerType">
+        <option selected hidden disabled value="">-</option>
+        <option data-ng-repeat="item in enumAirConditionerTypes" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

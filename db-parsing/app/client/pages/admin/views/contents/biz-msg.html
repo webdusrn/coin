@@ -1,0 +1,56 @@
+<section id="sg-biz-msg-wrap" data-ng-controller="BizMsgCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">
+            알림톡 테스트
+        </div>
+
+        <div class="sg-biz-msg-select-wrap">
+            <select class="sgc-option" data-ng-model="form.key">
+                <option hidden selected disabled value="">key 선택</option>
+                <option data-ng-repeat="item in enumKeys" value="{{ item }}">
+                    {{ item }}
+                </option>
+            </select>
+            <input type="text" class="sg-input" data-ng-if="form.key" data-ng-model="form.phoneNum" placeholder="핸드폰번호">
+            <button type="button" data-ng-click="send()" data-ng-if="form.key" class="sgc-btn-action">발송</button>
+        </div>
+        <div class="sg-biz-msg-item-wrap" data-ng-if="form.key">
+            <div class="sg-g-input-wrap" data-ng-repeat="(key, value) in magicKeys">
+                <label class="sg-label">{{ key }}</label>
+                <input type="text" data-ng-model="magicKeys[key]" class="sg-input" data-ng-change="replace()" placeholder="MAGIC KEY">
+            </div>
+        </div>
+        <div class="sg-biz-msg-item-wrap" data-ng-if="form.key">
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">템플릿</label>
+                <textarea rows="10" data-ng-model="replaceTemplate" class="sg-input" readonly></textarea>
+            </div>
+        </div>
+        <div class="sg-biz-msg-item-wrap" data-ng-if="form.key && url_pc && url_mobile">
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">PC URL</label>
+                <input data-ng-model="replace_url_pc" class="sg-input" readonly>
+            </div>
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">MOBILE URL</label>
+                <input data-ng-model="replace_url_mobile" class="sg-input" readonly>
+            </div>
+        </div>
+        <div class="sg-biz-msg-item-wrap" data-ng-if="form.key && replace_scheme_android && replace_scheme_ios">
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">ANDROID URL</label>
+                <input data-ng-model="replace_scheme_android" class="sg-input" readonly>
+            </div>
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">IOS URL</label>
+                <input data-ng-model="replace_scheme_ios" class="sg-input" readonly>
+            </div>
+        </div>
+        <div class="sg-biz-msg-item-wrap" data-ng-if="form.key">
+            <div class="sg-g-input-wrap">
+                <label class="sg-g-label">대체발송</label>
+                <textarea rows="5" data-ng-model="replaceReBody" class="sg-input" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,64 @@
+<div id="sg-req-estimation-create-wrap" data-ng-controller="ReqEstimationCreateCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">설치 신청 생성</div>
+
+        <form data-ng-submit="syncUser()" class="sg-user-phone-num-wrap">
+            <input type="text" class="sgc-input sg-user-phone-num" data-ng-class="{'sg-sync': user}" data-ng-model="form.phoneNum" placeholder="핸드폰번호 - 없이 입력" data-ng-readonly="user">
+        </form>
+        <button type="button" class="sgc-btn-action sg-sync-button" data-ng-if="!user" data-ng-click="syncUser()">동기화</button>
+        <button type="button" class="sgc-btn-delete sg-sync-button" data-ng-if="user" data-ng-click="asyncUser()">동기화 해제</button>
+
+        <button type="button" class="sgc-btn-cancel sg-refresh-button" data-ng-click="refresh()">초기화</button>
+
+        <div class="sg-req-estimation-create-manage-wrap">
+            <div class="sg-margin-right">
+                <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/item/default.html'"></ng-include>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeInstallOnly">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/air-conditioner/install-only.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeMoveInstall">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/air-conditioner/move-install.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeOutDoorUnitInstall">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/air-conditioner/out-door-unit-install.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeRemove">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/air-conditioner/remove.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeGasCharge">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/air-conditioner/gas-charge.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeWallTvInstall">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/wall-tv/install.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeDoorLockInstall">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/door-lock/install.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeWindowScreenInstall">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/window-screen/install.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeBoilerInstall">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/boiler/install.html'"></ng-include>
+                </div>
+                <div data-ng-if="form.type == REQ_ESTIMATION.typeBoilerRepair">
+                    <ng-include src="templatePath + 'admin/views/contents/req-estimation/create/boiler/repair.html'"></ng-include>
+                </div>
+            </div>
+        </div>
+        <div class="sg-req-estimation-create-check-wrap">
+            <div class="sg-g-input-wrap sg-three">
+                <button type="button" class="sgc-btn-action" data-ng-click="requestCall()">콜당과금 신청</button>
+            </div>
+            <div class="sg-g-input-wrap sg-three">
+                <button type="button" class="sgc-btn-more" data-ng-if="form.isCanPremium === undefined" data-ng-click="isCanPremium()">프리미엄 체크</button>
+                <button type="button" class="sgc-btn-delete" data-ng-if="form.isCanPremium !== undefined && !form.isCanPremium" data-ng-click="isCanPremium(true)">프리미엄 불가능</button>
+                <button type="button" class="sgc-btn-action" data-ng-if="form.isCanPremium" data-ng-click="requestPremium()">프리미엄 신청</button>
+            </div>
+            <div class="sg-g-input-wrap sg-three sg-last">
+                <button type="button" class="sgc-btn-more" data-ng-if="form.isCanContract === undefined" data-ng-click="isCanContract()">도급 체크</button>
+                <button type="button" class="sgc-btn-delete" data-ng-if="form.isCanContract !== undefined && !form.isCanContract" data-ng-click="isCanContract(true)">도급 불가능</button>
+                <button type="button" class="sgc-btn-action" data-ng-if="form.isCanContract" data-ng-click="requestContract()">도급 신청</button>
+            </div>
+        </div>
+    </div>
+</div>

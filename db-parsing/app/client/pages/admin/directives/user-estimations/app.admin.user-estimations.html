@@ -1,0 +1,71 @@
+<script type="text/ng-template" id="myUserEstimationInfo.html">
+        <div id="sg-user-estimations-wrap">
+            <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+                <i></i>
+                <i></i>
+            </button>
+            <form name="createPopupForm" novalidate>
+                <div class="sg-g-modal-header">
+                    <p class="sg-essential-input sg-left" >{{ 'userApplicationList' | translate }}</p>
+                    <p class="sg-sessential-input sg-right">총 {{vm.reqEstimation.length | nullToZero}}건</p>
+                </div>
+                <div class="sg-g-modal-content">
+
+                    <div class="sg-g-input-wrap sg-one sg-last">
+                        <label class="sg-g-label">{{ 'phoneNum' | translate }}</label>
+                        <p class="sg-g-text" >{{vm.userInfo.phoneNum | returnPhoneNum | translate}}</p>
+                    </div>
+
+
+                    <div class="sg-g-input-wrap sg-one sg-last sg-estimations-wrapper" data-ng-if="vm.reqEstimation.length > 0" data-ng-repeat="item in vm.reqEstimation" data-ng-click="openApplication('lg', item)">
+
+                        <div class="sg-g-input-wrap sg-one sg-width-45">
+                            <label class="sg-g-label">{{ 'type' | translate }}</label>
+                            <p class="sg-g-text" >{{item.type | translate}}</p>
+                        </div>
+
+                        <div class="sg-g-input-wrap sg-one sg-width-45 sg-last">
+                            <label class="sg-g-label">{{ 'estimation-state' | translate }}</label>
+                            <p class="sg-g-text" >{{item.state | translate}}</p>
+                        </div>
+
+                        <div class="sg-g-input-wrap sg-one sg-last">
+                             <ul data-ng-if="item.state != 'reqEstimationCancel' && item.estimations.length > 0" >
+                                <div class="sg-estimations-item-header">
+                                    <div class="sg-state"></div>
+                                    <div class="sg-apply ng-binding">기사</div>
+                                    <div class="sg-commission-type ng-binding">전화번호</div>
+                                    <div class="sg-transfer-day ng-binding">가격</div>
+                                </div>
+
+                                <li class="sg-estimation-info" >
+                                    <div class="sg-estimation-item-body">
+                                        <div class="sg-calculation-item-contents" data-ng-repeat="inner_item in item.estimations">
+                                            <div class="sg-state" >
+                                                <div ng-class='stateClass($index, inner_item)'></div>
+                                            </div>
+                                            <div class="sg-customerPrice  ">{{inner_item.author.name}}</div>
+                                            <div class="sg-supplyPrice  ">{{inner_item.author.phoneNum | returnPhoneNum | translate }} </div>
+                                            <div class="sg-price  ">  {{ inner_item.estimationItems[0].price }}</div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="sg-g-button-wrap">
+                    <button type="submit"
+                            class="sgc-btn-action"
+                            data-ng-disabled="vm.reqEstimation.$invalid"
+                            data-ng-click="cancel()">
+                        {{ 'close' | translate }}
+                    </button>
+                </div>
+            </form>
+        </div>
+</script>

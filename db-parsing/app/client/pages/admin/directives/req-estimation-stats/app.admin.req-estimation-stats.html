@@ -1,0 +1,132 @@
+<script type="text/ng-template" id="myReqEstimationStats.html">
+    <div id="sg-req-estimation-stats-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-tab-menu-wrap">
+            <button type="button" class="sg-tab-button" data-ng-class="{'sg-active': activeTab == 1}" data-ng-click="active(1)">
+                일별
+            </button>
+            <button type="button" class="sg-tab-button" data-ng-class="{'sg-active': activeTab == 2}" data-ng-click="active(2)">
+                월별
+            </button>
+            <button type="button" class="sg-tab-button" data-ng-class="{'sg-active': activeTab == 3}" data-ng-click="active(3)">
+                시간대별
+            </button>
+            <button type="button" class="sg-tab-button" data-ng-class="{'sg-active': activeTab == 4}" data-ng-click="active(4)">
+                지역별
+            </button>
+        </div>
+        <p class="sg-explain"><span style="font-family: monospace;">*</span> 견적률(요청수 대비 견적수), 연결률(요청수 대비 연결수), 매칭률(요청수 대비 매칭수), 실거래율(매칭수 대비 실거래수), 최종성사율(요청수 대비 실거래수)</p>
+        <div class="sg-g-modal-content">
+            <div class="sg-g-input-wrap">
+                <select class="sgc-option" data-ng-if="activeTab == 1 || activeTab == 2" data-ng-model="form.year">
+                    <option data-ng-repeat="item in enumYears" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-if="activeTab == 1" data-ng-model="form.month">
+                    <option data-ng-repeat="item in enumMonths" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+                <select class="sgc-option sg-big" data-ng-model="form.reqEstimationType">
+                    <option data-ng-repeat="item in enumReqEstimationTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.sido">
+                    <option data-ng-repeat="item in addressFields" value="{{ item.name }}">
+                        {{ item.alias }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-if="activeTab != 4" data-ng-model="form.sigungu">
+                    <option data-ng-repeat="item in enumSigungus" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+                <datepicker data-ng-if="activeTab == 3 || activeTab == 4" date-format="yyyy-MM-dd">
+                    <input type="text"
+                           class="sg-g-input"
+                           data-ng-model="form.startDate"
+                           placeholder="시작일">
+                </datepicker>
+                <datepicker data-ng-if="activeTab == 3 || activeTab == 4" date-format="yyyy-MM-dd">
+                    <input type="text"
+                           class="sg-g-input"
+                           data-ng-model="form.endDate"
+                           placeholder="끝일">
+                </datepicker>
+            </div>
+            <div class="sg-title-wrap">
+                <h6 class="sg-title">
+                    <span data-ng-if="activeTab == 1">날짜</span>
+                    <span data-ng-if="activeTab == 2">월</span>
+                    <span data-ng-if="activeTab == 3">시간대</span>
+                    <span data-ng-if="activeTab == 4 && form.sido != TOTAL_SIDO">시군구</span>
+                    <span data-ng-if="activeTab == 4 && form.sido == TOTAL_SIDO">시/도</span>
+                </h6>
+                <h6 class="sg-title">요청수</h6>
+                <h6 class="sg-title">견적수</h6>
+                <h6 class="sg-title">연결수</h6>
+                <h6 class="sg-title">매칭수</h6>
+                <h6 class="sg-title">실거래수</h6>
+                <h6 class="sg-title">견적률</h6>
+                <h6 class="sg-title">연결률</h6>
+                <h6 class="sg-title">매칭률</h6>
+                <h6 class="sg-title">실거래율</h6>
+                <h6 class="sg-title">최종성사율</h6>
+            </div>
+            <div class="sg-item-wrap">
+                <ul>
+                    <li data-ng-repeat="item in stats.rows">
+                        <div class="sg-item">
+                            <span data-ng-if="activeTab == 1">{{ item.createdAt | perDate: form.year: form.month }}</span>
+                            <span data-ng-if="activeTab == 2">{{ item.createdAt | perMonth }}</span>
+                            <span data-ng-if="activeTab == 3">{{ item.createdAt }}</span>
+                            <span data-ng-if="activeTab == 4 && form.sido != TOTAL_SIDO">{{ item.installSigungu }}</span>
+                            <span data-ng-if="activeTab == 4 && form.sido == TOTAL_SIDO">{{ item.installSido }}</span>
+                        </div>
+                        <div class="sg-item">{{ item.requestCount | number }}</div>
+                        <div class="sg-item">{{ item.estimationCount | number }}</div>
+                        <div class="sg-item">{{ item.callCount | number }}</div>
+                        <div class="sg-item">{{ item.matchCount | number }}</div>
+                        <div class="sg-item">{{ item.realMatchCount | number }}</div>
+                        <div class="sg-item">{{ (((item.estimationCount / item.requestCount * 100) | number: 1) || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ (((item.callCount / item.requestCount * 100) | number: 1) || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ (((item.matchCount / item.requestCount * 100) | number: 1) || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ (((item.realMatchCount / item.matchCount * 100) | number: 1) || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ (((item.realMatchCount / item.requestCount * 100) | number: 1) || '0.0') + '%' }}</div>
+                    </li>
+                    <li class="sg-total-item">
+                        <div class="sg-item">계</div>
+                        <div class="sg-item">{{ stats | reqEstimationStatsTotal: 'requestCount' }}</div>
+                        <div class="sg-item">{{ stats | reqEstimationStatsTotal: 'estimationCount' }}</div>
+                        <div class="sg-item">{{ stats | reqEstimationStatsTotal: 'callCount' }}</div>
+                        <div class="sg-item">{{ stats | reqEstimationStatsTotal: 'matchCount' }}</div>
+                        <div class="sg-item">{{ stats | reqEstimationStatsTotal: 'realMatchCount' }}</div>
+                        <div class="sg-item">{{ ((stats | reqEstimationStatsTotal: 'estimationRate') || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ ((stats | reqEstimationStatsTotal: 'callRate') || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ ((stats | reqEstimationStatsTotal: 'matchRate') || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ ((stats | reqEstimationStatsTotal: 'successRate') || '0.0') + '%' }}</div>
+                        <div class="sg-item">{{ ((stats | reqEstimationStatsTotal: 'realSuccessRate') || '0.0') + '%' }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-g-input-wrap sg-half">
+                <label class="sg-g-label">평균 수수료 (연결수 대비)</label>
+                <p class="sg-g-text">{{ (stats | reqEstimationStatsTotal: 'averageCash') || 0 }} 원</p>
+            </div>
+            <div class="sg-g-input-wrap sg-half sg-last">
+                <label class="sg-g-label">총 수익</label>
+                <p class="sg-g-text">{{ (stats | reqEstimationStatsTotal: 'totalCash') || 0 }} 원</p>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">
+                {{ 'close' | translate }}
+            </button>
+        </div>
+    </div>
+</script>

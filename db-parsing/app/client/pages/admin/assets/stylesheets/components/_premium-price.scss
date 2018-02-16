@@ -1,0 +1,119 @@
+#sg-premium-price-wrap {
+  div.sg-g-modal-header {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    p {
+      margin-left: 36px;
+    }
+  }
+  div.sg-g-modal-content {
+    padding: 0 36px;
+    div.sg-g-input-wrap {
+      margin-top: 10px;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #f1f3f8;
+      select.sgc-option {
+        display: block;
+        margin-right: 6px;
+        float: left;
+      }
+    }
+    div.sg-title-wrap {
+      padding: 15px 0;
+      width: 100%;
+      font-size: 0;
+      float: left;
+      h6.sg-title {
+        display: inline-block;
+        margin: 0;
+        font-size: 12px;
+        font-weight: 400;
+        color: #8d93a6;
+        text-align: center;
+        &:nth-of-type(1) {
+          width: 15%;
+        }
+        &:nth-of-type(2) {
+          width: 15%;
+        }
+        &:nth-of-type(3) {
+          width: 30%;
+        }
+        &:nth-of-type(4) {
+          padding-left: 10px;
+          width: 20%;
+        }
+        &:nth-of-type(5) {
+          width: 20%;
+        }
+      }
+    }
+    div.sg-item-wrap {
+      position: relative;
+      width: 100%;
+      float: left;
+      div.sg-more-wrap {
+        margin-top: 10px;
+        text-align: center;
+        button.sgc-btn-more {
+          width: 80px;
+          height: 35px;
+        }
+      }
+      ul {
+        position: relative;
+        li {
+          position: relative;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          padding: 10px 0;
+          font-size: 0;
+          background-color: #f1f3f8;
+          &:last-child {
+            margin-bottom: 0;
+          }
+          div.sg-item {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 400;
+            color: #8d93a6;
+            text-align: center;
+            &:nth-of-type(1) {
+              width: 15%;
+            }
+            &:nth-of-type(2) {
+              width: 20%;
+            }
+            &:nth-of-type(3) {
+              width: 25%;
+            }
+            &:nth-of-type(4) {
+              padding-left: 10px;
+              width: 20%;
+            }
+            &:nth-of-type(5) {
+              width: 20%;
+            }
+            input.sgc-input {
+              padding: 0 8px;
+              height: 30px;
+              background-color: white;
+              text-align: right;
+            }
+            button.sgc-btn-action {
+              display: inline-block;
+              width: 70px;
+              height: 30px;
+              line-height: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    text-align: right;
+  }
+}

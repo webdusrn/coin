@@ -1,0 +1,155 @@
+<div id="sg-blog-manage-wrap" data-ng-controller="BlogCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">
+            {{ 'blogManage' | translate }} <span>({{ now | microTimeToDate }})</span>
+        </div>
+
+        <!--<div class="sg-blog-sending" data-ng-if="isBlogSending !== null">-->
+            <!--<div data-ng-class="{'sg-sending': isBlogSending}"></div>-->
+            <!--<p data-ng-if="isBlogSending" class="sg-sending">{{ 'isBlogSending' | translate }} ({{ currentSendingNum }}/{{ totalSendingNum }})</p>-->
+            <!--<p data-ng-if="!isBlogSending" class="sg-not-sending">{{ 'isNotBlogSending' | translate }}</p>-->
+        <!--</div>-->
+        <div class="sg-instance-wrap" data-ng-if="canBlogPost !== null">
+            <ul>
+                <li data-ng-repeat="item in blogInstances">
+                    전송중인 계정: {{item.blogAccountId || '없음'}} <span data-ng-if="item.blogAccountId">({{item.currentSendingNum}} / {{item.totalSendingNum}})</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sg-blog-manage-search-wrap">
+            <div class="sg-g-search-wrap">
+                <select data-ng-model="form.searchField" class="sgc-option">
+                    <option data-ng-repeat="item in enumSearchFields" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <form data-ng-submit="findBlogAccounts(true)">
+                    <input class="sgc-search-input" data-ng-model="form.searchItem" type="text" placeholder="{{ 'typeKeywords' | translate }}">
+                </form>
+            </div>
+            <div class="sg-btn-wrapper">
+                <button type="button" class="sgc-btn-action" data-ng-click="createBlogAccount('md')">
+                    {{ 'create' | translate }}
+                </button>
+                <button type="button" class="sgc-btn-more" data-ng-click="blogStats('lg')">
+                    {{ 'totalStats' | translate }}
+                </button>
+            </div>
+        </div>
+
+        <div class="sg-blog-manage-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option" data-ng-model="form.orderBy">
+                    <option data-ng-repeat="item in enumOrderBys" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.sort">
+                    <option data-ng-repeat="item in enumSortTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.state">
+                    <option data-ng-repeat="item in enumStates" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ blogAccounts.count }}</span></p>
+        </div>
+
+        <div class="sg-blog-manage-item-wrap">
+            <div class="sg-list-header">
+                <div class="sg-list-header-title-wrapper">
+                    <h6 class="sg-header">{{ 'blogAccountState' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'blogAccount' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'blogTemplateId' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'blogTitleItemNo' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'blogCategoryNo' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'blogPostNum' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'tokenUpdatedAt' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'recentPostedAt' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'blogPostCount' | translate }}</h6>
+                </div>
+                <div  class="sg-list-header-btn-wrapper">
+                    <h6 class="sg-header">{{ 'login' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'oauth' | translate }}</h6>
+                    <h6 class="sg-header">{{ 'post' | translate }}</h6>
+                </div>
+            </div>
+            <div class="sg-list-content">
+                <ul class="sg-list-normal">
+                    <li data-ng-repeat="item in blogAccounts.rows" data-ng-class="{'sg-selected': blogAccountHash[$index]}" data-ng-click="detailBlogAccount(item, $index, 'lg')">
+                        <div class="sg-item-wrapper">
+                            <div class="sg-item">{{ item.state | translate }}</div>
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()" style="cursor: auto;">{{ item.naverAccount }}</div>
+                            <div class="sg-item">{{ item.blogTemplateId }} ({{ item.blogTemplate.title }})</div>
+                            <div class="sg-item">{{ item.blogTitleItemNo }}</div>
+                            <div class="sg-item">{{ item.categoryNo }}</div>
+                            <div class="sg-item">{{ item.postNum | number }}</div>
+                            <div class="sg-item">{{ (item.tokenUpdatedAt | microTimeToDate) || ('noData' | translate) }}</div>
+                            <div class="sg-item">{{ (item.recentPostedAt | microTimeToDate) || ('noData' | translate) }}</div>
+                            <div class="sg-item">{{ item.blogPostCount | number }}</div>
+                        </div>
+                        <div class="sg-item-btn-wrapper">
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()">
+                                <button type="button" class="sgc-btn-action sg-blog sg-naver" data-ng-click="naverLogin(item, $index)">
+                                    {{ 'login' | translate }}
+                                </button>
+                            </div>
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()">
+                                <button type="button" class="sgc-btn-action sg-blog" data-ng-click="oauthLogin(item, $index)">
+                                    {{ 'oauth' | translate }}
+                                </button>
+                            </div>
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()">
+                                <button type="button" class="sgc-btn-delete sg-blog" data-ng-class="{'sg-not-allow': !canBlogPost || item.postNum <= item.todayPostCount || blogAccountPostingHash[item.id]}" data-ng-click="blogInstancePost(item, $index)">
+                                    {{ 'post' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="sg-list-responsive">
+                    <li data-ng-repeat="item in blogAccounts.rows" data-ng-class="{'sg-selected': blogAccountHash[$index]}" data-ng-click="detailBlogAccount(item, $index, 'lg')">
+                        <div class="sg-item-wrapper">
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'blogAccountState' | translate }}</span> <span class="sg-list-card-item">{{ item.state | translate }}</span></div>
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()" style="cursor: auto;"><span class="sg-list-card-title">{{ 'blogAccount' | translate }}</span> <span class="sg-list-card-item">{{ item.naverAccount }}</span></div>
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'blogTemplateId' | translate }}</span> <span class="sg-list-card-item">{{ item.blogTemplateId }} ({{ item.blogTemplate.title }})</span></div>
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'blogTitleItemNo' | translate }}</span> <span class="sg-list-card-item">{{ item.blogTitleItemNo }}</span></div>
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'blogCategoryNo' | translate }}</span> <span class="sg-list-card-item">{{ item.categoryNo }}</span></div>
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'blogPostNum' | translate }}</span> <span class="sg-list-card-item">{{ item.postNum | number }}</span></div>
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'tokenUpdatedAt' | translate }}</span> <span class="sg-list-card-item">{{ (item.tokenUpdatedAt | microTimeToDate) || ('noData' | translate) }}</span></div>
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'recentPostedAt' | translate }}</span> <span class="sg-list-card-item">{{ (item.recentPostedAt | microTimeToDate) || ('noData' | translate) }}</span></div>
+                            <div class="sg-item"><span class="sg-list-card-title">{{ 'blogPostCount' | translate }}</span> <span class="sg-list-card-item">{{ item.blogPostCount | number }}</span></div>
+                        </div>
+                        <div class="sg-item-btn-wrapper">
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()">
+                                <button type="button" class="sgc-btn-action sg-blog sg-naver" data-ng-click="naverLogin(item, $index)">
+                                    {{ 'login' | translate }}
+                                </button>
+                            </div>
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()">
+                                <button type="button" class="sgc-btn-action sg-blog" data-ng-click="oauthLogin(item, $index)">
+                                    {{ 'oauth' | translate }}
+                                </button>
+                            </div>
+                            <div class="sg-item" data-ng-click="$event.stopPropagation()">
+                                <button type="button" class="sgc-btn-delete sg-blog" data-ng-class="{'sg-not-allow': !canBlogPost || item.postNum <= item.todayPostCount || blogAccountPostingHash[item.id]}" data-ng-click="blogInstancePost(item, $index)">
+                                    {{ 'post' | translate }}
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button class="sgc-btn-more" data-ng-click="findBlogAccounts()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<create-blog-account></create-blog-account>
+<detail-blog-account></detail-blog-account>
+<blog-stats></blog-stats>

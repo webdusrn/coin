@@ -1,0 +1,18 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">주차여부</label>
+    <select class="sgc-option" data-ng-model="form.installParking">
+        <option value="" hidden selected disabled>-</option>
+        <option data-ng-repeat="item in enumParkings" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>
+<div class="sg-g-input-wrap sg-four" data-ng-if="form.type == REQ_ESTIMATION.typeMoveInstall">
+    <label class="sg-g-label">철거 주차여부</label>
+    <select class="sgc-option" data-ng-model="form.separateParking">
+        <option value="" hidden selected disabled>-</option>
+        <option data-ng-repeat="item in enumParkings" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

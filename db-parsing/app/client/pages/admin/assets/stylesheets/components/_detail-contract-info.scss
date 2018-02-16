@@ -1,0 +1,139 @@
+#sg-detail-contract-info-wrap {
+  div.sg-g-modal-header {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    p {
+      margin-left: 36px;
+    }
+  }
+  div.sg-g-modal-content {
+    padding: 20px 36px 20px 36px;
+    background-color: #f4f6fa;
+    div.sg-left {
+      &.sg-half {
+        margin-right: 12px;
+        width: calc(50% - 6px);
+      }
+      &.sg-last {
+        margin: 0;
+      }
+    }
+    div.sg-g-input-wrap {
+      margin-bottom: 10px;
+      padding: 15px;
+      background-color: white;
+      &.sg-contract-image {
+        height: 446px;
+      }
+      div.sg-g-input-wrap {
+        background-color: #f4f6fa;
+        input.sgc-input {
+          background-color: white;
+          &.sg-date {
+            cursor: pointer;
+          }
+        }
+        ._720kb-datepicker-calendar {
+          margin-top: 0;
+        }
+      }
+      img.sg-image {
+        display: block;
+        width: 100%;
+        height: 384px;
+        object-fit: contain;
+        float: left;
+      }
+      label.sg-g-label {
+        color: #464b69;
+      }
+      textarea.sgc-input {
+        resize: none;
+      }
+      p.sg-g-text {
+        border-bottom: 1px solid #d5dbec;
+        padding-left: 0;
+        color: #464b69;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.sg-state {
+          padding-left: 22px;
+        }
+        span.sg-state {
+          position: absolute;
+          top: 60px;
+          left: 18px;
+          border-radius: 50%;
+          width: 12px;
+          height: 12px;
+          &.contractStateUpload {
+            background-color: #da8e4c;
+          }
+          &.contractStateUnauthorized {
+            background-color: #abb7d6;
+          }
+          &.contractStateAuthorized {
+            background-color: #6d8fe4;
+          }
+          &.contractStateComplete {
+            background-color: #50c8b5;
+          }
+          &.contractStateStandby {
+            background-color: #e34959;
+          }
+        }
+      }
+    }
+    ul.sg-location-tag {
+      position: relative;
+      display: block;
+      width: 100%;
+      float: left;
+      @include after-clear();
+      &.contractStateStandby {
+        li {
+          cursor: pointer;
+          &.sg-select {
+            background-color: #6d8fe4;
+            color: white;
+            &:hover {
+              background-color: #5375e4;
+              color: white;
+            }
+          }
+          &:hover {
+            background-color: #f4f6fa;
+            color: #081332;
+          }
+        }
+      }
+      li {
+        position: relative;
+        display: block;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        border: 1px solid #abb7d6;
+        border-radius: 3px;
+        padding: 5px;
+        font-size: 12px;
+        float: left;
+        &.sg-select {
+          background-color: #6d8fe4;
+          color: white;
+        }
+      }
+    }
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    @include after-clear();
+    button {
+      margin-right: 6px;
+      float: left;
+    }
+    button.sg-close {
+      float: right;
+    }
+  }
+}

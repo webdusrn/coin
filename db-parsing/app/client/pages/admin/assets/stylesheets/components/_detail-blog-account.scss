@@ -1,0 +1,194 @@
+#sg-detail-blog-account-wrap {
+  div.sg-tab-menu-wrap {
+    position: relative;
+    @include after-clear();
+    button.sg-tab-button {
+      position: relative;
+      display: block;
+      width: 50%;
+      height: 46px;
+      font-size: 18px;
+      float: left;
+      color: white;
+      background-color: #555a77;
+      -webkit-transition: background-color .1s;
+      -moz-transition: background-color .1s;
+      -ms-transition: background-color .1s;
+      -o-transition: background-color .1s;
+      transition: background-color .1s;
+      &:hover,
+      &.sg-active {
+        background-color: #464b69;
+      }
+      &:nth-of-type(1) {
+        border-top-left-radius: 6px;
+      }
+      &:nth-of-type(2) {
+        border-top-right-radius: 6px;
+      }
+    }
+  }
+  div.sg-g-modal-header {
+    &.sg-border {
+      border-radius: 0;
+      border-top: 1px solid #c8cfe4;
+    }
+    p {
+      margin-left: 36px;
+    }
+  }
+  div.sg-g-modal-content {
+    padding: 0 36px;
+    div.sg-diagram-wrap {
+      padding-top: 20px;
+      width: 100%;
+      height: 800px;
+      float: left;
+    }
+    div.sg-g-input-wrap {
+      select.sgc-option.sg-width-100 {
+        width: 100%;
+      }
+      p.sg-g-text {
+        color: #121428;
+        font-size: 16px;
+        border-bottom: 1px solid #d5dbec;
+        text-align: left;
+        padding-left: 0;
+      }
+    }
+    div.sg-g-search-wrap {
+      margin-top: 20px;
+    }
+    div.sg-list-header {
+      position: relative;
+      margin-top: 20px;
+      font-size: 0;
+      h6 {
+        display: inline-block;
+        margin: 0;
+        width: 10%;
+        font-size: 12px;
+        font-weight: 400;
+        color: #8d93a6;
+        text-align: center;
+        &:nth-of-type(1) {
+          width: 8%;
+        }
+        &:nth-of-type(2) {
+          width: 44%;
+        }
+        &:nth-of-type(3) {
+          width: 18%;
+        }
+      }
+    }
+    ul {
+      position: relative;
+      margin-top: 15px;
+      overflow: visible;
+      li {
+        position: relative;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        height: 44px;
+        background-color: #f1f3f8;
+        overflow: visible;
+        @include after-clear();
+        &:last-child {
+          margin-bottom: 0;
+        }
+        div.sg-item {
+          position: relative;
+          width: 10%;
+          height: 100%;
+          line-height: 44px;
+          color: #8d93a6;
+          text-align: center;
+          overflow: visible;
+          float: left;
+          &:nth-of-type(1) {
+            width: 8%;
+            cursor: pointer;
+            &:hover {
+              span.sg-hover {
+                display: inline-block;
+              }
+            }
+          }
+          &:nth-of-type(2) {
+            width: 44%;
+          }
+          &:nth-of-type(3) {
+            width: 18%;
+          }
+          span.sg-hover {
+            position: absolute;
+            display: none;
+            top: 44px;
+            left: 0;
+            border-radius: 5px;
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+            color: white;
+            background-color: black;
+            z-index: 1;
+          }
+          span.sg-search {
+            position: absolute;
+            display: block;
+            top: 44px;
+            left: 0;
+            border-radius: 5px;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            color: white;
+            background-color: black;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            -webkit-transition: opacity .1s;
+            -moz-transition: opacity .1s;
+            -ms-transition: opacity .1s;
+            -o-transition: opacity .1s;
+            transition: opacity .1s;
+            &.sg-active {
+              opacity: 1;
+            }
+          }
+          button.sg-blog {
+            margin: 5px;
+            width: calc(100% - 10px);
+            height: 34px;
+            line-height: initial;
+            &.sg-naver {
+              background-color: #1ec545;
+              border-color: #1ec545;
+              &:hover {
+                background-color: #1ebb43;
+                border-color: #1ebb43;
+              }
+            }
+          }
+        }
+      }
+    }
+    div.sg-more-wrapper {
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
+  div.sg-g-button-wrap {
+    padding: 20px 36px;
+    text-align: right;
+    font-size: 0;
+    button {
+      margin-left: 6px;
+    }
+    &.sg-padding-top {
+      padding-top: 0;
+    }
+  }
+}

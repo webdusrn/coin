@@ -1,0 +1,4 @@
+@mixin powerOffForFakeView {
+    visibility: hidden;
+    //@include transition(visibility, 0s, ease-in-out, .38s);
+}

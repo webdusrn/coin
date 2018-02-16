@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">TV 유형</label>
+    <select class="sgc-option" data-ng-model="form.tvType">
+        <option value="" hidden selected disabled>-</option>
+        <option data-ng-repeat="item in enumTvTypes" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four">
+    <label class="sg-g-label">선반 설치 여부</label>
+    <select class="sgc-option" data-ng-model="form.shelf">
+        <option value="" disabled hidden selected>-</option>
+        <option data-ng-repeat="item in enumShelves" value="{{ item }}">
+            {{ item | translate }}
+        </option>
+    </select>
+</div>

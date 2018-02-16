@@ -1,0 +1,9 @@
+<div class="sg-g-input-wrap sg-four" data-ng-if="form.boilerType == BOILER.boilerTypeGas">
+    <label class="sg-g-label">보일러 상품 <span class="sg-essential">*</span></label>
+    <select class="sgc-option" data-ng-model="form.boilerProduct">
+        <option value="" disabled hidden selected>-</option>
+        <option data-ng-repeat="item in enumBoilerProducts" value="{{ item.model }}">
+            {{ item.model }}{{ item.performance ? (' / ' + item.performance) : '' }}{{ item.isIot ? (' / ' + item.isIot) : '' }}{{ item.price ? (' / ' + (item.price | number) + '원') : '' }}
+        </option>
+    </select>
+</div>

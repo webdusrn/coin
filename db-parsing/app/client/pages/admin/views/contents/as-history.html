@@ -1,0 +1,77 @@
+<div id="sg-as-history-wrap" data-ng-controller="AsHistoryCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">A/S 문의 관리</div>
+
+        <div class="sg-as-history-manage-search-wrap">
+            <select class="sgc-option" data-ng-model="form.searchField">
+                <option data-ng-repeat="item in enumSearchFields" value="{{ item }}">
+                    {{ item | translate }}
+                </option>
+            </select>
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findAsHistories(true)">
+                    <input type="text" class="sgc-search-input" data-ng-model="form.searchItem" placeholder="검색어">
+                </form>
+            </div>
+        </div>
+        <div class="sg-as-history-manage-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option" data-ng-model="form.asState">
+                    <option data-ng-repeat="item in enumAsStates" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.asCallState">
+                    <option data-ng-repeat="item in enumAsCallStates" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.reqEstimationType">
+                    <option data-ng-repeat="item in enumReqEstimationTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ asHistories.count }}</span></p>
+        </div>
+        <div class="sg-as-history-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">상태</h6>
+                <h6 class="sg-header">통화상태</h6>
+                <h6 class="sg-header">신청유형</h6>
+                <h6 class="sg-header">요청자명</h6>
+                <h6 class="sg-header">요청자 연락처</h6>
+                <h6 class="sg-header">기사명</h6>
+                <h6 class="sg-header">기사 연락처</h6>
+                <h6 class="sg-header">요청날짜</h6>
+                <h6 class="sg-header">방문날짜</h6>
+                <h6 class="sg-header">완료날짜</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in asHistories.rows" data-ng-click="detailAsHistory(item, $index, 'lg')">
+                        <div class="sg-item"><span class="sg-state" data-ng-class="{'sg-standby': item.asState == AS_HISTORY.asStateStandby, 'sg-visit-booked': item.asState == AS_HISTORY.asStateVisitBooked && todayZero < (item.visitDate | dateToTimestamp), 'sg-complete': item.asState == AS_HISTORY.asStateComplete, 'sg-over': item.asState == AS_HISTORY.asStateVisitBooked && todayZero >= (item.visitDate | dateToTimestamp)}"></span></div>
+                        <div class="sg-item">
+                            <span data-ng-if="item.asState == AS_HISTORY.asStateVisitBooked && todayZero < (item.visitDate | dateToTimestamp)">{{ item.asState | translate }}</span>
+                            <span data-ng-if="item.asState == AS_HISTORY.asStateVisitBooked && todayZero >= (item.visitDate | dateToTimestamp)">예약일지남</span>
+                            <span data-ng-if="item.asState != AS_HISTORY.asStateVisitBooked">{{ item.asState | translate }}</span>
+                        </div>
+                        <div class="sg-item">{{ item.asCallState | translate }}</div>
+                        <div class="sg-item">{{ item.reqEstimation.type | translate }}</div>
+                        <div class="sg-item">{{ item.reqEstimation.authorName }}</div>
+                        <div class="sg-item">{{ item.author.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item">{{ item.engineer.name }}</div>
+                        <div class="sg-item">{{ item.engineer.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item">{{ item.createdAt | microTimeToDate }}</div>
+                        <div class="sg-item">{{ item.visitDate ? (item.visitDate | date: 'yyyy-MM-dd HH:mm') : '-' }}</div>
+                        <div class="sg-item">{{ item.asCompletedAt ? (item.asCompletedAt | date: 'yyyy-MM-dd') : '-' }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button type="button" class="sgc-btn-more" data-ng-click="findAsHistories()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<detail-as-history></detail-as-history>

@@ -1,0 +1,60 @@
+<div id="sg-vbank-wrap" data-ng-controller="VbankCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">
+            가상계좌 내역 관리
+        </div>
+        
+        <div class="sg-vbank-search-wrap">
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findVbanks(true)">
+                    <input type="text" class="sgc-search-input" data-ng-model="form.searchItem" placeholder="{{ '기사명, 기사번호' }}">
+                </form>
+            </div>
+        </div>
+        
+        <div class="sg-vbank-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option" data-ng-model="form.sgState">
+                    <option data-ng-repeat="item in enumSgStates" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total"><i data-ng-if="vbankAmounts.standbyAmount">발급중 금액: <span>{{ vbankAmounts.standbyAmount | number }}</span>원, </i>입금대기 금액: <span>{{ vbankAmounts.readyAmount | number }}</span>원, 입금 금액: <span>{{ vbankAmounts.paidAmount | number }}</span>원<i data-ng-if="vbankAmounts.wrongAmount">, 잘못된 입금 금액: <span>{{ vbankAmounts.wrongAmount | number }}</span>원</i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTotal <span>{{ vbanks.count }}</span></p>
+        </div>
+        
+        <div class="sg-vbank-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">상태</h6>
+                <h6 class="sg-header">입금액</h6>
+                <h6 class="sg-header">기사명</h6>
+                <h6 class="sg-header">기사번호</h6>
+                <h6 class="sg-header">예금주</h6>
+                <h6 class="sg-header">은행</h6>
+                <h6 class="sg-header">계좌번호</h6>
+                <h6 class="sg-header">입금일</h6>
+                <h6 class="sg-header">생성일</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in vbanks.rows">
+                        <div class="sg-item">{{ item.sgState | translate }}</div>
+                        <div class="sg-item">{{ item.amount | number }}</div>
+                        <div class="sg-item" data-ng-if="!item.user.deletedUsers.length">{{ item.user.name }}</div>
+                        <div class="sg-item" data-ng-if="item.user.deletedUsers.length">(탈){{ item.user.deletedUsers[0].data.name }}</div>
+                        <div class="sg-item" data-ng-if="!item.user.deletedUsers.length">{{ item.user.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item" data-ng-if="item.user.deletedUsers.length">{{ item.user.deletedUsers[0].data.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item">{{ item.vbank_holder }}</div>
+                        <div class="sg-item">{{ item.vbank_name }}</div>
+                        <div class="sg-item">{{ item.vbank_num }}</div>
+                        <div class="sg-item">{{ item.paid_at }}</div>
+                        <div class="sg-item">{{ item.createdAt | microTimeToDate }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button type="button" class="sgc-btn-more" data-ng-click="findVbanks()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="sg-login" ng-controller="LoginCtrl">
+    <div class="sg-login-container">
+        <!--<div class="sg-login-title">로그인</div>-->
+        <img class="sg-login-img" ng-src="/pages/admin/assets/images/ic_slogup_login.png"/>
+        <div class="normal-login">
+            <form ng-submit="login()">
+                <input ng-model="form.uid" class="normal-login-id-input" type="text" placeholder="Id" id="id" required>
+                <div class="normal-login-input-error" ng-if="invalidId">
+                    {{'invalidId'|translate}}
+                </div>
+
+                <input ng-model="form.secret" class="normal-login-password-input" type="password" placeholder="Password"
+                       id="password" required>
+
+                <div class="normal-login-input-error" ng-if="invalidPassword">
+                    {{'invalidPassword'|translate}}
+                </div>
+
+                <button class="login-btn" type="submit">로그인</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div id="sg-install-cs-wrap" data-ng-controller="InstallCsCtrl">
+    <div class="sgc-container">
+        <div class="sgc-titles">
+            설치 CS 관리
+        </div>
+
+        <div class="sg-install-cs-manage-search-wrap">
+            <div class="sg-g-search-wrap">
+                <form data-ng-submit="findInstallCss(true)">
+                    <input type="text" class="sgc-search-input" data-ng-model="form.searchItem" placeholder="{{ '설치 신청자명, 신청자번호' }}">
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-install-cs-manage-select-wrap">
+            <div class="sg-left">
+                <select class="sgc-option" data-ng-model="form.requestInstallType">
+                    <option data-ng-repeat="item in enumRequestInstallTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.type">
+                    <option data-ng-repeat="item in enumTypes" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+            </div>
+            <p class="sgc-total">Total <span>{{ installCss.count }}</span></p>
+        </div>
+
+        <div class="sg-install-cs-manage-item-wrap">
+            <div class="sg-list-header">
+                <h6 class="sg-header">요청상태</h6>
+                <h6 class="sg-header">처리상태</h6>
+                <h6 class="sg-header">설치유형</h6>
+                <h6 class="sg-header">신청자명</h6>
+                <h6 class="sg-header">신청자번호</h6>
+                <h6 class="sg-header">완료요청기사번호</h6>
+                <h6 class="sg-header">완료기사번호</h6>
+                <h6 class="sg-header">CS 발생일</h6>
+                <h6 class="sg-header">처리날짜</h6>
+            </div>
+            <div class="sg-list-content">
+                <ul>
+                    <li data-ng-repeat="item in installCss.rows" data-ng-click="openDetailInstallCs(item, $index, 'lg')">
+                        <div class="sg-item">{{ item.csState }}</div>
+                        <div class="sg-item">{{ item.adminState | translate }}</div>
+                        <div class="sg-item">{{ item.type | translate }}</div>
+                        <div class="sg-item">{{ item.authorName }}</div>
+                        <div class="sg-item">{{ item.author.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item" data-ng-if="item.requestInstall">{{ item.requestInstall.estimation.author.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item" data-ng-if="!item.requestInstall">-</div>
+                        <div class="sg-item" data-ng-if="item.successEstimation">{{ item.successEstimation.author.phoneNum | returnPhoneNum }}</div>
+                        <div class="sg-item" data-ng-if="!item.successEstimation">-</div>
+                        <div class="sg-item">{{ item.adminCsCreatedAt | microTimeToDate }}</div>
+                        <div class="sg-item" data-ng-if="item.adminTransactionStateUpdatedAt">{{ item.adminTransactionStateUpdatedAt | microTimeToDate }}</div>
+                        <div class="sg-item" data-ng-if="!item.adminTransactionStateUpdatedAt">미처리상태</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-more-wrapper" data-ng-if="more">
+                <button type="button" class="sgc-btn-more" data-ng-click="findInstallCss()">{{ 'more' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<detail-install-cs></detail-install-cs>

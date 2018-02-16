@@ -1,0 +1,125 @@
+#sg-option-manage-wrap {
+  button.sg-engineer-stats-button {
+    position: absolute;
+    top: 45px;
+    right: 12px;
+  }
+}
+
+div.sg-option-manage-search-wrap {
+  border-top: 1px solid #d5dbec;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  @include after-clear();
+  select.sgc-option {
+    margin-right: 6px;
+    float: left;
+  }
+  div.sg-g-search-wrap {
+    width: calc(100% - 115px);
+    float: left;
+  }
+}
+
+div.sg-option-manage-select-wrap {
+  position: relative;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  border-top: 1px solid #d5dbec;
+  text-align: right;
+  div.sg-left {
+    font-size: 0;
+  }
+  select.sgc-option {
+    margin-left: 6px;
+    font-size: 14px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+div.sg-option-manage-item-wrap {
+  position: relative;
+  div.sg-list-header {
+    padding-bottom: 15px;
+    font-size: 0;
+    @include after-clear();
+    h6.sg-header {
+      display: inline-block;
+      margin: 0;
+      font-size: 12px;
+      font-weight: 400;
+      color: #8d93a6;
+      width: 15%;
+      text-align: center;
+      &:nth-of-type(1) {
+        width: 50px;
+      }
+      &:nth-of-type(2) {
+        width: 150px;
+      }
+      &:nth-of-type(3) {
+        width: 150px;
+      }
+      &:nth-of-type(8),
+      &:nth-of-type(7),
+      &:nth-of-type(6),
+      &:nth-of-type(5),
+      &:nth-of-type(4) {
+        width: calc(20% - 70px);
+      }
+    }
+  }
+  div.sg-list-content {
+    ul {
+      position: relative;
+      li {
+        position: relative;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        height: 50px;
+        background-color: white;
+        @include after-clear();
+        &:last-child {
+          margin-bottom: 0;
+        }
+        div.sg-item {
+          position: relative;
+          height: 100%;
+          line-height: 50px;
+          text-align: center;
+          color: #8d93a6;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          float: left;
+          &:nth-of-type(1) {
+            width: 50px;
+          }
+          &:nth-of-type(2) {
+            width: 150px;
+          }
+          &:nth-of-type(3) {
+            width: 150px;
+          }
+          &:nth-of-type(8),
+          &:nth-of-type(7),
+          &:nth-of-type(6),
+          &:nth-of-type(5),
+          &:nth-of-type(4) {
+            width: calc(20% - 70px);
+          }
+        }
+      }
+    }
+  }
+  div.sg-more-wrapper {
+    margin-top: 30px;
+    text-align: center;
+  }
+}
+
+select.sg-order-by-select {
+  width: 150px;
+}

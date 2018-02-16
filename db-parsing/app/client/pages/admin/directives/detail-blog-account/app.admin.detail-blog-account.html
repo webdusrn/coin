@@ -1,0 +1,140 @@
+<script type="text/ng-template" id="myDetailBlogAccount.html">
+    <div id="sg-detail-blog-account-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-tab-menu-wrap">
+            <button type="button" class="sg-tab-button" data-ng-class="{'sg-active': activeTab == 1}" data-ng-click="active(1)">
+                {{ 'detail' | translate }}
+            </button>
+            <button type="button" class="sg-tab-button" data-ng-class="{'sg-active': activeTab == 2}" data-ng-click="active(2)">
+                {{ 'stats' | translate }}
+            </button>
+        </div>
+        <div data-ng-if="activeTab == 1">
+            <form data-ng-submit="updateBlogAccount()" data-ng-if="ready">
+                <div class="sg-g-modal-header">
+                    <p>{{ 'detailBlogAccount' | translate }}</p>
+                </div>
+                <div class="sg-g-modal-content">
+                    <div class="sg-g-input-wrap sg-three">
+                        <label class="sg-g-label">{{ 'blogAccount' | translate }}</label>
+                        <p class="sg-g-text">{{ form.naverAccount }}</p>
+                    </div>
+                    <div class="sg-g-input-wrap sg-three">
+                        <label class="sg-g-label">{{ 'blogAccountState' | translate }}</label>
+                        <select class="sgc-option sg-width-100" data-ng-model="form.state">
+                            <option data-ng-repeat="item in enumStates" value="{{ item }}">
+                                {{ item | translate }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="sg-g-input-wrap sg-three sg-last">
+                        <label class="sg-g-label">{{ 'blogTemplateId' | translate }} ({{ form.blogTemplate.title }})</label>
+                        <input type="number" class="sgc-input" data-ng-model="form.blogTemplateId" placeholder="{{ 'blogTemplateId' | translate }}">
+                    </div>
+                    <div class="sg-g-input-wrap sg-three">
+                        <label class="sg-g-label">{{ 'blogTitleItemNo' | translate }}</label>
+                        <input type="number" class="sgc-input" data-ng-model="form.blogTitleItemNo" placeholder="{{ 'blogTitleItemNo' | translate }}">
+                    </div>
+                    <div class="sg-g-input-wrap sg-three">
+                        <label class="sg-g-label">{{ 'blogCategoryNo' | translate }}</label>
+                        <input type="number" class="sgc-input" data-ng-model="form.categoryNo" placeholder="{{ 'blogCategoryNo' | translate }}">
+                    </div>
+                    <div class="sg-g-input-wrap sg-three sg-last">
+                        <label class="sg-g-label">{{ 'blogPostNum' | translate }}</label>
+                        <input type="number" class="sgc-input" data-ng-model="form.postNum" placeholder="{{ 'blogPostNum' | translate }}">
+                    </div>
+                </div>
+                <div class="sg-g-button-wrap">
+                    <button type="button" class="sgc-btn-delete" data-ng-click="removeBlogAccount()">
+                        {{ 'delete' | translate }}
+                    </button>
+                    <button type="submit" class="sgc-btn-action">
+                        {{ 'edit' | translate }}
+                    </button>
+                    <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">
+                        {{ 'close' | translate }}
+                    </button>
+                </div>
+            </form>
+            <form data-ng-submit="findBlogPosts(true)">
+                <div class="sg-g-modal-header sg-border">
+                    <p>{{ 'detailBlogPost' | translate }}</p>
+                </div>
+                <div class="sg-g-modal-content">
+                    <div class="sg-g-search-wrap">
+                        <input type="text" class="sgc-search-input" data-ng-model="searchForm.searchItem" placeholder="{{ 'blogPostSearchItem' | translate }}">
+                    </div>
+                    <div class="sg-list-header" data-ng-if="blogPosts.count">
+                        <h6 class="sg-header">{{ 'blogTemplateId' | translate }}</h6>
+                        <h6 class="sg-header">{{ 'blogPostTitle' | translate }}</h6>
+                        <h6 class="sg-header">{{ 'blogPostCreatedAt' | translate }}</h6>
+                        <h6 class="sg-header">{{ 'blogPostTitleSearch' | translate }}</h6>
+                        <h6 class="sg-header">{{ 'blogPostGoUrl' | translate }}</h6>
+                        <h6 class="sg-header">{{ 'blogPostUrlCopy' | translate }}</h6>
+                    </div>
+                    <ul data-ng-if="blogPosts.count">
+                        <li data-ng-repeat="item in blogPosts.rows">
+                            <div class="sg-item">{{ item.blogTemplateId }}<span class="sg-hover">{{ item.blogTemplate.title }}</span></div>
+                            <div class="sg-item">{{ item.blogTitle }}</div>
+                            <div class="sg-item">{{ item.createdAt | microTimeToDateTime }}</div>
+                            <div class="sg-item">
+                                <button type="button" class="sgc-btn-action sg-blog sg-naver" data-ng-click="naverSearch(item)">
+                                    {{ 'search' | translate }}
+                                </button>
+                                <span class="sg-search" data-ng-class="{'sg-active': item.active}">{{ item.existPage }}</span>
+                            </div>
+                            <div class="sg-item">
+                                <button type="button" class="sgc-btn-action sg-blog sg-naver" data-ng-click="blogOpen(item)">
+                                    {{ 'open' | translate }}
+                                </button>
+                            </div>
+                            <div class="sg-item">
+                                <button type="button" class="sgc-btn-cancel sg-blog" data-ng-click="copyUrl(item)">
+                                    {{ 'copy' | translate }}
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="sg-more-wrapper" data-ng-if="more">
+                        <button type="button" class="sgc-btn-more" data-ng-click="findBlogPosts()">{{ 'more' | translate }}</button>
+                    </div>
+                </div>
+                <div class="sg-g-button-wrap">
+                    <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">
+                        {{ 'close' | translate }}
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div data-ng-if="activeTab == 2">
+            <div class="sg-g-modal-header">
+                <p>{{ 'blogStatsByAccountId' | translate }}</p>
+            </div>
+            <div class="sg-g-modal-content">
+                <div class="sg-g-input-wrap">
+                    <select class="sgc-option" data-ng-model="statsForm.year">
+                        <option data-ng-repeat="item in enumYears" value="{{ item }}">
+                            {{ item }}
+                        </option>
+                    </select>
+                    <select class="sgc-option" data-ng-model="statsForm.month">
+                        <option data-ng-repeat="item in enumMonths" value="{{ item }}">
+                            {{ item }}
+                        </option>
+                    </select>
+                </div>
+                <div class="sg-diagram-wrap">
+                    <blog-diagram sg-blog-account-id="statsForm.blogAccountId" sg-year="statsForm.year" sg-month="statsForm.month"></blog-diagram>
+                </div>
+            </div>
+            <div class="sg-g-button-wrap sg-padding-top">
+                <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">
+                    {{ 'close' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</script>

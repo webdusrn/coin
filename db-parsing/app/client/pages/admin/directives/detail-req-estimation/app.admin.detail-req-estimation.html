@@ -1,0 +1,48 @@
+<script type="text/ng-template" id="myDetailReqEstimation.html">
+    <div id="sg-detail-req-application-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-g-modal-header">
+            <p>{{ '신청 상세' }}</p>
+        </div>
+        <div class="sg-g-modal-content">
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">신청 방식</label>
+                <p class="sg-g-text">{{ reqEstimation.requestType }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">신청 유형</label>
+                <p class="sg-g-text">{{ reqEstimation.type | translate }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">신청 상태</label>
+                <p class="sg-g-text">{{ reqEstimation.state | translate }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four sg-last">
+                <label class="sg-g-label">요청자명</label>
+                <p class="sg-g-text">{{ reqEstimation.authorName }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">연락처</label>
+                <p class="sg-g-text">{{ reqEstimation.author.phoneNum | returnPhoneNum }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">콜 수</label>
+                <p class="sg-g-text">{{ reqEstimation.callCount }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four">
+                <label class="sg-g-label">설치날짜</label>
+                <p class="sg-g-text">{{ reqEstimation.transactionState == REQ_ESTIMATION.transactionStateSuccess ? (reqEstimation.updatedAt | microTimeToDate) : '-' }}</p>
+            </div>
+            <div class="sg-g-input-wrap sg-four sg-last">
+                <label class="sg-g-label">신청날짜</label>
+                <p class="sg-g-text">{{ reqEstimation.createdAt | microTimeToDateTime }}</p>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">닫기</button>
+        </div>
+    </div>
+</script>

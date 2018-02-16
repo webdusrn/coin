@@ -1,0 +1,51 @@
+<script type="text/ng-template" id="myPremiumPrice.html">
+    <div id="sg-premium-price-wrap">
+        <button type="button" class="sg-g-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-g-modal-header">
+            <p>{{ '프리미엄 가격 관리' }}</p>
+        </div>
+        <div class="sg-g-modal-content">
+            <div class="sg-g-input-wrap">
+                <select class="sgc-option" data-ng-model="form.category">
+                    <option data-ng-repeat="item in enumCategories" value="{{ item }}">
+                        {{ item | translate }}
+                    </option>
+                </select>
+                <select class="sgc-option" data-ng-model="form.sido">
+                    <option data-ng-repeat="item in enumSidos" value="{{ item }}">
+                        {{ item }}
+                    </option>
+                </select>
+            </div>
+            <div class="sg-title-wrap">
+                <h6 class="sg-title">항목</h6>
+                <h6 class="sg-title">시/도</h6>
+                <h6 class="sg-title">시/군/구</h6>
+                <h6 class="sg-title">1달 가격</h6>
+                <h6 class="sg-title">적용</h6>
+            </div>
+            <div class="sg-item-wrap">
+                <ul>
+                    <li data-ng-repeat="item in premiumPrices.rows">
+                        <div class="sg-item">{{ item.category | translate }}</div>
+                        <div class="sg-item">{{ item.sido }}</div>
+                        <div class="sg-item">{{ item.sigungu }}</div>
+                        <div class="sg-item"><form data-ng-submit="updatePremiumPrice(item)"><input type="text" class="sgc-input" data-ng-model="item.price"></form></div>
+                        <div class="sg-item"><button type="button" class="sgc-btn-action" data-ng-click="updatePremiumPrice(item)">적용</button></div>
+                    </li>
+                </ul>
+                <div class="sg-more-wrap" data-ng-if="more">
+                    <button type="button" class="sgc-btn-more" data-ng-click="findPremiumPrices()">{{ 'more' | translate }}</button>
+                </div>
+            </div>
+        </div>
+        <div class="sg-g-button-wrap">
+            <button type="button" class="sgc-btn-cancel" data-ng-click="cancel()">
+                {{ 'close' | translate }}
+            </button>
+        </div>
+    </div>
+</script>
