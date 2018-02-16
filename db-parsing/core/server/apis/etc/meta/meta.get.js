@@ -2,7 +2,7 @@ var get = {};
 var Logger = require('sg-logger');
 var logger = new Logger(__filename);
 var packageJSON = require('../../../../../package.json');
-var packageAppJSON = require('../../../../../app/package.json');
+// var packageAppJSON = require('../../../../../app/package.json');
 
 get.validate = function () {
     return function (req, res, next) {
@@ -34,7 +34,7 @@ get.getMobileVersion = function () {
 get.sendMeta = function () {
     return function (req, res, next) {
         res.set('X-SG-Version', packageJSON.version);
-        res.set('X-SG-App-Version', packageAppJSON.version);
+        // res.set('X-SG-App-Version', packageAppJSON.version);
 
         var data = req.meta;
         if (req.query.type !== undefined) {

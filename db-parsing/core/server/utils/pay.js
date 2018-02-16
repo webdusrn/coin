@@ -1,4 +1,4 @@
-var appUtils = require('../../../app/server/utils');
+// var appUtils = require('../../../app/server/utils');
 var errorHandler = require('sg-sequelize-error-handler');
 
 module.exports = {
@@ -25,9 +25,9 @@ module.exports = {
         //     return true;
         // }
 
-        if(appUtils.pay && appUtils.pay.finishPay){
-
-        }
+        // if(appUtils.pay && appUtils.pay.finishPay){
+        //
+        // }
 
     }
 };
