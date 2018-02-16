@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" class="ng-app:app" lang="<%= params.language %>">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <base href="/">
+    <title>Sample App</title>
+    <script type="text/javascript">
+        window.meta = <%- JSON.stringify(params.meta || {}) %>;
+        window.session = <%- JSON.stringify(params.session|| {}) %>;
+        window.oauth = <%- JSON.stringify(params.oauth || {}) %>;
+    </script>
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body data-ng-controller="MainCtrl">
+<div ui-view="header"></div>
+<div ui-view="contents"></div>
+<div ui-view="footer"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+</html>

@@ -1,0 +1,33 @@
+<div id="sg-session-wrap" data-ng-controller="SessionCtrl">
+    <div class="sg-outer">
+        <div class="sg-inner">
+            <div id="sg-session-change-wrap">
+                <h2>{{ 'changePass' | translate }}</h2>
+                <form class="sg-session-form" data-ng-submit="vm.changePass()" name="form" novalidate>
+                    <div data-ng-class="{'sg-has-error': vm.isInvalid(form.newPass)}">
+                        <label for="newPass" class="sg-session-label">{{ 'newPass' | translate }}</label>
+                        <div class="sg-session-input-wrap">
+                            <input type="password"
+                                   class="sg-session-input"
+                                   id="newPass"
+                                   name="newPass"
+                                   data-ng-model="vm.form.newPass"
+                                   data-ng-focus="form.newPass.$focus = true"
+                                   data-ng-blur="form.newPass.$focus = false"
+                                   placeholder="{{ 'newPass' | translate }}"
+                                   data-ng-required="true">
+                            <span class="sg-session-alert-message" data-ng-show="vm.isInvalid(form.newPass)">
+                                {{ vm.getFormError(form.newPass.$error) | translate }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="sg-session-button-wrap">
+                        <button type="submit" class="sg-session-button">
+                            {{ 'changePass' | translate }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

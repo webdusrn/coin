@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="<%= params.language %>">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1"/>
+    <title>Fail to verify</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"/>
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/es5-shim/es5-shim.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script type="text/javascript" src="lib/json3/lib/json3.min.js"></script>
+    <script type="text/javascript" src="lib/console-shim/console-shim.js"></script>
+    <script type="text/javascript" src="lib/respond/dest/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        window.meta = <%- JSON.stringify(params.meta || {}) %>;
+    </script>
+</head>
+<body>
+<style>
+    body {
+        background: #f4f4f4;
+    }
+    .alert {
+        margin-top: 40px;
+    }
+    .col-md-12 {
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <%= params.text %>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

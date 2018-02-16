@@ -1,0 +1,103 @@
+<div id="sg-notice-manage" ng-controller="NoticesCtrl" data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+
+    <div class="sg-notice-manage-container">
+        <div class="sg-notice-manage-title sgc-titles">
+            {{'noticeManage' | translate}}
+        </div>
+
+        <div class="sg-notice-manage-menu">
+
+            <select ng-model="params.searchField" class="sg-notice-manage-menu-search-option sgc-option">
+                <option ng-repeat="x in noticeSearchFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <div class="sg-notice-manage-menu-search">
+                <form ng-submit="findNotices()">
+                    <input class="sgc-search-input" ng-model="params.searchItem" type="text" placeholder="{{'typeKeywords' | translate}}">
+                    <button type="submit"></button>
+                </form>
+            </div>
+
+            <button class="sg-notice-manage-main-create sgc-btn-action" ng-click="openCreateModal()">
+                {{'create' | translate}}
+            </button>
+
+        </div>
+
+        <div class="sg-notice-manage-main">
+
+            <div class="sg-notice-manage-main-top">
+                <select ng-model="params.type" class="sg-notice-manage-main-top-filter sgc-filter" data-ng-if="noticeTypes.length > 2">
+                    <option ng-repeat="x in noticeTypes" value="{{x}}">{{x | translate}}</option>
+                </select>
+                <div class="sg-notice-manage-main-top-total sgc-total">Total <span>{{noticeListTotal}}</span></div>
+            </div>
+
+            <div class="sg-notice-manage-main-list">
+                <div class="sg-notice-manage-main-list-top">
+                    <div class="sg-notice-manage-main-list-top-type">
+                        {{'type'|translate}}
+                    </div>
+                    <div class="sg-notice-manage-main-list-top-type-title">
+                        {{'title'|translate}}
+                    </div>
+                    <div class="sg-notice-manage-main-list-top-type-period">
+                        {{'period'|translate}}
+                    </div>
+                    <div class="sg-notice-manage-main-list-top-created-at">
+                        {{'createdAt'|translate}}
+                    </div>
+                    <div class="sg-notice-manage-main-list-top-more"></div>
+                </div>
+                <div class="sg-notice-manage-main-item" ng-repeat="notice in noticeList track by $index" ng-click="openDetailModal($index)">
+
+                    <div class="sg-notice-manage-main-item-right" ng-click="showItemOption($event, notice)">
+
+                        <div class="sg-notice-manage-main-item-right-container" ng-if="currentOption == notice.id">
+                            <button class="sg-notice-manage-main-item-edit" ng-click="showNoticeDetailAndStartEditMode($index)">
+                                {{'edit' | translate}}
+                            </button>
+                            <button class="sg-notice-manage-main-item-delete" ng-click="deleteNotice($index)">
+                                {{'delete' | translate}}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sg-notice-manage-main-item-left">
+
+                        <div class="sg-notice-manage-main-item-type-container">
+                            <div class="sg-notice-manage-main-item-body"> {{notice.type | translate}}</div>
+                        </div>
+
+                        <div class="sg-notice-manage-main-item-title-container">
+                            <div class="sg-notice-manage-main-item-title"> {{'title' | translate}}</div>
+                            <div class="sg-notice-manage-main-item-body"> {{notice.title | translate}}</div>
+                        </div>
+
+                        <div class="sg-notice-manage-main-item-period-container">
+                            <div class="sg-notice-manage-main-item-title"> {{'period' | translate}}</div>
+                            <div class="sg-notice-manage-main-item-body"> <span data-ng-if="!notice.startDate && !notice.endDate">{{'empty' | translate}}</span> <span data-ng-if="notice.startDate || notice.endDate">{{notice.startDate | microTimeToDate}} ~ {{notice.endDate | microTimeToDate}} </span></div>
+                        </div>
+
+                        <div class="sg-notice-manage-main-item-created-at-container">
+                            <div class="sg-notice-manage-main-item-title"> {{'createdAt' | translate}}</div>
+                            <div class="sg-notice-manage-main-item-body"> {{notice.createdAt | microTimeToDate}}</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="sg-notice-manage-main-more-container">
+                <button class="sg-notice-manage-main-more sgc-btn-more" ng-if="more" ng-click="findNoticesMore()">
+                    {{'more' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sg-notice-manage-overlay" ng-if="currentOption" ng-click="hideItemOption()"></div>
+
+</div>
+<notice-create></notice-create>
+<notice-detail></notice-detail>

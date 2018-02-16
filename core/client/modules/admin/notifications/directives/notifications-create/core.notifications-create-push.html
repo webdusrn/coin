@@ -1,0 +1,24 @@
+<div class="sg-notification-manage-create-push">
+    <div class="sg-notification-manage-create-title">
+        {{'sendPush'| translate}}
+    </div>
+
+    <div class="sg-notification-manage-create-subtitle">
+        {{'notificationName'| translate}}
+    </div>
+    <input ng-model="tempStore.notificationName" type="text" class="sgc-input"
+           placeholder="" required multi-byte>
+
+    <div class="sg-notification-manage-create-subtitle">
+        {{'title'| translate}}
+    </div>
+    <input ng-model="tempStore.push.title" type="text" class="sgc-input"
+           placeholder="{{'insertTitle'|translate}}" required>
+
+    <div class="sg-notification-manage-create-subtitle">
+        {{'body'| translate}}
+    </div>
+    <input ng-model="tempStore.push.body" type="text" class="sgc-input"
+           placeholder="{{'insertBody'|translate}}" required>
+
+</div>

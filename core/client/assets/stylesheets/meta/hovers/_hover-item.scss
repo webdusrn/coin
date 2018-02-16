@@ -1,0 +1,5 @@
+@mixin hoverItem {
+    &:hover {
+        border: solid 1px $soft-blue;
+    }
+}

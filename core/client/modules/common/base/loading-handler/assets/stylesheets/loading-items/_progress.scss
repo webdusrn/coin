@@ -1,0 +1,18 @@
+.sg-core-progress {
+    min-width: 200px;
+    padding: 12px 18px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+
+    .sg-core-progress-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sg-core-progress-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -1,0 +1,162 @@
+<div id="sg-user-manage" ng-controller="UsersCtrl"  data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+    <div class="sg-user-manage-container">
+        <div class="sg-user-manage-title sgc-titles">
+            {{'userManage'| translate}}
+        </div>
+
+        <div class="sg-user-manage-menu">
+            <select ng-model="params.searchField" class="sg-user-manage-menu-search-option sgc-option">
+                <option ng-repeat="x in userEnumSearchFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <div class="sg-user-manage-menu-search">
+                <form ng-submit="findUsers()">
+                    <input class="sgc-search-input" ng-model="params.searchItem" type="text" placeholder="{{'typeKeywords' | translate}}">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-user-manage-main">
+            <div class="sg-user-manage-main-top">
+                <select data-ng-model="params.role" class="sg-user-manage-main-top-filter sgc-filter">
+                    <option ng-repeat="x in userEnumRoles" value="{{x}}">{{x | translate}}</option>
+                </select>
+
+                <select data-ng-model="params.gender" class="sg-user-manage-main-top-filter sgc-filter">
+                    <option ng-repeat="x in userEnumGender" value="{{x}}">{{x | translate}}</option>
+                </select>
+
+                <div class="sg-user-manage-main-top-total sgc-total">Total <span>{{userListTotal}}</span></div>
+            </div>
+
+            <div class="sg-user-manage-main-list">
+
+                <div class="sg-user-manage-main-list-top">
+                    <div class="sg-user-manage-main-list-top-img">
+                    </div>
+                    <div class="sg-user-manage-main-list-top-aid">
+                        {{'aid'|translate}}
+                    </div>
+                    <div class="sg-user-manage-main-list-top-nick">
+                        {{'nick'|translate}}
+                    </div>
+                    <div class="sg-user-manage-main-list-top-created-at">
+                        {{'createdAt'|translate}}
+                    </div>
+                    <div class="sg-user-manage-main-list-top-name">
+                        {{'name'|translate}}
+                    </div>
+                    <div class="sg-user-manage-main-list-top-birth">
+                        {{'birth'|translate}}
+                    </div>
+                    <div class="sg-user-manage-main-list-top-gender">
+                        {{'gender'|translate}}
+                    </div>
+                    <div class="sg-user-manage-main-list-top-more"></div>
+                </div>
+
+                <div class="sg-user-manage-main-list-item" ng-repeat="user in userList track by $index" ng-click="openModal($index)">
+
+                    <div class="sg-user-manage-main-list-item-img" ng-if="user.userImages.length > 0"
+                         ng-style="{'background-image': 'url('+ (user.userImages[0].image | imageUrl) + ')'}">
+                    </div>
+                    <div class="sg-user-manage-main-list-item-img" ng-if="user.userImages.length == 0">
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-aid-container">
+                        <div class="sg-user-manage-main-list-item-aid-title">
+                            {{'aid'| translate}}
+                        </div>
+                        <div class="sg-user-manage-main-list-item-aid-text" ng-if="user.aid">
+                            {{user.aid}}
+                        </div>
+                        <div class="sg-user-manage-main-list-item-aid-text" ng-if="!user.aid">
+                            {{'empty'| translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-nick-container">
+                        <div class="sg-user-manage-main-list-item-nick-title">
+                            {{'nick'|translate}}:
+                        </div>
+                        <div class="sg-user-manage-main-list-item-nick-text">
+                            {{user.nick}}
+                        </div>
+                        <div class="sg-user-manage-main-list-item-aid-text" ng-if="!user.nick">
+                            {{'empty'| translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-created-at-container">
+                        <div class="sg-user-manage-main-list-item-created-at-title">
+                            {{'createdAt' | translate}}:
+                        </div>
+                        <div class="sg-user-manage-main-list-item-created-at-text">
+                            {{user.createdAt | microTimeToDate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-created-at-container">
+                        <div class="sg-user-manage-main-list-item-created-at-title">
+                            {{'name' | translate}}:
+                        </div>
+                        <div class="sg-user-manage-main-list-item-created-at-text" ng-if="user.name">
+                            {{user.name}}
+                        </div>
+                        <div class="sg-user-manage-main-list-item-created-at-text" ng-if="!user.name">
+                            {{'empty' | translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-created-at-container">
+                        <div class="sg-user-manage-main-list-item-created-at-title">
+                            {{'birth' | translate}}:
+                        </div>
+                        <div class="sg-user-manage-main-list-item-created-at-text" ng-if="user.birth">
+                            {{user.birth}}
+                        </div>
+                        <div class="sg-user-manage-main-list-item-created-at-text" ng-if="!user.birth">
+                            {{'empty' | translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-gender-container">
+                        <div class="sg-user-manage-main-list-item-gender-title">
+                            {{'gender' | translate}}:
+                        </div>
+                        <div class="sg-user-manage-main-list-item-gender-text" ng-if="user.gender">
+                            {{user.gender | translate}}
+                        </div>
+                        <div class="sg-user-manage-main-list-item-gender-text" ng-if="!user.gender">
+                            {{'empty' | translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-main-list-item-option-container">
+                        <div class="sg-user-manage-main-list-item-option-btn" ng-click="showItemOption($event, user)">
+                            <div class="sg-user-manage-main-list-item-option-menu" ng-if="currentOption == user.id">
+                                <button class="sg-user-manage-main-list-item-option-menu-edit" ng-click="showUserDetailAndStartEditMode($index)">
+                                    {{'edit' | translate}}
+                                </button>
+                                <button class="sg-user-manage-main-list-item-option-menu-delete" ng-click="deleteUser($index)">
+                                    {{'delete' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sg-user-manage-main-more-container">
+                <button class="sg-user-manage-main-more sgc-btn-more" ng-if="more" ng-click="findUsersMore()">
+                    {{'more' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sg-user-manage-overlay" ng-if="currentOption" ng-click="hideItemOption()"></div>
+</div>
+<user-detail></user-detail>

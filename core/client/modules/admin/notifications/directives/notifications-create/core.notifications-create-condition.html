@@ -1,0 +1,45 @@
+<div class="sg-notification-manage-create-condition">
+    <div class="sg-notification-manage-create-title">
+        {{'selectCondition'| translate}}
+    </div>
+
+    <div class="sg-notification-manage-create-subtitle">
+        {{'gender'| translate}}
+    </div>
+    <select data-ng-model="tempStore.condition.gender" class="sg-notification-manage-create-option sgc-option">
+        <option data-ng-repeat="x in enumGenders track by $index" value="{{x}}">{{x | translate}}</option>
+    </select>
+
+    <div class="sg-notification-manage-create-subtitle">
+        {{'age'| translate}}
+    </div>
+
+    <div class="sg-notification-manage-create-condition-age">
+        <div class="sg-notification-manage-create-condition-age-item">
+            <!--<input type="text" class="sg-notification-manage-create-condition-input sgc-input"-->
+                   <!--data-ng-model="tempStore.condition.minBirthYear">-->
+            <select data-ng-model="tempStore.condition.minBirthYear" class="sg-notification-manage-create-option sgc-option">
+                <option data-ng-repeat="x in birthStartList track by $index" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <span class="sg-notification-manage-create-condition-span">{{'~'| translate}}</span>
+        </div>
+
+        <div class="sg-notification-manage-create-condition-age-item">
+            <!--<input type="text" class="sg-notification-manage-create-condition-input sgc-input"-->
+                   <!--data-ng-model="tempStore.condition.maxBirthYear">-->
+            <select data-ng-model="tempStore.condition.maxBirthYear" class="sg-notification-manage-create-option sgc-option">
+                <option data-ng-repeat="x in birthEndList track by $index" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <!--<span class="sg-notification-manage-create-condition-span">{{'년생 까지'| translate}}</span>-->
+        </div>
+
+    </div>
+
+    <div class="sg-notification-manage-create-subtitle">
+        {{'platform'| translate}}
+    </div>
+    <select data-ng-model="tempStore.condition.platform" class="sg-notification-manage-create-option sgc-option">
+        <option data-ng-repeat="x in enumPhones track by $index" value="{{x}}">{{x | translate}}</option>
+    </select>
+
+</div>

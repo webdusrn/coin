@@ -1,0 +1,88 @@
+#sg-notice-manage-create {
+
+    .sg-notice-manage-create-container {
+        z-index: 13;
+
+        position: relative;
+        padding: 40px 20px;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        min-width: 0;
+
+        background-color: white;
+
+
+
+        .sg-notice-manage-create-close {
+            position: absolute;
+            top: -34px;
+            right: 0;
+
+            width: 30px;
+            height: 30px;
+
+            cursor: pointer;
+
+            background-image: url('/assets/themes/admin/cloudy/images/ic_close_24_2x.png');
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: center;
+        }
+
+        .sg-notice-manage-create-titles {
+            font-size: 14px;
+            font-weight: normal;
+            color: #8d93a6;
+
+            margin-bottom: 8px;
+        }
+        .sg-notice-manage-create-body {
+            margin-top: 12px;
+
+            .sg-notice-manage-create-body-top {
+                @include after-clear();
+                .sg-notice-manage-create-body-type {
+                    float: left;
+                }
+
+                .sg-notice-manage-create-body-country {
+                    float: left;
+                    margin-left: 12px;
+                }
+            }
+
+            .sg-notice-manage-create-body-title {
+                margin-top: 12px;
+
+            }
+
+            .sg-notice-manage-create-body-body {
+                margin-top: 12px;
+            }
+
+            .sg-notice-manage-create-body-createdAt{
+                margin-top: 12px;
+                @include after-clear();
+                .sg-filter-select{
+                    width: 100%;
+                }
+            }
+        }
+
+        .sg-notice-manage-create-bottom {
+            margin-top: 12px;
+            @include after-clear();
+            .sg-notice-manage-create-bottom-cancel-btn {
+                float: right;
+            }
+            .sg-notice-manage-create-bottom-create-btn {
+                float: right;
+                margin-left: 10px;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,234 @@
+$button-width: 1200px;
+$button-height: 426px;
+
+@mixin sgc-btn($color, $hover-color, $isBorder:null) {
+    width: 120px;
+    height: 40px;
+
+    border-radius: 3px;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    &.sgc-size-l {
+        width: 150px;
+        height: 50px;
+    }
+
+    &.sgc-size-s {
+        width: 90px;
+        height: 30px;
+    }
+
+    @if $isBorder == true {
+
+        color: $color;
+        background-color: $hover-color;
+        border: 1px solid $color;
+        &:hover {
+            background-color: $color;
+            color: $hover-color;
+        }
+
+    } @else {
+        border: 1px solid $color;
+        background-color: $color;
+        &:hover {
+            border-color: $hover-color;
+            background-color: $hover-color;
+        }
+
+    }
+}
+
+button.sgc-btn-action {
+    @include sgc-btn(color(primary, base), color(primary, dark));
+}
+
+button.sgc-btn-cancel {
+    @include sgc-btn(color(grey, base), color(grey, dark));
+}
+
+button.sgc-btn-delete {
+    @include sgc-btn(color(red, base), color(red, dark));
+}
+
+button.sgc-btn-more {
+    @include sgc-btn(color(more, base), color(more, dark));
+
+
+}
+
+//button.sgc-btn {
+//
+//    &.sgc-action {
+//        background-color: color(primary, base);
+//        &:hover {
+//            background-color: color(primary, dark);
+//        }
+//    }
+//
+//    &.sgc-cancel {
+//        background-color: color(grey, base);
+//        &:hover {
+//            background-color: color(grey, dark);
+//        }
+//    }
+//
+//    &.sgc-delete {
+//        background-color: #c7515c;
+//        &:hover {
+//            background-color: #b34852;
+//        }
+//    }
+//
+//    &.sgc-more {
+//        background-color: #abb7d6;
+//        &:hover {
+//            background-color: #9dacd2;
+//            color: white;
+//        }
+//    }
+//
+//    &.sgc-border {
+//        &.sgc-action {
+//            border: 1px solid $dowado-color;
+//            &:hover {
+//                background-color: $dowado-color;
+//                color: white;
+//            }
+//        }
+//
+//        &.sgc-cancel {
+//            border: 1px solid $dowado-font-grey-color;
+//            &:hover {
+//                background-color: $dowado-font-grey-color;
+//                color: white;
+//            }
+//        }
+//
+//        &.sgc-delete {
+//            border: 1px solid #c7515c;
+//            &:hover {
+//                background-color: #c7515c;
+//                color: white;
+//            }
+//        }
+//
+//        &.sgc-more {
+//            border: 1px solid #abb7d6;
+//            &:hover {
+//                background-color: #abb7d6;
+//                color: white;
+//            }
+//        }
+//    }
+//}
+
+//.sg-action-btn {
+//    width: 120px;
+//    height: 40px;
+//
+//    border-radius: 3px;
+//    color: white;
+//
+//    line-height: 40px;
+//    text-align: center;
+//
+//    font-size: 14px;
+//    font-weight: 400;
+//
+//    cursor: pointer;
+//
+//    background-color: $dowado-color;
+//    &:hover {
+//        background-color: $dowado-hover-color;
+//    }
+//}
+//
+//.sg-cancel-btn {
+//    width: 120px;
+//    height: 40px;
+//
+//    border-radius: 3px;
+//    color: white;
+//
+//    line-height: 40px;
+//    text-align: center;
+//
+//    font-size: 14px;
+//    font-weight: 400;
+//
+//    cursor: pointer;
+//
+//    background-color: $dowado-font-grey-color;
+//    &:hover {
+//        background-color: $dowado-font-grey-hover-color;
+//    }
+//}
+//
+//.sg-delete-btn {
+//    width: 120px;
+//    height: 40px;
+//
+//    border-radius: 3px;
+//    color: white;
+//
+//    line-height: 40px;
+//    text-align: center;
+//
+//    font-size: 14px;
+//    font-weight: 400;
+//
+//    cursor: pointer;
+//
+//    background-color: #c7515c;
+//    &:hover {
+//        background-color: #b34852;
+//    }
+//}
+//
+//.sg-delete-border-btn {
+//    width: 120px;
+//    height: 40px;
+//
+//    border-radius: 3px;
+//    color: #c7515c;
+//
+//    line-height: 40px;
+//    text-align: center;
+//
+//    font-size: 14px;
+//    font-weight: 400;
+//
+//    cursor: pointer;
+//
+//    border: 1px solid #c7515c;
+//    &:hover {
+//        background-color: #c7515c;
+//        color: white;
+//    }
+//}
+//
+//.sg-more-btn {
+//    width: 120px;
+//    height: 40px;
+//
+//    border-radius: 3px;
+//    color: white;
+//
+//    line-height: 40px;
+//    text-align: center;
+//
+//    font-size: 14px;
+//    font-weight: 400;
+//
+//    cursor: pointer;
+//
+//    background-color: #abb7d6;
+//    &:hover {
+//        background-color: #9dacd2;
+//        color: white;
+//    }
+//}

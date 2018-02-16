@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>API Tester</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <link rel="icon" type="image/icon" href="/default/images/favicon.ico"/>
+    <link rel="stylesheet" href="/assets/stylesheets/bootwatch-flaty.css"/>
+    <link rel="stylesheet" href="/assets/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/assets/stylesheets/apis.css?v=<%= version %>"/>
+</head>
+<body id="bb-api-wrap">
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>api-list <span>v<%= version %></span></h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <% for (var i = 0; i < catList.length; ++i) { %>
+            <% var catObj = catList[i]; %>
+
+            <h2 class="category-name <%= catObj.name %>"><%= catObj.name %><i
+                        class="glyphicon glyphicon-triangle-bottom"></i></h2>
+            <ul class="nav nav-pills nav-stacked api-list">
+
+                <%
+                    var apiList = catObj.apiList;
+                    var methods;
+                for (var j = 0; j < apiList.length; ++j) {
+                    var resourceName = apiList[j].resource;
+
+                    var active = '';
+                    if (resourceName == currentResource && catObj.name == currentCategory) {
+                        methods = apiList[j].methods;
+                        active = 'active';
+                    }
+                %>
+                <li class="<%= active %>">
+                    <a href="/api/tester/<%= catObj.name + "/" + resourceName %>"><%= resourceName %></a>
+                </li>
+                <% } %>
+            </ul>
+            <% } %>
+        </div>
+
+        <div class="col-md-10">
+            <span class="label label-default url-name">/<%= prefix %>/<%= currentCategory %>
+                /<%= currentResource %></span>
+
+            <div class="panel">
+                <ul class="nav nav-tabs method-list" role="tablist">
+                    <%
+                        var firstKey = '';
+                        for (var k in methods) {
+                            var method = k;
+                            if (method == 'GETS') {
+                                method = 'GETs';
+                            }
+                    %>
+                    <li class="<%= firstKey == '' ? 'active' : '' %>"><a data-method="<%= method.toUpperCase() %>"
+                                                                         href="#"
+                                                                         onclick="return false;"><%= method %></a></li>
+                        <%
+                            if (firstKey == '') {
+                                firstKey = k;
+                            }
+                        }
+                        %>
+                </ul>
+
+                <div class="form-wrapper">
+                    <%
+                    for (var k in methods) {
+                        var method = k.toUpperCase();
+                    %>
+                    <fieldset class="fieldset-<%= method.toUpperCase() %>">
+                        <h3><%= methods[k].title %></h3>
+                        <legend><%= method %> [<strong class="<%= methods[k].state %>"><%= methods[k].state %></strong>]
+                        </legend>
+
+                        <form data-only-get="<%= (methods[k].param) ? 'true' : 'false' %>"
+                              onsubmit="<%= methods[k].file ? 'return true;' : 'return false;' %>"
+                              role="form"
+                              action="/<%= prefix %>/<%= currentCategory %>/<%= currentResource %>"
+                              method="<%= (method != 'GET' && method != 'GETS') ? 'POST' : 'GET' %>"
+                              id="form-<%= method.toLowerCase() %>"
+                                <%= methods[k].file ? "enctype=multipart/form-data" : "" %>>
+
+                            <% if (method != 'GET' && method != 'POST' && method != 'GETS') { %>
+                            <input type="hidden" name="_method" value="<%= method %>"/>
+                            <% } %>
+                            <%
+                                var acceptable = methods[k].acceptable;
+                                var essential = methods[k].essential;
+                                var resettable = methods[k].resettable;
+                                var param = methods[k].param;
+
+                                var explains = methods[k].explains;
+                                var defaults = methods[k].defaults;
+                                var response = methods[k].response || 'no';
+                                var bSearched = false;
+                            for(var key in response) {
+                                bSearched = true;
+                                break;
+                            }
+                            if (bSearched === false) {
+                                response = 'no';
+                            } else {
+                                response = JSON.stringify(response);
+                            }
+
+                            for (var i = 0; i < acceptable.length; ++i) {
+                                var name = acceptable[i];
+                                var addedName = name
+                                for (var j = 0; j < essential.length; ++j) {
+                                    if (acceptable[i] == essential[j]) {
+                                        addedName += ' *';
+                                        break;
+                                    }
+                                }
+                                for (var j = 0; j < resettable.length; ++j) {
+                                    if (acceptable[i] == resettable[j]) {
+                                        addedName += ' r';
+                                        break;
+                                    }
+                                }
+                            %>
+                            <div class="form-group">
+                                <label for="<%= currentResource + '-' + method + '-' + name %>"><strong><%= addedName %></strong></label>
+                                <input type="text" id="<%= currentResource + '-' + method + '-' + name %>"
+                                       value="<%= defaults && defaults[name] || '' %>"
+                                       class="form-control" name="<%= name %>" placeholder="<%= explains[name] %>">
+                            </div>
+                            <% } %>
+
+                            <%
+                            if (methods[k].file) {
+                                var filesCnt = methods[k].files_cnt;
+                            %>
+
+                            <% for (var i = 0; i < filesCnt; ++i) { %>
+                            <div class="form-group">
+                                <label for="<%= currentResource + '-file_name' + i %>"><strong>file<%= i %></strong></label>
+                                <input type="file" id="<%= currentResource + '-file_name' + i %>" class="form-control"
+                                       name="file<%= i %>" placeholder="파일 <%= i %>">
+                            </div>
+                            <% } %>
+
+                            <% } %>
+
+                            <% if (param) { %>
+                            <div class="form-group">
+                                <label for="<%= currentResource + '-' + method + '-' + param %>"><strong><%= param %></strong></label>
+                                <input type="text" id="<%= currentResource + '-' + method + '-' + param %>"
+                                       value="<%= defaults && defaults[param] || '' %>"
+                                       class="form-control only-get" placeholder="<%= explains[param] %>">
+
+                                <p class="help-block">해당 값은 주소 맨뒤로 붙을 것임. (바디/쿼리가 아님)</p>
+                            </div>
+                            <% } %>
+                            <button onclick="window.setAndShowModal(null, null, null, null, '<%= response %>')" type="button" class="btn btn-success btn-response"><i
+                                        class="glyphicon glyphicon-search"></i> 응답형식
+                            </button>
+                            <button type="submit" class="btn btn-success form-submit"><i
+                                        class="glyphicon glyphicon-play"></i> 전송
+                            </button>
+                            <button type="reset" class="btn btn-danger"><i
+                                        class="glyphicon glyphicon-remove-circle"></i> 리셋
+                            </button>
+                        </form>
+                    </fieldset>
+                    <% } %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="result-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <h5>Request body</h5>
+
+                <p class="req-data"></p>
+
+                <h5>Response body</h5>
+
+                <p class="res-data"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/es5-shim/es5-shim.js"></script>
+<script type="text/javascript" src="lib/json3/lib/json3.min.js"></script>
+<script type="text/javascript" src="lib/console-shim/console-shim.js"></script>
+<script type="text/javascript" src="lib/respond/dest/respond.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="https://cdn1.slogup.com/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn2.slogup.com/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script type="text/javascript" src="https://cdn3.slogup.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    function bootstrap() {
+        $('.category-name').click(function () {
+            var $this = $(this);
+            var $next = $this.next();
+            var display = $next.css("display");
+
+            var $i = $this.find('i');
+            $i.removeClass("glyphicon-triangle-bottom");
+            $i.removeClass("glyphicon-triangle-top");
+
+            if (display == 'block') {
+                display = "none";
+                $i.addClass("glyphicon-triangle-top");
+            } else {
+                display = "block";
+                $i.addClass("glyphicon-triangle-bottom");
+            }
+            $next.css('display', display);
+        });
+
+        $('.category-name:not(.<%= currentCategory %>)').trigger('click');
+
+        var setFieldsetVisible = function () {
+
+            var $methodList = $('.method-list li');
+
+            $('fieldset').hide();
+
+            $methodList.each(function (i) {
+                var $this = $(this);
+
+                if ($this.hasClass('active')) {
+                    var curMethod = $this.find('a').attr('data-method');
+                    $('.fieldset-' + curMethod).show();
+                }
+            });
+        };
+
+        setFieldsetVisible();
+
+        $('.method-list li a').click(function () {
+            var $this = $(this);
+
+            $('.method-list li').removeClass('active');
+            $this.parent().addClass('active');
+            setFieldsetVisible();
+        });
+
+        var setAndShowModal = window.setAndShowModal = function (xhr, action, method, data, response) {
+
+            if (response == 'no') {
+                return;
+            } else if (response) {
+                response = JSON.parse(response);
+            }
+
+            var titleClassName = 'error';
+            var $modalTitle = $('.modal-title');
+
+            if (response) {
+                $modalTitle.text("응답형태");
+                $('.req-data').html('<pre>' + '없음' + '</pre>');
+                $('.res-data').html('<pre>' + (JSON.stringify(response, null, 3)) + '</pre>');
+            } else {
+                var reqData = {};
+                var resJSON = xhr.responseJSON;
+
+                if (resJSON) {
+
+                    if (resJSON.code) {
+                        resJSON.translation = meta.codes.ko[resJSON.code];
+                    }
+                    else {
+
+                        for (var k in resJSON) {
+                            if (resJSON[k] && resJSON[k].code) {
+                                resJSON[k].translation = meta.codes.ko[resJSON[k].code];
+                            }
+                        }
+                    }
+                }
+
+                if (data) {
+                    data = data.split('&');
+                    for (var i = 0; i < data.length; ++i) {
+                        var kv = data[i].split('=');
+                        reqData[kv[0]] = kv[1];
+                    }
+                }
+                $('.req-data').html('<pre>' + decodeURIComponent(reqData && JSON.stringify(reqData, null, 3) || 'no body') + '</pre>');
+
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    titleClassName = 'success';
+                    $('.res-data').html('<pre>' + (JSON.stringify(resJSON, null, 3) || '{}') + '</pre>');
+                } else {
+                    if (xhr.status >= 400 & xhr.status < 500) {
+                        titleClassName = 'fail';
+                    }
+                    $('.res-data').html('<pre>' + (JSON.stringify(resJSON, null, 3) || '{}') + '</pre>');
+                }
+
+                $modalTitle.text(method + ' ' + action + ' ' + xhr.status);
+
+                $modalTitle.removeClass('success');
+                $modalTitle.removeClass('fail');
+                $modalTitle.removeClass('error');
+
+                $modalTitle.addClass(titleClassName);
+            }
+
+            $('#result-modal').modal('show');
+        };
+
+        $('.form-submit').click(function () {
+
+            var $this = $(this);
+            var $form = $this.parents('form');
+            var id = $form.attr('id');
+            var data = $form.serialize();
+            var action = $form.attr('action');
+            var method = $form.attr('method');
+            var enctype = $form.attr('enctype');
+            ;
+
+            if ($form.attr('data-only-get') == 'true') {
+                var getValue = $form.find('.only-get').val();
+                action += ('/' + getValue);
+            }
+
+            if (enctype == 'multipart/form-data') {
+
+                $('#' + id).ajaxForm({
+                    dataType: 'json',
+                    beforeSerialize: function (data) {
+                        var $this = $(this);
+                    },
+                    beforeSubmit: function () {
+
+                    },
+                    success: function (res) {
+                        var xhr = {
+                            status: 200,
+                            responseJSON: res
+                        };
+
+                        setAndShowModal(xhr, action, method, data);
+                    },
+                    error: function (xhr) {
+                        setAndShowModal(xhr, action, method, data);
+                    }
+                });
+            }
+            else {
+
+                $.ajax({
+                    url: action,
+                    type: method,
+                    data: data,
+                    complete: function (xhr) {
+                        setAndShowModal(xhr, action, method, data);
+                    }
+                });
+            }
+        });
+    }
+    $(document).ready(function () {
+        $.ajax({
+            url: '/api/etc/meta',
+            type: 'get',
+            data: {
+                type: 'codes'
+            },
+            beforeSend: function () {
+            },
+            complete: function (xhr) {
+                window.meta = {
+                    codes: xhr.responseJSON
+                }
+                bootstrap();
+            }
+        });
+    });
+</script>
+</body>
+</html>

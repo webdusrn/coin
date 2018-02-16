@@ -1,0 +1,142 @@
+<div id="sg-info-manage" ng-controller="CompanyInfoCtrl" data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+
+    <div class="sg-info-manage-container">
+        <div class="sg-info-manage-title sgc-titles">
+            {{'infoManage' | translate}}
+        </div>
+        <div class="sg-info-manage-body">
+
+            <div class="sg-info-manage-body-top">
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'companyName'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.companyName}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.companyName"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+            </div>
+
+            <div class="sg-info-manage-body-float">
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'representative'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.representative}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.representative"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'regNum'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.regNum}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.regNum"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+            </div>
+
+            <div class="sg-info-manage-body-float">
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'privateInfoManager'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.privateInfoManager}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.privateInfoManager"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'communicationsRetailReport'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.communicationsRetailReport}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.communicationsRetailReport"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+            </div>
+
+            <div class="sg-info-manage-body-float">
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'contact'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.contact}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.contact"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'contact2'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.contact2}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.contact2"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+            </div>
+
+            <div class="sg-info-manage-body-float">
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'fax'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.fax}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.fax"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'email'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.email}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.email"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+            </div>
+
+            <div class="sg-info-manage-body-float">
+                <div class="sg-info-manage-body-item">
+                    <div class="sg-info-manage-body-item-title">
+                        {{'companyAddress'|translate}}
+                    </div>
+                    <div class="sg-info-manage-body-item-text" ng-if="!isCompanyInfoEditVisible">
+                        {{companyInfo.address}}
+                    </div>
+                    <input class="sg-info-manage-body-item-input sgc-input" type="text" ng-model="form.address"
+                           ng-if="isCompanyInfoEditVisible">
+                </div>
+            </div>
+
+            <div class="sg-info-manage-body-bottom">
+                <button class="sg-info-manage-bottom-save-btn sgc-btn-action" ng-click="showCompanyInfoEdit()" ng-if="!isCompanyInfoEditVisible">
+                    {{'edit'| translate}}
+                </button>
+                <button class="sg-info-manage-bottom-save-btn sgc-btn-action" ng-click="updateCompanyInfo(form)" ng-if="isCompanyInfoEditVisible">
+                    {{'complete'| translate}}
+                </button>
+                <button class="sg-info-manage-bottom-cancel-btn sgc-btn-cancel" ng-click="hideCompanyInfoEdit()" ng-if="isCompanyInfoEditVisible">
+                    {{'cancel'| translate}}
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

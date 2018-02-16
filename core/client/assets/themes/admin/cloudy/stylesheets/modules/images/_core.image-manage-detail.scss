@@ -1,0 +1,172 @@
+#sg-image-manage-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 12;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+
+  .sg-image-manage-detail-fake {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 12;
+  }
+
+  .sg-image-manage-detail-container {
+    z-index: 13;
+
+    position: relative;
+
+    margin: auto;
+
+    top: calc(50% - 309px);
+    width: 500px;
+
+    background-color: white;
+    border-radius: 5px;
+
+    .sg-image-manage-detail-header-right-close-btn {
+      position: absolute;
+      top: -34px;
+      right: 0;
+
+      width: 30px;
+      height: 30px;
+
+      cursor: pointer;
+
+      background-image: url('/assets/themes/admin/cloudy/images/ic_close_24_2x.png');
+
+      background-repeat: no-repeat;
+      background-size: 24px;
+      background-position: center;
+    }
+    .sg-image-manage-detail-top {
+      padding: 12px 20px;
+      .sg-image-manage-detail-top-title {
+
+        .sg-image-manage-detail-top-authorized {
+          @include after-clear();
+
+          height: 34px;
+          border-bottom: 1px solid #d5dbec;
+
+          .sg-image-manage-detail-top-authorized-dot {
+            float: left;
+
+            margin-top: 8px;
+            margin-right: 8px;
+            margin-left: 8px;
+
+            background-color: $soft-blue;
+            border-radius: 50%;
+
+            width: 10px;
+            height: 10px;
+          }
+          .sg-image-manage-detail-top-authorized-text {
+            float: left;
+
+            font-size: 18px;
+            font-weight: normal;
+            color: #121428;
+          }
+        }
+
+        .sg-image-manage-detail-top-unauthorized {
+          @include after-clear();
+
+          height: 34px;
+          border-bottom: 1px solid #d5dbec;
+
+          .sg-image-manage-detail-top-unauthorized-dot {
+            float: left;
+
+            margin-top: 8px;
+            margin-right: 8px;
+            margin-left: 8px;
+
+            background-color: #b4bacd;
+            border-radius: 50%;
+
+            width: 10px;
+            height: 10px;
+          }
+          .sg-image-manage-detail-top-unauthorized-text {
+            float: left;
+
+            font-size: 18px;
+            font-weight: normal;
+            color: #121428;
+          }
+        }
+
+      }
+
+      .sg-image-manage-detail-top-info {
+        padding: 0 8px;
+
+        margin-top: 8px;
+        height: 26px;
+        line-height: 26px;
+
+        @include after-clear();
+        .sg-image-manage-detail-top-folder {
+          float: left;
+
+          font-size: 16px;
+          font-weight: normal;
+          color: #121428;
+        }
+        .sg-image-manage-detail-top-img {
+          float: left;
+
+          margin-top: 8px;
+          margin-left: 6px;
+          margin-right: 6px;
+
+          width: 12px;
+          height: 12px;
+
+          background-image: url('/assets/themes/admin/cloudy/images/ic_images_manage_arrow_12_2x.png');
+          background-repeat: no-repeat;
+          background-size: 12px;
+          background-position: center;
+        }
+        .sg-image-manage-detail-top-file-name {
+          float: left;
+
+          font-size: 16px;
+          font-weight: normal;
+          color: #121428;
+        }
+      }
+      .sg-image-manage-detail-top-created-at {
+        margin-top: 9px;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 0 8px;
+      }
+    }
+
+    .sg-image-manage-detail-img {
+      height: 500px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      background-color: #222;
+    }
+
+  }
+}

@@ -1,0 +1,37 @@
+<div id="sg-session-wrap" class="container" data-ng-controller="SessionCtrl">
+    <div class="sg-outer">
+        <div class="sg-inner">
+            <div id="sg-session-find-wrap">
+                <h2>{{ 'findPass' | translate }}</h2>
+                <hr>
+                <form class="sg-session-form" data-ng-submit="vm.findPass()" name="form" novalidate>
+                    <div data-ng-class="{'sg-has-error': vm.isInvalid(form.email)}">
+                        <!--<label for="email" class="col-lg-2 control-label">{{ 'email' | translate }}</label>-->
+                        <div class="sg-session-input-wrap">
+                            <input type="text"
+                                   class="sg-session-input"
+                                   id="email"
+                                   name="email"
+                                   data-ng-model="vm.form.email"
+                                   data-ng-focus="form.email.$focus = true"
+                                   data-ng-blur="form.email.$focus = false"
+                                   placeholder="{{ 'email' | translate }}"
+                                   data-ng-required="true">
+                        </div>
+                        <span class="sg-session-alert-message" data-ng-show="vm.isInvalid(form.email)">
+                            {{ vm.getFormError(form.email.$error) | translate }}
+                        </span>
+                    </div>
+                    <div class="sg-session-button-wrap">
+                        <button type="button" ui-sref="session.login" class="sg-session-button">
+                            {{ 'cancel' | translate }}
+                        </button>
+                        <button type="submit" class="sg-session-button">
+                            {{ 'findPass' | translate }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

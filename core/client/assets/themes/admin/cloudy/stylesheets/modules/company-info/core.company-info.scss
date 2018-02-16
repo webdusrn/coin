@@ -1,0 +1,107 @@
+@import "../../import";
+
+
+
+#sg-info-manage {
+    height: inherit;
+
+    .sg-info-manage-container {
+        margin: auto;
+        padding: 50px 12px;
+        width: $web-container-size;
+
+        .sg-info-manage-title {
+            @include title-border-bottom();
+        }
+
+        .sg-info-manage-body {
+            margin-top: 28px;
+            padding: 40px 0;
+
+            border-radius: 5px;
+
+            background-color: white;
+
+            .sg-info-manage-body-top {
+
+                margin-bottom: 38px;
+                padding: 0 120px 60px 120px;
+                @include title-border-bottom();
+            }
+
+            .sg-info-manage-body-float {
+
+                @include after-clear();
+                .sg-info-manage-body-item {
+                    padding: 0 0 0 70px;
+
+                    &:nth-child(2) {
+                        padding: 0 70px 0 0;
+                    }
+
+                    float: left;
+                    margin-left: 50px;
+                    width: calc(50% - 25px);
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                    .sg-info-manage-body-item-title {
+
+                    }
+                    .sg-info-manage-body-item-text {
+
+                    }
+                    .sg-info-manage-body-item-input {
+
+                    }
+                }
+
+            }
+
+        }
+
+        .sg-info-manage-body-bottom {
+
+            padding: 40px 70px 0 70px;
+            @include after-clear();
+            .sg-info-manage-bottom-save-btn {
+                float: right;
+            }
+            .sg-info-manage-bottom-cancel-btn {
+                float: right;
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .sg-info-manage-body-item {
+        margin-top: 20px;
+        padding: 0 20px;
+
+        @include after-clear();
+        .sg-info-manage-body-item-title {
+            width: 120px;
+            line-height: 40px;
+
+            font-size: 14px;
+            font-weight: 400;
+            color: #8d93a6;
+
+        }
+        .sg-info-manage-body-item-text {
+            font-size: 15px;
+            color: #121428;
+
+            @include title-border-bottom();
+            padding-bottom: 12px;
+            min-height: 34px;
+        }
+        .sg-info-manage-body-item-input {
+
+        }
+    }
+}
+
+
+@import "core.company-responsive";

@@ -1,0 +1,11 @@
+@import "mixin/after-clear";
+@import "mixin/background";
+@import "mixin/transition";
+@import "mixin/translate3d";
+@import "mixin/animation";
+@import "mixin/center";
+@import "mixin/center-vertical";
+
+@mixin title-border-bottom() {
+    border-bottom: 1px solid color(divider, base);
+}

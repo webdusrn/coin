@@ -1,0 +1,259 @@
+@import "../../import";
+
+#sg-notice-manage {
+
+    .sg-notice-manage-container {
+        margin: auto;
+        padding: 50px 12px;
+        width: 1200px;
+
+        max-width: $web-container-size + $g-menu-size;
+
+        .sg-notice-manage-title {
+            //@include title-border-bottom();
+        }
+
+        .sg-notice-manage-menu {
+            border-top: 1px solid $divider;
+            padding-top: 12px;
+            padding-bottom: 12px;
+
+            @include after-clear();
+
+            .sg-notice-manage-menu-search-option {
+                float: left;
+
+                margin-right: 6px;
+            }
+
+            .sg-notice-manage-menu-search {
+                float: left;
+                width: calc(100% - 241px);
+
+                form {
+                    height: 41px;
+                }
+
+
+            }
+
+            .sg-notice-manage-main-create {
+                float: right;
+                margin-left: 6px;
+
+                width: 120px;
+            }
+        }
+
+        .sg-notice-manage-main {
+            border-top: 1px solid $divider;
+            padding-top: 20px;
+            padding-bottom: 6px;
+
+            .sg-notice-manage-main-top {
+
+                display: block;
+                @include after-clear();
+                .sg-notice-manage-main-top-filter {
+                    float: left;
+                }
+                .sg-notice-manage-main-top-total {
+                    float: right;
+                }
+            }
+
+            .sg-notice-manage-main-list {
+                padding-top: 18px;
+                padding-bottom: 12px;
+
+                .sg-notice-manage-main-list-top {
+                    padding-left: 20px;
+                    padding-right: 20px;
+
+                    @include after-clear();
+
+                    font-size: 12px;
+                    color: #8d93a6;
+
+                    display: block;
+
+                    .sg-notice-manage-main-list-top-type {
+                        float: left;
+                        width: 20%;
+                    }
+
+                    .sg-notice-manage-main-list-top-type-title {
+                        float: left;
+                        width: 35%;
+                    }
+
+                    .sg-notice-manage-main-list-top-type-period {
+                        float: left;
+                        width: 24%;
+                    }
+
+                    .sg-notice-manage-main-list-top-created-at {
+                        float: left;
+                        width: 21%;
+                    }
+                    .sg-notice-manage-main-list-top-more {
+                        float: left;
+                    }
+                }
+                .sg-notice-manage-main-item {
+                    $sg-notice-manage-main-item-height: 58px;
+                    position: relative;
+
+                    background-color: white;
+                    margin-top: 12px;
+                    border-radius: 3px;
+                    //box-shadow: 0 0 16px 2px rgba(4, 0, 0, 0.1);
+                    cursor: pointer;
+
+                    border: solid 1px $pale-grey;
+
+                    @include after-clear();
+
+                    @include transition(border, .15s, ease-in-out, 0s);
+                    @include hoverItem();
+
+                    height: $sg-notice-manage-main-item-height;
+                    padding-top: 0;
+                    padding-bottom: 0;
+
+                    .sg-notice-manage-main-item-left {
+                        padding-left: 18px;
+                        padding-right: 42px;
+
+                        font-size: 14px;
+                        color: #121428;
+
+                        line-height: $sg-notice-manage-main-item-height;
+
+                        @include after-clear();
+
+                        .sg-notice-manage-main-item-type-container {
+                            float: left;
+                            width: 20%;
+                        }
+
+                        .sg-notice-manage-main-item-title-container {
+                            float: left;
+                            width: 35%;
+                        }
+
+                        .sg-notice-manage-main-item-period-container {
+                            float: left;
+                            width: 24%;
+                        }
+
+                        .sg-notice-manage-main-item-created-at-container {
+                            color: #121428;
+
+                            float: left;
+                            width: 21%;
+                            font-size: 14px;
+                        }
+
+                        .sg-notice-manage-main-item-title {
+                            display: none;
+                        }
+                        .sg-notice-manage-main-item-body {
+
+                        }
+
+                    }
+
+                    .sg-notice-manage-main-item-right {
+                        z-index: 10;
+
+                        position: absolute;
+                        top: 18px;
+                        right: 22px;
+                        width: 50px;
+                        height: 25px;
+                        border-radius: 3px;
+                        border: solid 1px #b4bacd;
+
+                        background-image: url('/assets/themes/admin/cloudy/images/ic_item_more_20_6_2x.png');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 20px 6px;
+
+                        &:hover {
+                            background-image: url('/assets/themes/admin/cloudy/images/ic_item_more_active_20_6_2x.png');
+                            background-color: #5b7ed6;
+                            border: solid 1px #5b7ed6;
+                        }
+
+                        //&:hover > .sg-notice-manage-main-item-right-container {
+                        //    display: block;
+                        //}
+
+                        .sg-notice-manage-main-item-right-container {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: 100px;
+                            background-color: white;
+                            box-shadow: 0 0 12px 3px rgba(4, 0, 0, 0.1);
+                            z-index: 1;
+
+                            .sg-notice-manage-main-item-edit {
+                                display: block;
+                                background: none;
+                                color: #464646;
+                                width: calc(100% - 16px);
+                                margin: 8px;
+                                border-radius: 3px;
+
+                                &:hover {
+                                    color: white;
+                                    background-color: #5b7ed6;
+                                }
+                            }
+
+                            .sg-notice-manage-main-item-delete {
+                                display: block;
+                                background: none;
+                                color: #464646;
+                                width: calc(100% - 16px);
+                                margin: 8px;
+                                border-radius: 3px;
+
+                                &:hover {
+                                    color: white;
+                                    background-color: #f0505f;
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .sg-notice-manage-main-more-container {
+            text-align: center;
+            .sg-notice-manage-main-more {
+                margin: auto;
+            }
+        }
+
+    }
+
+    .sg-notice-manage-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        opacity: 0;
+    }
+}
+
+@import "core.notice-manage-create";
+@import "core.notice-manage-detail";
+@import "core.notice-responsive";

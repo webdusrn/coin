@@ -1,0 +1,23 @@
+select.sgc-filter {
+    width: 109px;
+    height: 42px;
+    border-radius: 5px;
+    padding-left: 8px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 32px;
+
+    cursor: pointer;
+
+    background-image: url('/pages/admin/assets/images/ic_arrow_down_17_10_2x.png');
+    background-repeat: no-repeat;
+    background-size: 17px 10px;
+    background-position: right 8px center;
+
+    background-color: #e2e5ee;
+
+    &:hover {
+        background-color: color(divider, base);
+    }
+}

@@ -1,0 +1,91 @@
+<script type="text/ng-template" id="coreNoticeCreate.html">
+    <div id="sg-notice-manage-create">
+        <div class="sg-notice-manage-create-container">
+
+            <!--<div class="sg-notice-manage-create-title sgc-titles">-->
+            <!--공지사항 생성-->
+            <!--</div>-->
+
+            <div class="sg-notice-manage-create-close" ng-click="cancel()">
+
+            </div>
+
+            <div class="sg-notice-manage-create-body">
+
+                <div class="sg-notice-manage-create-body-top">
+                    <div class="sg-notice-manage-create-body-type">
+                        <div class="sg-notice-manage-create-titles">
+                            {{'type'| translate}}
+                        </div>
+                        <div class="sg-notice-manage-create-body-type-body">
+                            <select ng-model="form.type" class="sg-main-view-top-second-sort-btn sgc-option" required>
+                                <option ng-repeat="x in noticeTypes" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sg-notice-manage-create-body-country">
+                        <div class="sg-notice-manage-create-titles">
+                            {{'country'| translate}}
+                        </div>
+                        <div class="sg-notice-manage-create-body-country-body">
+                            <select ng-model="form.country" class="sg-main-view-top-second-sort-btn sgc-option" required>
+                                <option ng-repeat="x in noticeCountries" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-create-body-title">
+                    <div class="sg-notice-manage-create-titles">
+                        {{'title'| translate}}
+                    </div>
+                    <input ng-model="form.title" type="text" class="sg-notice-manage-create-body-title-body sgc-input"
+                           placeholder="{{'title'|translate}}" required>
+                </div>
+
+                <div class="sg-notice-manage-create-body-body">
+                    <div class="sg-notice-manage-create-titles">
+                        {{'body'| translate}}
+                    </div>
+                    <div class="sg-notice-manage-create-body-body-body">
+                        <form>
+                            <textarea ck-editor ng-model="form.body" required></textarea>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-create-body-createdAt">
+                    <div class="sg-notice-manage-create-titles">
+                        {{'startDate'| translate}}
+                    </div>
+                    <div class="datepicker" date-format="yyyy-MM-dd">
+                        <input type="text" class=" sg-filter-select sg-g-input sg-left"
+                               data-ng-model="form.startDate"
+                               placeholder="{{ 'startDate' | translate }}"
+                        >
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-create-body-createdAt">
+                    <div class="sg-notice-manage-create-titles">
+                        {{'endDate'| translate}}
+                    </div>
+                    <div class="datepicker" date-format="yyyy-MM-dd">
+                        <input type="text" class=" sg-filter-select sg-g-input sg-left"
+                               data-ng-model="form.endDate"
+                               placeholder="{{ 'endDate' | translate }}"
+                               >
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sg-notice-manage-create-bottom">
+                <button class="sg-notice-manage-create-bottom-create-btn sgc-btn-action" ng-click="createNotice()">{{'create'|translate}}</button>
+            </div>
+
+        </div>
+
+    </div>
+</script>

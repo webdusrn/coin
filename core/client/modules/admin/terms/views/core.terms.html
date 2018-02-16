@@ -1,0 +1,76 @@
+<div id="sg-core-terms-manage-wrap" data-ng-controller="TermsCtrl"  data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+    <div class="sg-core-container">
+        <div class="sg-core-terms-header">
+            <div class="sg-core-title">
+                <p>{{ 'termsManage' | translate }}</p>
+            </div>
+            <select class="sg-core-select"
+                    data-ng-model="params.language">
+                <option data-ng-repeat="item in enumLanguages" value="{{ item }}">{{ item | translate }}</option>
+            </select>
+        </div>
+        <div class="sg-core-terms-main">
+            <div class="sg-core-list-wrap">
+                <button type="button" class="sg-core-button" data-ng-click="openCreateTerms()">
+                    {{ 'createTerms' | translate }}
+                </button>
+                <ul>
+                    <li data-ng-repeat="item in termsList"
+                        data-ng-class="{'sg-core-selected': item.title == currentTerms.title}"
+                        data-ng-click="selectTerms(item)">
+                        <p><span data-ng-if="item.type == TERMS.typeEssential">({{ 'essential' | translate }})</span><span data-ng-if="item.type != TERMS.typeEssential">({{ 'optional' | translate }})</span> {{ item.title }}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="sg-core-content-wrap">
+                <div class="sg-core-title">
+                    <p><span data-ng-if="selectedTerms.type == TERMS.typeEssential">({{ 'essential' | translate }})</span><span data-ng-if="selectedTerms.type != TERMS.typeEssential">({{ 'optional' | translate }})</span> {{ selectedTerms.title }}</p>
+                </div>
+                <div class="sg-core-version-wrap">
+                    <button type="button" class="sg-core-button" data-ng-click="openCreateTerms(currentTerms)">
+                        <i></i>
+                        <i></i>
+                        <span>{{ 'addVersion' | translate }}</span>
+                    </button>
+                    <div class="sg-core-version"
+                         data-ng-repeat="item in selectedTerms.versions"
+                         data-ng-click="findTermsById(item.id)"
+                         data-ng-class="{'sg-selected': item.id == selectVersionId}">
+                        <p>{{ item.startDate | microTimeToDate }}</p>
+                    </div>
+                </div>
+                <div class="sg-core-date-wrap" data-ng-class="{'sg-core-applied': selectVersionId == currentTerms.appliedId}">
+                    <div class="sg-core-date-content">
+                        <div class="sg-core-date">
+                            <p>{{ 'applyDate' | translate }}</p>
+                        </div>
+                        <div class="sg-core-date-info">
+                            <p>{{ selectedTerms.startDate | microTimeToDate }}</p>
+                        </div>
+                    </div>
+                    <div class="sg-core-date-content">
+                        <div class="sg-core-date">
+                            <p>{{ 'createdAt' | translate }}</p>
+                        </div>
+                        <div class="sg-core-date-info">
+                            <p>{{ selectedTerms.createdAt | microTimeToDate }}</p>
+                        </div>
+                    </div>
+                    <div class="sg-core-applied">
+                        <div class="sg-core-img"></div>
+                        <p>{{ 'appliedTerms' | translate }}</p>
+                    </div>
+                </div>
+                <div class="sg-core-content">
+                    <div class="sg-core-body" data-ng-bind-html="selectedTerms.content | trustAsHtml"></div>
+                </div>
+                <div class="sg-core-button-wrap">
+                    <button type="button" class="sg-core-button" data-ng-if="selectedTerms | returnDeleteDisabled" data-ng-click="deleteVersion(selectedTerms)">
+                        {{ 'delete' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<create-terms></create-terms>

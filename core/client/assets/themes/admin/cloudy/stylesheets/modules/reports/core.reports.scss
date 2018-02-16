@@ -1,0 +1,198 @@
+@import "../../import";
+
+#sg-report-manage {
+    //$sg-report-manage-main-item-width: 401px;
+    //$sg-report-manage-main-item-margin-right: 8px;
+    //$sg-report-manage-container-padding: 12px;
+    overflow: auto;
+    .sg-report-manage-container {
+        margin: auto;
+        padding: 50px 12px;
+        width: $web-container-size;
+        .sg-report-manage-title {
+        }
+
+        .sg-report-manage-menu {
+            border-top: 1px solid $divider;
+            padding-top: 12px;
+            padding-bottom: 12px;
+
+            @include after-clear();
+
+            .sg-report-manage-menu-search-option {
+                float: left;
+                margin-right: 6px;
+
+            }
+
+            .sg-report-manage-menu-search {
+                float: left;
+                width: calc(100% - 115px);
+                form {
+                    height: 41px;
+                }
+            }
+
+        }
+
+        .sg-report-manage-main {
+            border-top: 1px solid $divider;
+            padding-top: 20px;
+            padding-bottom: 6px;
+
+            .sg-report-manage-main-top {
+                margin-bottom: 12px;
+                @include after-clear();
+                .sg-report-manage-main-top-filter {
+                    float: left;
+
+                }
+
+                .sg-report-manage-main-top-total {
+                    float: right;
+                }
+
+            }
+
+            .sg-report-manage-main-list {
+                padding-bottom: 12px;
+
+
+                @include after-clear();
+                .sg-report-manage-main-item {
+                    float: left;
+                    width: calc(33.333% - 5.333px);
+                    margin-right: 8px;
+                    //margin-right: $sg-report-manage-main-item-margin-right;
+
+                    position: relative;
+                    background-color: white;
+                    margin-top: 8px;
+                    border-radius: 5px;
+                    border: solid 1px $pale-grey;
+                    cursor: pointer;
+                    overflow: hidden;
+                    @include after-clear();
+                    @include transition(border, .15s, ease-in-out, 0s);
+                    @include hoverItem();
+
+                    &:nth-child(3n){
+                        margin-right: 0;
+                    }
+
+                    .sg-report-manage-main-item-top {
+                        height: 48px;
+                        padding-top: 18px;
+                        padding-left: 20px;
+                        padding-right: 20px;
+
+                        border-bottom: 1px solid #d5dbec;
+
+                        @include after-clear();
+                        .sg-report-manage-main-item-top-solved-img {
+                            float: left;
+
+                            background-color: #51c7b5;
+                            border-radius: 50%;
+
+                            width: 16px;
+                            height: 16px;
+
+                            line-height: 48px;
+
+                        }
+                        .sg-report-manage-main-item-top-unsolved-img {
+                            float: left;
+
+                            background-color: #b4bacd;
+                            border-radius: 50%;
+
+                            width: 16px;
+                            height: 16px;
+
+                            line-height: 48px;
+                        }
+
+                        .sg-report-manage-main-item-top-solved {
+                            float: left;
+                            font-size: 14px;
+                            margin-left: 12px;
+                            margin-top: -2px;
+                        }
+                        .sg-report-manage-main-item-top-unsolved {
+                            float: left;
+                            font-size: 14px;
+                            margin-left: 12px;
+                            margin-top: -2px;
+                        }
+                    }
+
+                    .sg-report-manage-main-item-top-body {
+                        padding: 20px;
+                        height: 140px;
+
+                        font-size: 14px;
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 6;
+                        -webkit-box-orient: vertical;
+                        word-wrap: break-word;
+                    }
+
+                    .sg-report-manage-main-item-top-bottom {
+                        height: 46px;
+                        line-height: 46px;
+                        padding: 0 20px;
+                        @include after-clear();
+                        .sg-report-manage-main-item-user-img {
+                            float: left;
+
+                            margin-top: 9px;
+                            margin-right: 9px;
+
+                            width: 26px;
+                            height: 26px;
+
+                            border-radius: 50%;
+                            border: 1px solid $divider;
+
+                            background-image: url('/assets/themes/admin/cloudy/images/ic_report_avatar_26_2x.png');
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            -webkit-background-size: 26px;
+                            background-size: 26px;
+
+                        }
+                        .sg-report-manage-main-item-nick {
+                            float: left;
+                            font-size: 16px;
+                            color: #6d8fe4;
+
+                        }
+                        .sg-report-manage-main-item-created-at {
+                            float: right;
+                            font-size: 12px;
+                            color: #b4bacd;
+                        }
+                    }
+
+                }
+
+            }
+
+            .sg-report-manage-main-more-container {
+                text-align: center;
+                .sg-report-manage-main-more {
+                    margin: auto;
+                }
+            }
+
+        }
+    }
+}
+
+@import "core.report-manage-detail";
+@import "core.reports-responsive";
+

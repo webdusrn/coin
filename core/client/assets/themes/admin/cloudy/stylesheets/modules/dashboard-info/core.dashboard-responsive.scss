@@ -1,0 +1,124 @@
+@import "../../import";
+
+@media screen and (max-width: $web-container-size + $g-menu-size) {
+    .sg-core-responsive {
+        &#sg-dashboard {
+            .sg-dashboard-container {
+                width: 100%;
+                padding: 25px 12px;
+                .sg-dashboard-main {
+                    .sg-dashboard-item {
+
+                        .sg-dashboard-chart {
+                            .sg-dashboard-chart-top {
+                                .sg-dashboard-chart-top-title {
+
+                                }
+                                .sg-dashboard-chart-top-status {
+                                    @include after-clear();
+                                    .sg-dashboard-chart-top-status-current-login {
+                                        float: none;
+                                        width: 100%;
+                                    }
+                                    .sg-dashboard-chart-top-status-total {
+                                        float: none;
+                                        width: 100%;
+
+                                        margin-left: 0;
+                                    }
+                                    .sg-dashboard-chart-top-status-solved {
+                                        float: none;
+                                        width: 100%;
+                                    }
+                                    .sg-dashboard-chart-top-status-unauthorized {
+                                        float: none;
+                                        width: 100%;
+                                    }
+                                }
+                                .sg-dashboard-chart-top-sign-up-status {
+                                    .sg-dashboard-chart-top-sign-up-status-item {
+
+                                        .sg-dashboard-chart-top-sign-up-status-body-dropout {
+                                            .sg-dashboard-chart-top-sign-up-status-body-left {
+                                                .sg-dashboard-chart-top-sign-up-status-body-left-table {
+                                                    .sg-dashboard-chart-top-sign-up-status-body-left-ratio {
+                                                        font-size: 64px;
+                                                        span {
+                                                            font-size: 36px;
+                                                        }
+                                                    }
+                                                    .sg-dashboard-chart-top-sign-up-status-body-left-text {
+
+                                                    }
+                                                }
+                                            }
+                                            .sg-dashboard-chart-top-sign-up-status-body-right {
+                                                .sg-dashboard-chart-top-sign-up-status-body-right-top {
+
+                                                    .sg-dashboard-chart-top-sign-up-status-body-right-top-count {
+                                                    }
+                                                    .sg-dashboard-chart-top-sign-up-status-body-right-top-text {
+                                                    }
+                                                    .sg-dashboard-chart-top-sign-up-status-body-right-top-float {
+                                                        @include after-clear();
+                                                        .sg-dashboard-chart-top-sign-up-status-body-right-top-title {
+                                                            float: none;
+                                                        }
+                                                        .sg-dashboard-chart-top-sign-up-status-body-right-top-items {
+                                                            @include after-clear();
+                                                            .sg-dashboard-chart-top-sign-up-status-body-right-top-item {
+                                                                float: left;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .sg-dashboard-chart-top-sign-up-status-body-right-bottom {
+                                                    .sg-dashboard-chart-top-sign-up-status-body-right-bottom-count {
+                                                    }
+                                                    .sg-dashboard-chart-top-sign-up-status-body-right-bottom-text {
+                                                    }
+                                                    .sg-dashboard-chart-top-sign-up-status-body-right-bottom-float {
+                                                        @include after-clear();
+                                                        .sg-dashboard-chart-top-sign-up-status-body-right-bottom-title {
+                                                            float: none;
+                                                        }
+                                                        .sg-dashboard-chart-top-sign-up-status-body-right-bottom-items {
+                                                            @include after-clear();
+                                                            .sg-dashboard-chart-top-sign-up-status-body-right-bottom-item {
+                                                                float: left;
+                                                            }
+                                                        }
+
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                            .sg-dashboard-chart-body {
+                                .sg-dashboard-chart-body-main {
+                                    @include after-clear();
+
+                                    .sg-dashboard-chart-body-main-left {
+                                        width: 100%;
+                                    }
+                                    .sg-dashboard-chart-body-main-right {
+
+                                        //float: none;
+
+                                        width: 100%;
+                                        padding-left: 0px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+}

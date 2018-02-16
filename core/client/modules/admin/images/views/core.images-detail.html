@@ -1,0 +1,47 @@
+<div id="sg-image-manage-detail">
+
+    <div class="sg-image-manage-detail-fake" ng-click="hideImageDetail()">
+
+    </div>
+    <div class="sg-image-manage-detail-container">
+
+        <div class="sg-image-manage-detail-header-right-close-btn" ng-click="hideImageDetail()">
+
+        </div>
+
+        <div class="sg-image-manage-detail-top">
+            <div class="sg-image-manage-detail-top-title">
+                <div class="sg-image-manage-detail-top-authorized" ng-if="currentImage.authorized">
+                    <div class="sg-image-manage-detail-top-authorized-dot"></div>
+                    <div class="sg-image-manage-detail-top-authorized-text">{{'authorized' | translate}}</div>
+                </div>
+
+                <div class="sg-image-manage-detail-top-unauthorized" ng-if="!currentImage.authorized">
+                    <div class="sg-image-manage-detail-top-unauthorized-dot"></div>
+                    <div class="sg-image-manage-detail-top-unauthorized-text">{{'unauthorized' | translate}}</div>
+                </div>
+            </div>
+
+            <div class="sg-image-manage-detail-top-info">
+                <div class="sg-image-manage-detail-top-folder">
+                    {{currentImage.folder | translate}}
+                </div>
+                <div class="sg-image-manage-detail-top-img">
+
+                </div>
+                <div class="sg-image-manage-detail-top-file-name">
+                    {{currentImage.name | translate}}
+                </div>
+            </div>
+
+            <div class="sg-image-manage-detail-top-created-at">
+                {{currentImage.createdAt | microTimeToDate}}
+            </div>
+        </div>
+        <div class="sg-image-manage-detail-img"
+             ng-style="{'background-image': 'url('+ (currentImage | imageUrl) +')'}">
+
+        </div>
+    </div>
+
+</div>

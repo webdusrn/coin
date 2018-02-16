@@ -1,0 +1,194 @@
+@import "../../import";
+
+@media screen and (max-width: $web-container-size + $g-menu-size) {
+    .sg-core-responsive {
+        &#sg-notification-manage {
+            .sg-notification-manage-container {
+                width: 100%;
+                padding: 25px 12px;
+                .sg-notification-manage-menu {
+
+                    .sg-notification-manage-menu-search {
+                    }
+
+                    .sg-notification-manage-main-create {
+
+                    }
+                }
+
+                .sg-notification-manage-main {
+
+                    .sg-notification-manage-main-top {
+
+                        .sg-notification-manage-main-top-filter {
+
+                        }
+                        .sg-notification-manage-main-top-total {
+
+                        }
+                    }
+
+                    .sg-notification-manage-main-list {
+                        @include after-clear();
+                        .sg-notification-manage-main-list-top {
+                            display: none;
+                        }
+
+                        .sg-notification-manage-main-item {
+                            padding-top: 12px;
+                            padding-bottom: 16px;
+
+                            height: auto;
+
+                            @media screen and (min-width: 700px) {
+                                float: left;
+
+                                width: 49%;
+                                margin-left: 0;
+
+                                &:nth-child(odd) {
+                                    margin-left: 2%;
+                                }
+                            }
+
+                            .sg-notification-manage-main-item-left {
+                                height: auto;
+                                line-height: inherit;
+
+                                border-top: 1px solid #d5dbec;
+                                margin-top: 32px;
+
+                                padding-top: 12px;
+
+                                padding-left: 18px;
+                                padding-right: 18px;
+
+                                .sg-notification-manage-main-item-container {
+                                    float: none;
+                                    width: auto;
+
+                                    margin-top: 12px;
+
+                                    &:first-child {
+                                        margin-top: 0;
+                                    }
+
+                                    @include after-clear();
+                                    &.type {
+                                        position: absolute;
+                                        top: 12px;
+                                        left: 18px;
+                                    }
+
+                                    &.total-count {
+                                        text-align: left;
+                                    }
+                                    &.send-count {
+                                        text-align: left;
+                                    }
+                                    &.created-at {
+                                        text-align: left;
+                                    }
+
+                                    .sg-notification-manage-main-item-title {
+                                        float: left;
+                                        display: block;
+
+                                        width: 80px;
+
+                                        font-size: 14px;
+                                        font-weight: 500;
+
+                                        color: #0e1927;
+                                    }
+                                    .sg-notification-manage-main-item-body {
+                                        float: left;
+
+                                        font-size: 14px;
+                                        font-weight: 400;
+
+                                        color: #0e1927;
+                                    }
+                                }
+
+                                //.sg-notification-manage-main-item-type {
+                                //    float: none;
+                                //    width: auto;
+                                //}
+                                //
+                                //.sg-notification-manage-main-item-title {
+                                //    float: none;
+                                //    width: auto;
+                                //}
+                                //
+                                //.sg-notification-manage-main-item-message-title {
+                                //    float: none;
+                                //    width: auto;
+                                //
+                                //    padding-right: 0;
+                                //}
+                                //.sg-notification-manage-main-item-message-body {
+                                //    float: none;
+                                //    width: auto;
+                                //    height: auto;
+                                //
+                                //    padding-right: 0;
+                                //}
+                                //
+                                //.sg-notification-manage-main-item-send-count {
+                                //    float: none;
+                                //    width: auto;
+                                //    text-align: left;
+                                //}
+                                //
+                                //.sg-notification-manage-main-item-fail-count {
+                                //    float: none;
+                                //    width: auto;
+                                //    text-align: left;
+                                //}
+                                //
+                                //.sg-notification-manage-main-item-created-at {
+                                //    font-size: 12px;
+                                //
+                                //    float: none;
+                                //    width: auto;
+                                //
+                                //    text-align: left;
+                                //}
+
+                            }
+
+                            .sg-notification-manage-main-item-right {
+                                top: 10px;
+                                right: 12px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $web-min-width) {
+    .sg-core-responsive {
+        &#sg-notification-manage {
+            .sg-notification-manage-container {
+                max-width: none;
+
+                .sg-notification-manage-menu {
+
+                    .sg-notification-manage-menu-search {
+                        margin-top: 12px;
+                        width: 100%;
+                    }
+
+                    .sg-notification-manage-main-create {
+                        margin-top: 12px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+#sg-core-create-terms-wrap {
+  position: relative;
+  div.sg-core-create-wrap {
+    position: relative;
+    label.sg-core-label {
+      position: relative;
+      display: block;
+    }
+    select.sg-core-select {
+      position: relative;
+    }
+    input.sg-core-input {
+      position: relative;
+    }
+    div.sg-core-select-wrap {
+      position: relative;
+      @include after-clear();
+      div.sg-core-select {
+        position: relative;
+        float: left;
+      }
+    }
+    div.sg-core-title-wrap {
+      position: relative;
+    }
+    div.sg-core-content-wrap {
+      position: relative;
+    }
+    div.sg-core-start-date-wrap {
+      position: relative;
+      @include after-clear();
+    }
+  }
+  div.sg-core-button-wrap {
+    position: relative;
+    @include after-clear();
+    button.sg-core-button {
+      position: relative;
+      float: right;
+    }
+  }
+}

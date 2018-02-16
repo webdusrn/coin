@@ -1,0 +1,205 @@
+$g-min-width: 1000px !default;
+
+$g-header-size: 70px !default;
+$g-without-header-size: calc(100% - 70px) !default;
+
+// for header user info
+$g-header-user-info-width: 350px !default;
+$g-header-user-info-image-top: 14px !default;
+$g-header-user-info-image-left: 20px !default;
+$g-header-user-info-image-size: 50px !default;
+$g-header-user-info-nick-left: 90px !default;
+$g-header-user-info-nick-width: 260px !default;
+$g-header-user-info-more-top: 34px !default;
+$g-header-user-info-more-right: 20px !default;
+$g-header-user-info-more-width: 19px !default;
+$g-header-user-info-more-height: 12px !default;
+
+$g-logo-top: 14px !default;
+$g-logo-left: 48px !default;
+$g-logo-width: 62px !default;
+$g-logo-height: 51px !default;
+
+$g-logout-top: 29px !default;
+$g-logout-width: 20px !default;
+$g-logout-height: 21px !default;
+
+$g-menu-size: 200px !default;
+$g-without-menu-size: calc(100% - 200px) !default;
+$g-menu-height: 50px !default;
+$g-navigation-left: 30px !default;
+
+$g-input-wrap-padding-top: 24px !default;
+
+$g-input-height: 42px !default;
+$g-div-height: 40px !default;
+$g-input-image-size: 170px !default;
+$g-input-left-padding: 20px !default;
+$g-textarea-top-padding: 10px !default;
+$g-without-input-left-padding: calc(100% - 20px) !default;
+
+$g-button-wrap-padding: 20px !default;
+
+$g-submit-input-width: 400px !default;
+$g-submit-input-height: 42px !default;
+$g-without-submit-button-width: calc(100% - 72px) !default;
+$g-submit-button-width: 72px !default;
+$g-search-input-width: 340px !default;
+$g-search-button-size: 21px !default;
+$g-more-button-width: 100px !default;
+
+$g-select-width: 100px !default;
+
+$g-alert-message-size: 18px !default;
+
+$g-icon-button-size: 28px !default;
+
+// for all
+$g-contents-padding: 20px !default;
+$g-input-info-height: 100px !default;
+
+// for meta
+$g-meta-content-margin-left: calc(50% - 350px) !default;
+$g-meta-content-width: 700px !default;
+
+// for corporation, service
+$g-item-logo-size: 70px !default;
+$g-color-logo-border: #bec3cc !default;
+
+$g-color-black: #081332 !default;
+$g-color-gray: #bec3cc !default;
+$g-color-yellow: #fad002 !default;
+$g-color-green: #43bf67 !default;
+$g-color-purple: #7266ba !default;
+$g-color-purple-hover: #6458a8 !default;
+$g-color-blue: #16aad8 !default;
+$g-color-blue-hover: #1e96bb !default;
+$g-color-white: #f7f9f8 !default;
+$g-color-red: #ff3057 !default;
+$g-color-red-hover: #e22549 !default;
+$g-color-dark-red: #f54545 !default;
+$g-color-dark-red-hover: #d34040 !default;
+$g-color-line: #d2d5dc !default;
+
+$g-color-header-user-info: #fbfbfb !default;
+
+$g-color-background-gray-lite: #f8f8f9 !default;
+$g-color-background-gray: #f1f3f8 !default;
+
+$g-color-item-visibility-hidden: #e1e1e3 !default;
+
+//$g-color-navigation: #1d2b36;
+//$g-color-navigation-hover: #132029;
+$g-color-navigation: #555a77 !default;
+$g-color-navigation-hover: #464b69 !default;
+$g-color-navigation-text: #e4e7f5 !default;
+$g-color-navigation-text-hover: #fff !default;
+
+$g-color-icon-button-background-hover: #ededed !default;
+$g-color-icon-button-border: #dcdcdc !default;
+
+// for modal page
+$g-modal-header-size: 54px !default;
+$g-modal-padding-left: 48px !default;
+
+//dowado
+$dowado-color: #51c7b5 !default;
+$dowado-hover-color: #45a19f !default;
+$dowado-red-color: #ed5565 !default;
+$dowado-red-hover-color: #BA2232 !default;
+$dowado-grey-color: #edf3f5 !default;
+$dowado-font-grey-color: #6f8690 !default;
+$dowado-font-grey-hover-color: #3C535D !default;
+$dowado-border-color: #d7dbdd !default;
+$semi-black: #464646 !default;
+
+$soft-blue: #6d8fe4 !default;
+$soft-blue-hover: #5b7ed6 !default;
+
+$pale-grey: #ebeef7 !default;
+$pale-grey-hover: #bfc3cf !default;
+
+// for container
+$web-container-size: 1200px !default;
+
+// for responsive
+$mobile-max-width: 425px !default;
+$tablet-max-width: 768px !default;
+$web-min-width: 426px !default;
+
+$divider: #d5dbec !default;
+
+$sg-container-radius: 5px !default;
+
+$colors: (
+        primary: (
+                base: #51c7b5,
+                dark: #41b1a0
+        ),
+        secondary: (
+                base: #ed5565,
+                dark: #BA2232
+        ),
+        red: (
+                base: #e34a59,
+                dark: #d4404e
+        ),
+        grey: (
+                base: #8d93a6,
+                dark: #5a5f6e
+        ),
+        more: (
+                base: #abb7d6,
+                dark: #9dacd2
+        ),
+        soft-blue: (
+                base: #6d8fe4,
+                dark: #5b7ed6
+        ),
+        pale-grey: (
+                base: #ebeef7,
+                dark: #bfc3cf
+        ),
+        divider: (
+                base: #d5dbec
+        )
+) !default;
+
+$size: (
+        buttons: (
+                width: 120px,
+                height: 40px
+        ),
+        width: (
+            buttons: 120px
+        )
+) !default;
+
+$gap: (
+) !default;
+
+$radios: (
+        container: 5px
+) !default;
+
+@function base($object, $property-name, $property-variant:null) {
+
+    @if ($property-variant != null) {
+        @return map-get(map-get($colors, $property-name), $property-variant);
+    } @else {
+        @return map-get($colors, $property-name);
+    }
+
+}
+
+@function color($color-name, $color-variant:null) {
+
+    @return base($colors, $color-name, $color-variant);
+
+}
+
+@function size($size-name, $size-variant:null) {
+
+    @return base($size, $size-name, $size-variant);
+
+}

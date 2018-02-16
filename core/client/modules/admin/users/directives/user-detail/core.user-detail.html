@@ -1,0 +1,574 @@
+<script type="text/ng-template" id="coreUserDetail.html">
+    <div id="sg-user-manage-detail">
+
+        <div class="sg-user-manage-detail-container">
+
+            <div class="sg-user-manage-detail-close-btn" data-ng-click="cancel()">
+
+            </div>
+
+            <div class="sg-user-manage-detail-top-sub">
+                <div class="sg-user-manage-detail-top-sub-img" data-ng-if="currentUser.userImages.length > 0"
+                     data-ng-style="{'background-image': 'url('+ (currentUser.userImages[0].image | imageUrl)  + ')'}">
+                </div>
+                <div class="sg-user-manage-detail-top-sub-img" data-ng-if="currentUser.userImages.length == 0">
+                </div>
+                <div class="sg-user-manage-detail-top-sub-mid">
+                    <div class="sg-user-manage-detail-top-sub-aid" data-ng-if="currentUser.aid">
+                        {{currentUser.aid}}
+                    </div>
+                    <div class="sg-user-manage-detail-top-sub-aid" data-ng-if="!currentUser.aid">
+                        {{'empty'|translate}}
+                    </div>
+                    <div class="sg-user-manage-detail-top-sub-created">
+                        {{currentUser.createdAt | microTimeToDate}}
+                    </div>
+                    <div class="sg-user-manage-detail-top-sub-delete" data-ng-click="deleteUser(currentUserIndex)">
+                        {{'delete'|translate}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="sg-user-manage-detail-menu">
+                <div class="sg-user-manage-detail-menu-item" data-ng-class="{'active':currentPage==1}"
+                     data-ng-click="currentPage = 1">
+                    {{'userInfo'|translate}}
+                </div>
+                <div class="sg-user-manage-detail-menu-item" data-ng-class="{'active':currentPage==2}"
+                     data-ng-click="currentPage = 2">
+                    {{'profile'|translate}}
+                </div>
+                <div class="sg-user-manage-detail-menu-item" data-ng-class="{'active':currentPage==3}"
+                     ng-click="currentPage = 3">
+                    {{'notification'|translate}}
+                </div>
+                <div class="sg-user-manage-detail-menu-item" data-ng-class="{'active':currentPage==4}"
+                     ng-click="currentPage = 4">
+                    {{'loginHistory'|translate}}
+                </div>
+            </div>
+
+            <div class="sg-user-manage-detail-container" data-ng-if="currentPage == 1">
+
+                <div class="sg-user-manage-detail-main">
+
+                    <div class="sg-user-manage-detail-main-top">
+                        <div class="sg-user-manage-detail-main-top-title">
+                            {{'defaultInfo'|translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-detail-main-list">
+                        <div class="sg-user-manage-detail-item first">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'nick'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{form.nick}}
+                            </div>
+                            <input class="sg-user-manage-detail-item-input sgc-input" type="text" data-ng-model="form.nick"
+                                   data-ng-if="isUserEditMode">
+                        </div>
+
+                        <div class="sg-user-manage-detail-item">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'name'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{form.name}}
+                            </div>
+                            <input class="sg-user-manage-detail-item-input sgc-input" type="text" data-ng-model="form.name"
+                                   data-ng-if="isUserEditMode">
+                        </div>
+
+                        <div class="sg-user-manage-detail-item">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'phone'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{form.phoneNum}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-float">
+                                <select data-ng-model="countryPhoneNum" class="sg-user-manage-detail-item-options sgc-option"
+                                        data-ng-if="isUserEditMode">
+                                    <option data-ng-repeat="x in enumCountries" value="{{x}}">{{x | translate}}</option>
+                                </select>
+                                <input class="sg-user-manage-detail-item-input sgc-input" type="text" data-ng-model="form.phoneNum"
+                                       data-ng-if="isUserEditMode">
+                            </div>
+                        </div>
+
+                        <div class="sg-user-manage-detail-item">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'gender'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{form.gender | translate}}
+                            </div>
+                            <select data-ng-model="form.gender" class="sg-user-manage-detail-item-options sgc-option"
+                                    data-ng-if="isUserEditMode">
+                                <option data-ng-repeat="x in userDetailEnumGender" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+
+                        <div class="sg-user-manage-detail-item" data-ng-if="!isUserEditMode">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'birth'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body">
+                                {{form.birthYear + '-' + form.birthMonth + '-' + form.birthDay}}
+                            </div>
+                        </div>
+
+                        <div class="sg-user-manage-detail-item-container">
+                            <div class="sg-user-manage-detail-item float-to-left" data-ng-if="isUserEditMode">
+                                <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                    {{'year'| translate}}
+                                </div>
+                                <!--<input class="sg-user-manage-detail-item-input sgc-input" type="text"-->
+                                <!--ng-model="form.birthYear">-->
+                                <select data-ng-model="form.birthYear" class="sg-user-manage-detail-item-options sgc-option"
+                                        data-ng-if="isUserEditMode" convert-to-number>
+                                    <option data-ng-repeat="x in birthYearList" value="{{x}}">{{x | translate}}</option>
+                                </select>
+                            </div>
+
+                            <div class="sg-user-manage-detail-item float-to-left" data-ng-if="isUserEditMode">
+                                <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                    {{'month'| translate}}
+                                </div>
+                                <!--<input class="sg-user-manage-detail-item-input sgc-input" type="text"-->
+                                <!--ng-model="form.birthMonth">-->
+                                <select data-ng-model="form.birthMonth" class="sg-user-manage-detail-item-options sgc-option"
+                                        data-ng-if="isUserEditMode" convert-to-number>
+                                    <option data-ng-repeat="x in birthMonthList" value="{{x}}">{{x | translate}}</option>
+                                </select>
+                            </div>
+
+                            <div class="sg-user-manage-detail-item float-to-left" data-ng-if="isUserEditMode">
+                                <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                    {{'day'| translate}}
+                                </div>
+                                <!--<input class="sg-user-manage-detail-item-input sgc-input" type="text"-->
+                                <!--ng-model="form.birthDay">-->
+                                <select data-ng-model="form.birthDay" class="sg-user-manage-detail-item-options sgc-option"
+                                        data-ng-if="isUserEditMode" convert-to-number>
+                                    <option data-ng-repeat="x in birthDayList" value="{{x}}">{{x | translate}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="sg-user-manage-detail-item">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'country'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{form.country | translate}}
+                            </div>
+                            <select data-ng-model="form.country" class="sg-user-manage-detail-item-option sgc-option"
+                                    data-ng-if="isUserEditMode">
+                                <option data-ng-repeat="x in enumCountries" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+
+                        <div class="sg-user-manage-detail-item">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'language'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{form.language | translate}}
+                            </div>
+
+                            <select data-ng-model="form.language" class="sg-user-manage-detail-item-option sgc-option"
+                                    data-ng-if="isUserEditMode">
+                                <option data-ng-repeat="x in enumLanguages" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+
+                        <div class="sg-user-manage-detail-item">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'role'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{form.role | translate}}
+                            </div>
+                            <select data-ng-model="form.role" class="sg-user-manage-detail-item-option sgc-option"
+                                    data-ng-if="isUserEditMode">
+                                <option data-ng-repeat="x in userEnumRoles" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+
+                        <div class="sg-user-manage-detail-item">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{'marketingAgreedSetting'| translate}}
+                            </div>
+                            <!--<div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">-->
+                            <!--{{form.agreedEmail}}-->
+                            <!--</div>-->
+                            <!--<div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">-->
+                            <!--{{form.agreedPhoneNum}}-->
+                            <!--</div>-->
+
+                            <div class="sg-user-manage-detail-item-body-input-container">
+                                <div class="sg-user-manage-detail-item-input" data-ng-class="{'active': isUserEditMode}">
+                                    <input id="sg-user-manage-detail-item-input-agreedEmail" type="checkbox"
+                                           data-ng-model="form.agreedEmail"
+                                           class='sgc-material-checkbox'>
+                                    <label for="sg-user-manage-detail-item-input-agreedEmail">{{'email'| translate}}</label>
+                                </div>
+                                <div class="sg-user-manage-detail-item-input" data-ng-class="{'active': isUserEditMode}">
+                                    <input id="sg-user-manage-detail-item-input-agreedPhoneNum" type="checkbox"
+                                           data-ng-model="form.agreedPhoneNum"
+                                           class='sgc-material-checkbox'>
+                                    <label for="sg-user-manage-detail-item-input-agreedPhoneNum">{{'phone'| translate}}</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-user-manage-detail-social-setting">
+                    <div class="sg-user-manage-detail-social-setting-top">
+                        <div class="sg-user-manage-detail-social-setting-title">
+                            {{'socialSetting'| translate}}
+                        </div>
+                    </div>
+                    <div class="sg-user-manage-detail-social-setting-item">
+                        <div class="sg-user-manage-detail-social-setting-item-title">
+                            {{'facebook'| translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-social-setting-item-body"
+                             data-ng-if="currentUser.providerFacebookIndex !== undefined">
+                            {{currentUser.providers[currentUser.providerFacebookIndex].uid}}
+                        </div>
+                        <div class="sg-user-manage-detail-social-setting-item-body"
+                             data-ng-if="currentUser.providerFacebookIndex === undefined">
+                            {{'empty'|translate}}
+                        </div>
+                    </div>
+                    <div class="sg-user-manage-detail-social-setting-item">
+                        <div class="sg-user-manage-detail-social-setting-item-title">
+                            {{'kakao'| translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-social-setting-item-body"
+                             data-ng-if="currentUser.providerKakaoIndex !== undefined">
+                            {{currentUser.providers[currentUser.providerKakaoIndex].uid}}
+                        </div>
+                        <div class="sg-user-manage-detail-social-setting-item-body"
+                             data-ng-if="currentUser.providerKakaoIndex === undefined">
+                            {{'empty'|translate}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-user-manage-detail-bottom">
+                    <button class="sg-user-manage-detail-start-edit-mode sgc-btn-action" data-ng-click="startEditMode()"
+                            data-ng-if="!isUserEditMode">
+                        {{'edit'| translate}}
+                    </button>
+                    <button class="sg-user-manage-detail-start-edit-mode sgc-btn-action" data-ng-click="updateUser(currentUserIndex)"
+                            data-ng-if="isUserEditMode">
+                        {{'complete'| translate}}
+                    </button>
+                    <button class="sg-user-manage-detail-exit-edit-mode sgc-btn-cancel" data-ng-click="exitEditMode()"
+                            data-ng-if="isUserEditMode">
+                        {{'cancel'| translate}}
+                    </button>
+                </div>
+            </div>
+
+            <div class="sg-user-manage-detail-container" data-ng-if="currentPage == 2">
+
+                <div class="sg-user-manage-detail-main">
+
+                    <div class="sg-user-manage-detail-main-top">
+                        <div class="sg-user-manage-detail-main-top-title">
+                            {{'profileInfo'|translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-detail-main-list">
+                        <div class="sg-user-manage-detail-item" data-ng-repeat="(key, body) in currentUser.profile">
+                            <div class="sg-user-manage-detail-item-title sgc-subtitles">
+                                {{key| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-item-body" data-ng-if="!isUserEditMode">
+                                {{body| translate}}
+                            </div>
+                            <input class="sg-user-manage-detail-item-input sgc-input" type="text" data-ng-model="currentUser.profile[key]"
+                                   data-ng-if="isUserEditMode">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-user-manage-detail-bottom">
+                    <button class="sg-user-manage-detail-start-edit-mode sgc-btn-action" data-ng-click="startEditMode()"
+                            data-ng-if="!isUserEditMode">
+                        {{'edit'| translate}}
+                    </button>
+                    <button class="sg-user-manage-detail-start-edit-mode sgc-btn-action" data-ng-click="updateProfile(currentUser)"
+                            data-ng-if="isUserEditMode">
+                        {{'complete'| translate}}
+                    </button>
+                    <button class="sg-user-manage-detail-exit-edit-mode sgc-btn-cancel" data-ng-click="exitEditMode()"
+                            data-ng-if="isUserEditMode">
+                        {{'cancel'| translate}}
+                    </button>
+                </div>
+            </div>
+
+            <div class="sg-user-manage-detail-notification" data-ng-if="currentPage == 3">
+                <div class="sg-user-manage-detail-notification-option ">
+                    <select data-ng-model="params.sendType" class="sg-user-manage-main-top-filter sgc-filter">
+                        <option data-ng-repeat="x in enumSendTypes" value="{{x}}">{{x | translate}}</option>
+                    </select>
+                </div>
+                <div class="sg-user-manage-detail-notification-setting">
+                    <div class="sg-user-manage-detail-notification-setting-top">
+                        <div class="sg-user-manage-detail-notification-setting-title">
+                            {{'notificationSetting'| translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-detail-notification-setting-item"
+                         data-ng-repeat="notificationSwitch in notificationSwitches">
+                        <div class="sg-user-manage-detail-notification-setting-item-title">
+                            {{ notificationSwitch.title | translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-notification-setting-item-checkbox">
+                            <input data-ng-model="notificationSwitch.switch" id="{{notificationSwitch.key}}" type="checkbox"
+                                   class="tgl tgl-light" data-ng-click="updateAppNotificationSwitch(notificationSwitch)">
+                            <label for="{{notificationSwitch.key}}" class="tgl-btn">
+                                <div class="tgl-btn-on">On</div>
+                                <div class="tgl-btn-off">Off</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-user-manage-detail-notification-public-setting">
+                    <div class="sg-user-manage-detail-notification-public-setting-top">
+                        <div class="sg-user-manage-detail-notification-public-setting-title">
+                            {{'notificationPublicSetting'| translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-detail-notification-public-setting-item"
+                         data-ng-repeat="notificationPublicSwitch in notificationPublicSwitches">
+                        <div class="sg-user-manage-detail-notification-public-setting-item-title">
+                            {{ notificationPublicSwitch.title | translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-notification-public-setting-item-checkbox">
+                            <input ng-model="notificationPublicSwitch.switch" id="{{notificationPublicSwitch.key}}"
+                                   type="checkbox"
+                                   class="tgl tgl-light"
+                                   data-ng-click="updatePublicNotificationSwitch(notificationPublicSwitch)">
+                            <label for="{{notificationPublicSwitch.key}}" class="tgl-btn">
+                                <div class="tgl-btn-on">On</div>
+                                <div class="tgl-btn-off">Off</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-user-manage-detail-notification-box">
+                    <div class="sg-user-manage-detail-notification-box-top">
+                        <div class="sg-user-manage-detail-notification-box-title">
+                            {{'notificationBox'| translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-detail-notification-setting-list">
+                        <div class="sg-user-manage-detail-notification-setting-list-item"
+                             data-ng-if="notificationBoxList.length > 0"
+                             data-ng-repeat="notificationBox in notificationBoxList">
+
+                            <div class="sg-user-manage-detail-notification-setting-list-item-top">
+                                <!--<div class="sg-user-manage-detail-notification-setting-list-item-title">-->
+                                    <!--{{ notificationBox.key | translate}}-->
+                                <!--</div>-->
+                                <div class="sg-user-manage-detail-notification-setting-list-item-read"
+                                     data-ng-if="notificationBox.view">
+                                    <div class="sg-user-manage-detail-notification-setting-list-item-read-img">
+
+                                    </div>
+                                    {{ 'read'| translate}}
+                                </div>
+                                <div class="sg-user-manage-detail-notification-setting-list-item-not-read"
+                                     data-ng-if="!notificationBox.view">
+                                    <div class="sg-user-manage-detail-notification-setting-list-item-not-read-img">
+
+                                    </div>
+                                    {{ 'notRead'| translate}}
+                                </div>
+                            </div>
+
+                            <div class="sg-user-manage-detail-notification-setting-list-item-mid">
+
+                                <div class="sg-user-manage-detail-notification-setting-list-item-body">
+                                    {{ notificationBox | notificationBody : currentUser.language}}
+                                </div>
+                            </div>
+
+                            <div class="sg-user-manage-detail-notification-setting-list-item-bottom">
+                                <div class="sg-user-manage-detail-notification-setting-list-item-payload">
+                                    {{'Payload'|translate}}
+
+                                    <div class="sg-user-manage-detail-notification-setting-list-item-payload-detail">
+                                        {{notificationBox.payload}}
+                                    </div>
+                                </div>
+                                <div class="sg-user-manage-detail-notification-setting-list-item-created-at">
+                                    {{ notificationBox.createdAt | microTimeToDate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sg-user-manage-detail-notification-box-list-empty"
+                             data-ng-if="notificationBoxList.length == 0">
+                            <div class="sg-user-manage-detail-notification-box-list-empty-img">
+
+                            </div>
+                            <div class="sg-user-manage-detail-notification-box-list-empty-text">
+                                {{'emptyNotificationBox'| translate}}
+                            </div>
+                        </div>
+
+                        <div class="sg-user-manage-detail-notification-setting-list-more sg-action-btn"
+                             data-ng-if="notificationBoxMore" data-ng-click="findNotificationBoxMore()">
+                            {{'more' | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sg-user-manage-detail-login-history" data-ng-if="currentPage == 4">
+                <div class="sg-user-manage-detail-login-history-top">
+                    <div class="sg-user-manage-detail-login-history-title">
+                        {{'loginHistory'| translate}}
+                    </div>
+                </div>
+
+                <div class="sg-user-manage-detail-login-history-list">
+                    <div class="sg-user-manage-detail-login-history-list-top">
+                        <div class="sg-user-manage-detail-login-history-list-top-type">
+                            {{'type'| translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-top-platform">
+                            {{'platform'|translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-top-device">
+                            {{'device'|translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-top-browser">
+                            {{'browser'|translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-top-ip">
+                            {{'ip'|translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-top-updated-at">
+                            {{'resentLoginDate'|translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-top-created-at">
+                            {{'firstLoginDate'|translate}}
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-top-disconnect">
+                            {{'disconnect'|translate}}
+                        </div>
+                    </div>
+                    <div class="sg-user-manage-detail-login-history-list-item"
+                         data-ng-repeat="loginHistory in currentUser.loginHistories track by $index"
+                         data-ng-if="currentUser.loginHistories.length > 0">
+
+                        <div class="sg-user-manage-detail-login-history-list-item-type">
+                            <div class="sg-user-manage-detail-login-history-list-item-type-title">
+                                {{'type'| translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-type-body">
+                                {{loginHistory.type}}
+                            </div>
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-item-platform">
+                            <div class="sg-user-manage-detail-login-history-list-item-platform-title">
+                                {{'platform'|translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-platform-body">
+                                {{loginHistory.platform}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-platform-body"
+                                 data-ng-if="!loginHistory.platform">
+                                {{'empty'|translate}}
+                            </div>
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-item-device">
+                            <div class="sg-user-manage-detail-login-history-list-item-device-title">
+                                {{'device'|translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-device-body"
+                                 data-ng-if="loginHistory.device">
+                                {{loginHistory.device}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-device-body"
+                                 data-ng-if="!loginHistory.device">
+                                {{'empty'|translate}}
+                            </div>
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-item-browser">
+                            <div class="sg-user-manage-detail-login-history-list-item-browser-title">
+                                {{'browser'|translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-browser-body">
+                                {{loginHistory.browser}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-browser-body"
+                                 data-ng-if="!loginHistory.browser">
+                                {{'empty'|translate}}
+                            </div>
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-item-ip">
+                            <div class="sg-user-manage-detail-login-history-list-item-ip-title">
+                                {{'ip'|translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-ip-body">
+                                {{loginHistory.ip}}
+                            </div>
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-item-updated-at">
+                            <div class="sg-user-manage-detail-login-history-list-item-updated-at-title">
+                                {{'resentLoginDate'|translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-updated-at-body">
+                                {{loginHistory.updatedAt | microTimeToDate}}
+                            </div>
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-item-created-at">
+                            <div class="sg-user-manage-detail-login-history-list-item-created-at-title">
+                                {{'firstLoginDate'|translate}}
+                            </div>
+                            <div class="sg-user-manage-detail-login-history-list-item-created-at-body">
+                                {{loginHistory.createdAt | microTimeToDate}}
+                            </div>
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-item-disconnect"
+                             data-ng-click="deleteSessionRemote($index)">
+                            {{'disconnect'|translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-user-manage-detail-login-history-list-empty"
+                         data-ng-if="currentUser.loginHistories.length == 0">
+                        <div class="sg-user-manage-detail-login-history-list-empty-img">
+
+                        </div>
+                        <div class="sg-user-manage-detail-login-history-list-empty-text">
+                            {{'emptyLoginHistory'| translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</script>

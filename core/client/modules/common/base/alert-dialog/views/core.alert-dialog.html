@@ -1,0 +1,30 @@
+<div data-ng-controller="AlertDialogCtrl">
+    <div class="sg-alert-dialog" ng-if="vm.isDialogVisible">
+        <div class="sg-alert-dialog-container" data-ng-class="{'sg-alert-dialog-animation': vm.DIALOG.isUseAnimation}">
+            <!--<div class="sg-alert-dialog-top">-->
+            <!--<div class="sg-alert-dialog-top-text">{{alertTitle}}</div>-->
+            <!--</div>-->
+            <div class="sg-alert-dialog-body">
+                <div class="sg-alert-dialog-body-text" data-ng-bind-html="vm.alertMsg | trustAsHtml"></div>
+            </div>
+            <div class="sg-alert-dialog-bottom">
+                <div class="sg-alert-dialog-bottom-container">
+                    <button class="sg-alert-dialog-bottom-container-close-btn" ng-click="vm.closeDialog()"
+                            ng-if="vm.isCloseBtnVisible && !vm.alertAction" id="alertConfirmButton">
+                        {{'confirm'|translate}}
+                    </button>
+                    <button class="sg-alert-dialog-bottom-container-cancel-btn" ng-click="vm.closeDialog()"
+                            ng-if="vm.isCloseBtnVisible && vm.alertAction ">
+                        <div data-ng-if="!vm.closeBtnText">{{'cancel'|translate}}</div>
+                        <div data-ng-if="vm.closeBtnText">{{vm.closeBtnText}}</div>
+                    </button>
+                    <button class="sg-alert-dialog-bottom-container-action-btn" ng-click="vm.action()"
+                            ng-if="vm.alertAction">
+                        {{vm.alertAction}}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

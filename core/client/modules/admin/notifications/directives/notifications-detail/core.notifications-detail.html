@@ -1,0 +1,70 @@
+<script type="text/ng-template" id="coreNotificationsDetail.html">
+    <div id="sg-notification-manage-detail">
+        <div class="sg-notification-manage-detail-container">
+
+            <div class="sg-notification-manage-detail-close-btn" data-ng-click="cancel()"></div>
+
+            <div class="sg-notification-manage-detail-notification-top">
+                <div class="sg-notification-manage-detail-type">
+                    <img src="/assets/themes/admin/cloudy/images/ic-noti-message-24.png" alt="" width="24" height="24"
+                         data-ng-if="massNotification.sendType == NOTIFICATION.sendTypeMessage"/>
+                    <img src="/assets/themes/admin/cloudy/images/ic-noti-mail-24.png" alt="" width="24" height="24"
+                         data-ng-if="massNotification.sendType == NOTIFICATION.sendTypeEmail"/>
+                    <img src="/assets/themes/admin/cloudy/images/ic-noti-push-24.png" alt="" width="24" height="24"
+                         data-ng-if="massNotification.sendType == NOTIFICATION.sendTypePush"/>
+                    <span> {{massNotification.sendType | translate}}</span> <span
+                        data-ng-if="massNotification.sendMethod">- {{massNotification.sendMethod}}</span>
+                </div>
+
+                <div class="sg-notification-manage-detail-notification-name">
+                    {{massNotification.notificationName}}
+                </div>
+            </div>
+
+            <div class="sg-notification-manage-detail-mid">
+                <div class="sg-notification-manage-detail-title">
+                    <div class="sg-notification-manage-detail-title-title">
+                        {{'messageTitle' | translate}}
+                    </div>
+                    <div class="sg-notification-manage-detail-title-text">
+                        {{massNotification.messageTitle}}
+                    </div>
+                </div>
+
+                <div class="sg-notification-manage-detail-body">
+                    <div class="sg-notification-manage-detail-body-title">
+                        {{'messageBody' | translate}}
+                    </div>
+
+                    <div class="sg-notification-manage-detail-body-text">
+                        {{massNotification.messageBody}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="sg-notification-manage-detail-bottom">
+                <div class="sg-notification-manage-detail-total-count">
+                    <div class="sg-notification-manage-detail-total-count-title">
+                        {{'targetCount' | translate}}
+                    </div>
+
+                    <div class="sg-notification-manage-detail-total-count-text">
+                        {{massNotification.totalCount}}
+                    </div>
+                </div>
+
+                <div class="sg-notification-manage-detail-send-count">
+
+                    <div class="sg-notification-manage-detail-send-count-title">
+                        {{'successCount' | translate}}
+                    </div>
+
+                    <div class="sg-notification-manage-detail-send-count-text">
+                        {{massNotification.sendCount}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,117 @@
+#sg-notification-manage-detail {
+
+    .sg-notification-manage-detail-container {
+
+        .sg-notification-manage-detail-close-btn {
+            position: absolute;
+            top: -34px;
+            right: 0;
+
+            width: 30px;
+            height: 30px;
+
+            cursor: pointer;
+
+            background-image: url('/assets/themes/admin/cloudy/images/ic_close_24_2x.png');
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: center;
+        }
+
+        .sg-notification-manage-detail-notification-top {
+            padding: 24px 24px;
+            .sg-notification-manage-detail-type {
+            }
+
+            .sg-notification-manage-detail-notification-name {
+                margin-top: 4px;
+
+                font-size: 18px;
+                font-weight: 400;
+            }
+        }
+
+        .sg-notification-manage-detail-mid {
+            padding: 24px 24px;
+
+            border-bottom: 1px solid #d5dbec;
+            border-top: 1px solid #d5dbec;
+
+            .sg-notification-manage-detail-title {
+                .sg-notification-manage-detail-title-title {
+                    font-size: 14px;
+                    font-weight: 400;
+
+                    color: $semi-black;
+                }
+                .sg-notification-manage-detail-title-text {
+                    font-size: 18px;
+                    font-weight: 400;
+
+                    background-color: #f4f6fa;
+
+                    height: 40px;
+                    line-height: 40px;
+                    padding: 0 12px;
+                    margin-top: 6px;
+
+                    color: $semi-black;
+                }
+            }
+            .sg-notification-manage-detail-body {
+                margin-top: 12px;
+                .sg-notification-manage-detail-body-title {
+                    font-size: 14px;
+                    font-weight: 400;
+
+                    color: $semi-black;
+                }
+
+                .sg-notification-manage-detail-body-text {
+                    font-size: 14px;
+                    font-weight: 400;
+
+                    background-color: #f4f6fa;
+
+                    line-height: 24px;
+                    padding: 12px 12px;
+                    margin-top: 6px;
+
+                    color: $semi-black;
+                }
+            }
+        }
+        .sg-notification-manage-detail-bottom {
+            padding: 24px;
+
+            .sg-notification-manage-detail-total-count {
+                @include after-clear();
+                .sg-notification-manage-detail-total-count-title {
+                    float: left;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+
+                .sg-notification-manage-detail-total-count-text {
+                    float: left;
+                    margin-left: 12px;
+                }
+            }
+
+            .sg-notification-manage-detail-send-count {
+                margin-top: 8px;
+                @include after-clear();
+                .sg-notification-manage-detail-send-count-title {
+                    float: left;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+
+                .sg-notification-manage-detail-send-count-text {
+                    float: left;
+                    margin-left: 12px;
+                }
+            }
+        }
+    }
+}

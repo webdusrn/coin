@@ -1,0 +1,104 @@
+
+#sg-core-create-terms-wrap {
+    position: relative;
+    padding: 30px 20px;
+    div.sg-core-create-wrap {
+        position: relative;
+        div.sg-core-select {
+            margin-right: 12px;
+        }
+        label.sg-core-label {
+            position: relative;
+            display: block;
+            margin-bottom: 8px;
+        }
+        select.sg-core-select {
+            position: relative;
+
+            width: 109px;
+            height: 42px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            border: solid 1px #d5dbec;
+            padding-left: 8px;
+
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 32px;
+
+            cursor: pointer;
+
+            background-image: url('/assets/themes/admin/cloudy/images/ic_arrow_down_border_14_11_2x.png');
+            background-repeat: no-repeat;
+            background-size: 14px 11px;
+            background-position: right 8px center;
+        }
+        input.sg-core-input {
+            position: relative;
+
+            width: 100%;
+            padding: 10px 15px;
+
+            border-radius: 5px;
+            background-color: #f1f3f8;
+
+            font-size: 14px;
+            color: #121428;
+
+            &:focus {
+                border-color: $dowado-color;
+            }
+
+            @include transition(border-color, .15s, ease-in-out, 0s);
+        }
+        div.sg-core-select-wrap {
+            position: relative;
+            @include after-clear();
+            div.sg-core-select {
+                position: relative;
+                float: left;
+            }
+        }
+        div.sg-core-title-wrap {
+            margin-top: 12px;
+            position: relative;
+        }
+        div.sg-core-content-wrap {
+            margin-top: 12px;
+            position: relative;
+        }
+        div.sg-core-start-date-wrap {
+            margin-top: 12px;
+            position: relative;
+            @include after-clear();
+        }
+    }
+    div.sg-core-button-wrap {
+        margin-top: 32px;
+        position: relative;
+        @include after-clear();
+        button.sg-core-button {
+            position: relative;
+            float: right;
+
+            width: 120px;
+            height: 40px;
+
+            border-radius: 3px;
+            color: white;
+
+            line-height: 40px;
+            text-align: center;
+
+            font-size: 14px;
+            font-weight: 400;
+
+            cursor: pointer;
+
+            background-color: $dowado-color;
+            &:hover {
+                background-color: $dowado-hover-color;
+            }
+        }
+    }
+}

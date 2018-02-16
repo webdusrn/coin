@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="<%= params.language %>">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <%if (params.maintenance.faviconImage) {%>
+    <link rel="icon" type="image/png" href="/images/maintenance/<%-params.maintenance.faviconImage.dateFolder + '/' + params.maintenance.faviconImage.name%>" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/images/maintenance/<%-params.maintenance.faviconImage.dateFolder + '/' + params.maintenance.faviconImage.name%>" sizes="16x16"/>
+    <%} else {%>
+    <link rel="icon" type="image/png" href="/maintenance/assets/images/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/maintenance/assets/images/favicon-32x32.png" sizes="16x16"/>
+    <%}%>
+    <base href="/">
+    <title>서비스 점검</title>
+    <meta name="description" content="서비스 점검중">
+
+    <script type="text/javascript">
+        window.maintenance = <%- JSON.stringify(params.maintenance || {})%>;
+    </script>
+
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body>
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: <%-params.maintenance.backgroundColor || 'white'%>;">
+    <div style="position: absolute; top: 50%; left: 50%; margin-top: -160px; margin-left: -160px; width: 320px; height: 320px;">
+        <h1 style="position: relative; margin: 0; font-size: 30px; font-weight: bold; text-align: center; height: 45px; line-height: 45px; color: <%-params.maintenance.titleColor || '#090c1d'%>;"><%-params.maintenance.title || '시스템 점검중입니다.'%></h1>
+        <h2 style="position: relative; margin: 0 0 15px 0; font-size: 18px; font-weight: 500; text-align: center; height: 27px; line-height: 27px; color: <%-params.maintenance.subTitleColor || '#818593'%>;"><%-params.maintenance.subTitle || '서비스 이용에 불편을 드려 죄송합니다.'%></h2>
+        <div style="position: relative; margin: 0 auto 7px auto; width: 100%; height: 200px; background-repeat: no-repeat; background-size: contain; background-position: center; background-image: <%if (params.maintenance.maintenanceImage) {%>
+                url(/images/maintenance/<%-params.maintenance.maintenanceImage.dateFolder + '/' + params.maintenance.maintenanceImage.name%>)
+                <%} else {%>
+                url(/maintenance/assets/images/img-default-construction-120-156@2x.png)
+                <%}%>"></div>
+        <h3 style="position: relative; margin: 0; height: 27px; line-height: 27px; fonts-size: 18px; font-weight: 500; text-align: center; color: <%-params.maintenance.timeColor || '#9f2635'%>;"><%-params.maintenance.timeLabel || '점검 완료 일정: '%><span id="sg-end-time"></span></h3>
+    </div>
+</div>
+<!-- inject:js -->
+<!-- endinject -->
+<script type="text/javascript" src="/maintenance/js/index.js"></script>
+</body>
+</html>

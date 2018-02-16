@@ -1,0 +1,130 @@
+<div id="sg-notification-manage" data-ng-controller="MassNotificationsCtrl" data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+
+    <div class="sg-notification-manage-container">
+        <div class="sg-notification-manage-title sgc-titles">
+            {{'notificationManage' | translate}}
+        </div>
+
+        <div class="sg-notification-manage-menu">
+
+            <select ng-model="params.searchField" class="sg-notification-manage-menu-search-option sgc-option">
+                <option ng-repeat="x in searchFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <div class="sg-notification-manage-menu-search">
+                <form ng-submit="findMassNotifications()">
+                    <input class="sgc-search-input" ng-model="params.searchItem" type="text" placeholder="{{'typeKeywords' | translate}}" multi-byte>
+                    <button type="submit"></button>
+                </form>
+            </div>
+
+            <button class="sg-notification-manage-main-create sgc-btn-action" ng-click="openCreateModal()">
+                {{'create' | translate}}
+            </button>
+
+        </div>
+
+        <div class="sg-notification-manage-main">
+
+            <div class="sg-notification-manage-main-top">
+                <select ng-model="params.sendType" class="sg-notification-manage-main-top-filter sgc-filter" data-ng-if="sendTypes.length > 2">
+                    <option ng-repeat="x in sendTypes" value="{{x}}">{{x | translate}}</option>
+                </select>
+                <div class="sg-notification-manage-main-top-total sgc-total">Total <span>{{massNotificationTotal}}</span></div>
+            </div>
+
+            <div class="sg-notification-manage-main-list">
+                <div class="sg-notification-manage-main-list-top">
+                    <div class="sg-notification-manage-main-list-top-type">
+                        {{'sendType'|translate}}
+                    </div>
+                    <div class="sg-notification-manage-main-list-top-title">
+                        {{'notificationName'|translate}}
+                    </div>
+                    <div class="sg-notification-manage-main-list-top-message-title">
+                        {{'messageTitle'|translate}}
+                    </div>
+                    <div class="sg-notification-manage-main-list-top-message-body">
+                        {{'messageBody'|translate}}
+                    </div>
+                    <div class="sg-notification-manage-main-list-top-send-count">
+                        {{'targetCount'|translate}}
+                    </div>
+                    <div class="sg-notification-manage-main-list-top-fail-count">
+                        {{'successCount'|translate}}
+                    </div>
+                    <div class="sg-notification-manage-main-list-top-created-at">
+                        {{'createdAt'|translate}}
+                    </div>
+                    <div class="sg-notification-manage-main-list-top-more"></div>
+                </div>
+                <div class="sg-notification-manage-main-item" ng-repeat="massNotification in massNotifications track by $index" ng-click="openDetailModal($index)">
+
+                    <div class="sg-notification-manage-main-item-left">
+
+                        <div class="sg-notification-manage-main-item-container type">
+                            <div class="sg-notification-manage-main-item-body"> {{massNotification.sendType | translate}}</div>
+                        </div>
+
+                        <div class="sg-notification-manage-main-item-container title">
+                            <div class="sg-notification-manage-main-item-title"> {{'notificationName' | translate}}</div>
+                            <div class="sg-notification-manage-main-item-body"> {{massNotification.notificationName | translate}}</div>
+                        </div>
+
+                        <div class="sg-notification-manage-main-item-container message-title">
+                            <div class="sg-notification-manage-main-item-title"> {{'messageTitle' | translate}}</div>
+                            <div class="sg-notification-manage-main-item-body"> {{massNotification.messageTitle || 'empty' | translate}}</div>
+                        </div>
+
+                        <div class="sg-notification-manage-main-item-container message-body">
+                            <div class="sg-notification-manage-main-item-title"> {{'messageBody' | translate}}</div>
+                            <div class="sg-notification-manage-main-item-body"> {{massNotification.messageBody || 'empty' | translate}}</div>
+                        </div>
+
+                        <div class="sg-notification-manage-main-item-container total-count">
+                            <div class="sg-notification-manage-main-item-title"> {{'targetCount' | translate}}</div>
+                            <div class="sg-notification-manage-main-item-body"> {{massNotification.totalCount | translate}}</div>
+                        </div>
+
+                        <div class="sg-notification-manage-main-item-container send-count">
+                            <div class="sg-notification-manage-main-item-title"> {{'successCount' | translate}}</div>
+                            <div class="sg-notification-manage-main-item-body"> {{massNotification.sendCount | translate}}</div>
+                        </div>
+
+                        <div class="sg-notification-manage-main-item-container created-at">
+                            <div class="sg-notification-manage-main-item-title"> {{'createdAt' | translate}}</div>
+                            <div class="sg-notification-manage-main-item-body"> {{massNotification.createdAt | microTimeToDate}}</div>
+                        </div>
+
+                        <!--<div class="sg-notification-manage-main-item-title"> {{massNotification.notificationName}}</div>-->
+                        <!--<div class="sg-notification-manage-main-item-message-title"> {{massNotification.messageTitle || 'empty' | translate}}</div>-->
+                        <!--<div class="sg-notification-manage-main-item-message-body"> {{massNotification.messageBody || 'empty' | translate}}</div>-->
+                        <!--<div class="sg-notification-manage-main-item-send-count"> {{massNotification.totalCount}}</div>-->
+                        <!--<div class="sg-notification-manage-main-item-fail-count"> {{massNotification.sendCount}}</div>-->
+                        <!--<div class="sg-notification-manage-main-item-created-at"> {{massNotification.createdAt | microTimeToDate}}</div>-->
+                    </div>
+
+                    <div class="sg-notification-manage-main-item-right" ng-click="showItemOption($event, massNotification)">
+
+                        <div class="sg-notification-manage-main-item-right-container" ng-if="currentOption == massNotification.id">
+                            <button class="sg-notification-manage-main-item-delete" ng-click="deleteNotification($index)">
+                                {{'delete' | translate}}
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="sg-notification-manage-main-more-container">
+                <button class="sg-notification-manage-main-more sgc-btn-more" ng-if="more" ng-click="findNoticesMore()">
+                    {{'more' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sg-notification-manage-overlay" ng-if="currentOption" ng-click="hideItemOption()"></div>
+
+</div>
+<mass-notifications-create></mass-notifications-create>
+<mass-notifications-detail></mass-notifications-detail>

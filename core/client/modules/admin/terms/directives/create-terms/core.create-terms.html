@@ -1,0 +1,50 @@
+<script type="text/ng-template" id="coreCreateTerms.html">
+    <div id="sg-core-create-terms-wrap">
+        <button type="button" class="sg-core-modal-exit" data-ng-click="cancel()">
+            <i></i>
+            <i></i>
+        </button>
+        <div class="sg-core-create-wrap">
+            <div class="sg-core-select-wrap">
+                <div class="sg-core-select">
+                    <label class="sg-core-label">{{ 'type' | translate }}</label>
+                    <select class="sg-core-select" data-ng-if="!terms" data-ng-model="form.type">
+                        <option data-ng-repeat="item in enumTypes" value="{{ item }}">{{ item | translate }}</option>
+                    </select>
+                    <p class="sg-core-text" data-ng-if="terms">{{ form.type | translate }}</p>
+                </div>
+                <div class="sg-core-select">
+                    <label class="sg-core-label">{{ 'language' | translate }}</label>
+                    <select class="sg-core-select" data-ng-if="!terms" data-ng-model="form.language">
+                        <option data-ng-repeat="item in enumLanguages" value="{{ item }}">{{ item | translate }}</option>
+                    </select>
+                    <p class="sg-core-text" data-ng-if="terms">{{ form.language | translate }}</p>
+                </div>
+            </div>
+            <div class="sg-core-title-wrap">
+                <label class="sg-core-label">{{ 'title' | translate }}</label>
+                <input type="text" class="sg-core-input" data-ng-if="!terms" data-ng-model="form.title" placeholder="{{ 'title' | translate }}">
+                <p class="sg-core-text" data-ng-if="terms">{{ form.title }}</p>
+            </div>
+            <div class="sg-core-content-wrap">
+                <label class="sg-core-label">{{ 'content' | translate }}</label>
+                <div class="sg-core-content">
+                    <form>
+                        <textarea ck-editor data-ng-model="form.content" required></textarea>
+                    </form>
+                </div>
+            </div>
+            <div class="sg-core-start-date-wrap">
+                <label class="sg-core-label">{{ 'applyDate' | translate }}</label>
+                <div class="datepicker" date-format="yyyy-MM-dd" date-min-limit="{{ localNow }}">
+                    <input type="text" class="sg-core-input" data-ng-model="form.startDate" placeholder="{{ 'applyDate' | translate }}">
+                </div>
+            </div>
+        </div>
+        <div class="sg-core-button-wrap">
+            <button type="button" class="sg-core-button" data-ng-click="create()">
+                {{ 'create' | translate }}
+            </button>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,21 @@
+input.sgc-search-input {
+    width: 100%;
+    height: 42px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: solid 1px color(divider, base);;
+
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 14px;
+    font-weight: 400;
+
+    background-image: url('/assets/images/ic_search_18_2x.png');
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: right 14px center;
+
+    &:focus {
+        border: 1px solid color(soft-blue, base);;
+    }
+}

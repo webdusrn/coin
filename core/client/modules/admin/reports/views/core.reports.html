@@ -1,0 +1,64 @@
+<div id="sg-report-manage" ng-controller="ReportsCtrl" data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+
+    <div class="sg-report-manage-container">
+        <div class="sg-report-manage-title sgc-titles">
+            {{'reportManage' | translate}}
+        </div>
+
+        <div class="sg-report-manage-menu">
+            <select ng-model="params.searchField" class="sg-report-manage-menu-search-option sgc-option">
+                <option ng-repeat="x in reportEnumSearchFields" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <div class="sg-report-manage-menu-search">
+                <form ng-submit="findReports()">
+                    <input class="sgc-search-input" ng-model="params.searchItem" type="text"
+                           placeholder="{{'typeKeywords'|translate}}">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-report-manage-main">
+            <div class="sg-report-manage-main-top">
+                <select ng-model="isSolved" class="sg-report-manage-main-top-filter sgc-filter">
+                    <option ng-repeat="x in reportEnumSolved" value="{{x}}">{{x | translate}}</option>
+                </select>
+                <div class="sg-report-manage-main-top-total sgc-total">Total <span>{{reportListTotal}}</span></div>
+            </div>
+            <div class="sg-report-manage-main-list">
+                <div class="sg-report-manage-main-item" ng-repeat="report in reportList track by $index"
+                     ng-click="showReportDetail($index)">
+
+                    <div class="sg-report-manage-main-item-top">
+                        <div class="sg-report-manage-main-item-top-solved-img" ng-if="report.solvedAt"></div>
+                        <div class="sg-report-manage-main-item-top-unsolved-img" ng-if="!report.solvedAt"></div>
+                        <div class="sg-report-manage-main-item-top-solved" ng-if="report.solvedAt"> {{'solved' |
+                            translate}}
+                        </div>
+                        <div class="sg-report-manage-main-item-top-unsolved" ng-if="!report.solvedAt"> {{'unsolved' |
+                            translate }}
+                        </div>
+                    </div>
+
+                    <div class="sg-report-manage-main-item-top-body">{{report.body}}</div>
+
+                    <div class="sg-report-manage-main-item-top-bottom">
+                        <div class="sg-report-manage-main-item-user-img" ng-if="report.author && report.author.userImages.length > 0" ng-style="{'background-image': 'url('+ (report.author.userImages[0].image | imageUrl)+ ')'}"></div>
+                        <div class="sg-report-manage-main-item-user-img" ng-if="!report.author || report.author.userImages.length == 0"></div>
+                        <div class="sg-report-manage-main-item-nick"> {{report.nick}}</div>
+                        <div class="sg-report-manage-main-item-created-at"> {{report.createdAt | microTimeToDate}}</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sg-report-manage-main-more-container">
+                <button class="sg-report-manage-main-more sgc-btn-more" ng-if="more" ng-click="findReportsMore()">
+                    {{'more' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<report-detail></report-detail>

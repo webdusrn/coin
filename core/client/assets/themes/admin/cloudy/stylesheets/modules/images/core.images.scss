@@ -1,0 +1,202 @@
+@import "../../import";
+
+#sg-image-manage {
+    .sg-image-manage-container {
+        margin: auto;
+        padding: 50px 12px;
+        width: $web-container-size;
+
+        .sg-image-manage-top {
+            @include title-border-bottom();
+            @include after-clear();
+
+            .sg-image-manage-title {
+                float: left;
+            }
+
+            .sg-image-manage-folder {
+                float: right;
+            }
+        }
+
+        .sg-image-manage-menu {
+            @include title-border-bottom();
+            padding-top: 12px;
+            padding-bottom: 12px;
+
+            @include after-clear();
+            .sg-image-manage-menu-option {
+                float: left;
+                margin-right: 6px;
+            }
+            .sg-image-manage-menu-search {
+                float: left;
+                width: calc(100% - 115px);
+                form {
+                    height: 41px;
+                }
+            }
+        }
+
+        .sg-image-manage-main {
+            padding-top: 20px;
+            padding-bottom: 6px;
+
+            .sg-image-manage-main-top {
+                margin-bottom: 12px;
+                @include after-clear();
+                .sg-image-manage-main-top-filter {
+                    float: left;
+                }
+                .sg-image-manage-main-top-total {
+                    float: right;
+                }
+            }
+
+            .sg-image-manage-main-list {
+                @include after-clear();
+                .sg-image-manage-main-list-item {
+                    position: relative;
+                    float: left;
+                    overflow: hidden;
+                    width: calc(20% - 6.4px);
+                    margin-top: 8px;
+                    margin-right: 8px;
+                    border: solid 1px $pale-grey;
+                    cursor: pointer;
+
+                    @include transition(border, .15s, ease-in-out, 0s);
+                    @include hoverItem();
+
+                    &:nth-child(5n){
+                        margin-right: 0;
+                    }
+
+                    .sg-image-manage-main-list-item-body {
+                        width: 100%;
+                        height: 200px;
+
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                        background-color: white;
+
+                        .sg-image-manage-main-list-item-unauthorized-overlay {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: white;
+                            opacity: 0.5;
+                            pointer-events: none;
+                        }
+                    }
+
+                    .sg-image-manage-main-list-item-bottom {
+                        height: 40px;
+                        width: 100%;
+
+                        background-color: rgba(0, 0, 0, 0.15);
+
+                        padding-right: 8px;
+
+                        //transform: translate3d(0, 100%, 0);
+                        //@include transition(all, .2s, ease-in-out, 0s);
+
+                        @include after-clear();
+
+                        .sg-image-manage-main-list-item-top-delete {
+                            float: right;
+
+                            position: relative;
+                            top: 21px;
+                            margin-top: -14px;
+                            text-align: center;
+
+                            width: 34px;
+                            height: 28px;
+
+                            border-radius: 3px;
+                            line-height: 28px;
+
+                            background-image: url('/assets/themes/admin/cloudy/images/ic_images_manage_trash_28_2x.png');
+                            background-repeat: no-repeat;
+                            background-size: 28px;
+                            background-position: center;
+
+                            background-color: #ffffff;
+
+                            &:hover {
+                                background-color: #ececec;
+                            }
+                        }
+
+                        .sg-image-manage-main-list-item-top-authorization {
+                            float: left;
+                            margin-left: 10px;
+
+                            position: relative;
+                            top: 21px;
+                            margin-top: -14px;
+                            text-align: center;
+
+                            width: 50px;
+                            height: 28px;
+
+                            border-radius: 3px;
+                            line-height: 28px;
+
+                            background-color: #6d8fe4;
+                            color: white;
+
+                            &:hover {
+                                background-color: #5b7ed6;
+                            }
+                        }
+
+                        .sg-image-manage-main-list-item-top-unauthorization {
+                            float: left;
+                            margin-left: 10px;
+
+                            position: relative;
+                            top: 21px;
+                            margin-top: -14px;
+                            text-align: center;
+
+                            width: 50px;
+                            height: 28px;
+
+                            border-radius: 3px;
+                            line-height: 28px;
+
+                            background-color: white;
+                            color: #8d93a6;
+
+                            &:hover {
+                                background-color: #ececec;
+                            }
+                        }
+                    }
+
+                    //&:hover > .sg-image-manage-main-list-item-top {
+                    //    transform: translate3d(0, 0, 0);
+                    //}
+
+                }
+
+            }
+
+            .sg-image-manage-main-more-container {
+                text-align: center;
+                .sg-image-manage-main-more {
+                    margin: 20px auto 20px auto;
+                }
+            }
+
+        }
+    }
+}
+
+@import "core.image-manage-detail";
+@import "core.images-responsive";

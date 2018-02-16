@@ -1,0 +1,26 @@
+.sg-notification-manage-create-condition {
+    .sg-notification-manage-create-condition-age {
+        @include after-clear();
+
+        .sg-notification-manage-create-condition-age-item {
+            margin-top: 12px;
+            @media screen and (min-width: $web-min-width + 100) {
+                float: left;
+            }
+            .sg-notification-manage-create-condition-input {
+                width: 100px;
+            }
+            .sg-notification-manage-create-condition-span {
+
+                font-size: 14px;
+                font-weight: 400;
+
+                color: #6d8fe4;
+
+                line-height: 40px;
+                margin: 0 12px;
+            }
+        }
+
+    }
+}

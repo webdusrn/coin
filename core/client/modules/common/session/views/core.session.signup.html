@@ -1,0 +1,89 @@
+<div id="sg-session-wrap" data-ng-controller="SessionCtrl">
+    <div class="sg-outer">
+        <div class="sg-inner">
+            <div id="sg-session-signup-wrap">
+                <h2>{{ 'signUp' | translate }}</h2>
+                <hr>
+                <form class="sg-session-form" name="form" data-ng-submit="vm.signup(form)" novalidate>
+                    <fieldset>
+                        <div data-ng-class="{'sg-has-error': vm.isInvalid(form.email)}">
+                            <!--<label for="email" class="col-sm-4 control-label">{{ 'email' | translate }}</label>-->
+                            <div class="sg-session-input-wrap">
+                                <input type="email"
+                                       data-ng-model="vm.form.email"
+                                       class="sg-session-input"
+                                       id="email"
+                                       name="email"
+                                       data-ng-focus="form.email.$focus = true"
+                                       data-ng-blur="form.email.$focus = false"
+                                       placeholder="{{ 'signUpEmail' | translate }}"
+                                       data-ng-required="true">
+                            </div>
+                            <span class="sg-session-alert-message" data-ng-show="vm.isInvalid(form.email)">
+                                {{ vm.getFormError(form.email.$error) | translate }}
+                            </span>
+                        </div>
+                        <div data-ng-if="vm.isVisibleItem('name')" data-ng-class="{'sg-has-error': vm.isInvalid(form.name)}">
+                            <!--<label for="name" class="col-sm-4 control-label">{{ 'name' | translate }}</label>-->
+                            <div class="sg-session-input-wrap">
+                                <input type="text"
+                                       name="name"
+                                       data-ng-focus="form.name.$focus = true"
+                                       data-ng-blur="form.name.$focus = false"
+                                       data-ng-model="vm.form.name"
+                                       data-ng-minlength="vm.STD.user.minNameLength"
+                                       data-ng-maxlength="vm.STD.user.maxNameLength"
+                                       class="sg-session-input"
+                                       id="name"
+                                       placeholder="{{ 'name' | translate }}"
+                                       data-ng-required="true">
+                            </div>
+                            <span class="sg-session-alert-message" data-ng-show="vm.isInvalid(form.name)">
+                                {{ vm.getFormError(form.name.$error) | translate }}
+                            </span>
+                        </div>
+                        <div data-ng-class="{'sg-has-error': vm.isInvalid(form.nick)}">
+                            <!--<label for="nick" class="col-sm-4 control-label">{{ 'nick' | translate }}</label>-->
+                            <div class="sg-session-input-wrap">
+                                <input type="text"
+                                       name="nick"
+                                       data-ng-focus="form.nick.$focus = true"
+                                       data-ng-blur="form.nick.$focus = false"
+                                       data-ng-model="vm.form.nick"
+                                       data-ng-minlength="vm.STD.user.minNickLength"
+                                       data-ng-maxlength="vm.STD.user.maxNickLength"
+                                       class="sg-session-input"
+                                       id="nick"
+                                       placeholder="{{ 'signUpNick' | translate }}"
+                                       data-ng-required="true">
+                            </div>
+                            <span class="sg-session-alert-message" data-ng-show="vm.isInvalid(form.nick)">
+                                {{ vm.getFormError(form.nick.$error) | translate }}
+                            </span>
+                        </div>
+                        <div>
+                            <!--<label for="pass" class="col-sm-4 control-label">{{ 'pass' | translate }}</label>-->
+                            <input-pass id="pass"
+                                        ng-flag="vm.form.flag"
+                                        ng-model="vm.form.pass"
+                                        min-length="{{vm.STD.user.minSecretLength}}"
+                                        good-length="{{vm.STD.user.goodSecretLength}}"
+                                        max-length="{{vm.STD.user.maxSecretLength}}"></input-pass>
+                        </div>
+                    </fieldset>
+                    <div class="sg-session-button-wrap">
+                        <button type="submit"
+                                class="sg-session-button"
+                                data-ng-disabled="form.$invalid">
+                            {{ 'submit' | translate }}
+                        </button>
+                        <div>
+                            <p>회원가입을 하시면 <a ui-sref="privacy">개인정보취급방침</a> 및<br> <a ui-sref="service">이용약관</a>에 동의한
+                                것으로 간주됩니다.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

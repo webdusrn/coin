@@ -1,0 +1,397 @@
+@import "../../import";
+@media screen and (max-width: $web-container-size + $g-menu-size) {
+    .sg-core-responsive {
+        &#sg-user-manage {
+            .sg-user-manage-container {
+                width: 100%;
+                padding: 25px 12px;
+                .sg-user-manage-main {
+                    .sg-user-manage-main-list {
+                        .sg-user-manage-main-list-top{
+                            display: none;
+                        }
+                        .sg-user-manage-main-list-item {
+                            $sg-user-manage-main-list-item-line-height: 40px;
+                            .sg-user-manage-main-list-item-img {
+                                float: left;
+                            }
+
+                            .sg-user-manage-main-list-item-aid-container {
+                                @media screen and (min-width: $web-container-size + $g-menu-size) {
+                                    float: left;
+                                    width: 20%;
+                                    position: static;
+                                    padding-left: 18px;
+                                }
+
+                                .sg-user-manage-main-list-item-aid-title {
+                                    float: left;
+                                    display: none;
+                                }
+
+                                .sg-user-manage-main-list-item-aid-text {
+                                    float: left;
+                                }
+                            }
+
+                            .sg-user-manage-main-list-item-nick-container {
+
+                                border-top: 1px solid #d5dbec;
+
+                                margin-top: 12px;
+                                float: left;
+                                width: 100%;
+
+                                .sg-user-manage-main-list-item-nick-title {
+                                    float: left;
+                                    width: 60px;
+                                    display: block;
+                                }
+
+                                .sg-user-manage-main-list-item-nick-text {
+                                    float: left;
+                                }
+                            }
+
+                            .sg-user-manage-main-list-item-created-at-container {
+                                float: none;
+                                width: 100%;
+
+
+                                .sg-user-manage-main-list-item-created-at-title {
+                                    float: left;
+                                    width: 60px;
+                                    display: block;
+                                }
+
+                                .sg-user-manage-main-list-item-created-at-text {
+                                    float: left;
+                                }
+                            }
+
+                            .sg-user-manage-main-list-item-gender-container {
+
+                                margin-top: 8px;
+                                width: 100%;
+                                @include after-clear();
+
+                                .sg-user-manage-main-list-item-gender-title {
+                                    float: left;
+                                    width: 60px;
+                                    display: block;
+                                }
+
+                                .sg-user-manage-main-list-item-gender-text {
+                                    float: left;
+                                    display: block;
+                                }
+                            }
+
+                            .sg-user-manage-main-list-item-option-container {
+
+
+                                position: absolute;
+                                margin-top: 0;
+                                height: 40px;
+                                width: inherit;
+                                right: 18px;
+                                top: 14px;
+
+                                .sg-user-manage-main-list-item-option-btn {
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sg-core-responsive {
+        &#sg-user-manage-detail {
+
+            $sg-user-manage-detail-padding-mobile: 18px;
+            $sg-user-manage-detail-padding: 18px;
+            $sg-user-manage-detail-container-width: 700px;
+
+            .sg-user-manage-detail-container {
+                .sg-user-manage-detail-container {
+                    .sg-user-manage-detail-social-setting {
+                        .sg-user-manage-detail-social-setting-top {
+                            @media screen and (min-width: $web-min-width) {
+                                padding-left: $sg-user-manage-detail-padding;
+                                padding-right: $sg-user-manage-detail-padding;
+                            }
+                        }
+
+                        .sg-user-manage-detail-social-setting-item {
+
+                            @media screen and (min-width: $web-min-width) {
+                                padding-left: $sg-user-manage-detail-padding;
+                                padding-right: $sg-user-manage-detail-padding;
+                            }
+                        }
+                    }
+                }
+
+                .sg-user-manage-detail-login-history {
+                    .sg-user-manage-detail-login-history-list {
+                        .sg-user-manage-detail-login-history-list-top {
+                            @media screen and (min-width: $web-container-size) {
+                                display: block;
+                            }
+                        }
+                        .sg-user-manage-detail-login-history-list-item {
+
+                            @media screen and (min-width: $web-container-size) {
+                                padding: 0;
+                                height: 42px;
+                                line-height: 42px;
+                            }
+
+                            .sg-user-manage-detail-login-history-list-item-type {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    float: left;
+                                    width: 100px;
+                                    text-align: center;
+
+                                    .sg-user-manage-detail-login-history-list-item-type-title {
+                                        display: none;
+                                    }
+                                }
+
+                                @media screen and (max-width: $web-container-size - 1) {
+                                    margin-bottom: 6px;
+                                    @include after-clear();
+                                    .sg-user-manage-detail-login-history-list-item-type-title {
+                                        float: left;
+                                        color: #8d93a6;
+
+                                        width: 92px;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-type-body {
+                                        float: left;
+                                    }
+                                }
+
+                            }
+                            .sg-user-manage-detail-login-history-list-item-platform {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    float: left;
+                                    width: 100px;
+                                    text-align: center;
+
+                                    .sg-user-manage-detail-login-history-list-item-platform-title {
+                                        display: none;
+                                    }
+                                }
+
+                                @media screen and (max-width: $web-container-size - 1) {
+                                    margin-bottom: 6px;
+                                    @include after-clear();
+                                    .sg-user-manage-detail-login-history-list-item-platform-title {
+                                        float: left;
+                                        color: #8d93a6;
+
+                                        width: 92px;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-platform-body {
+                                        float: left;
+                                    }
+                                }
+                            }
+                            .sg-user-manage-detail-login-history-list-item-device {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    float: left;
+                                    width: 100px;
+                                    text-align: center;
+
+                                    .sg-user-manage-detail-login-history-list-item-device-title {
+                                        display: none;
+                                    }
+                                }
+
+                                @media screen and (max-width: $web-container-size - 1) {
+                                    margin-bottom: 6px;
+                                    @include after-clear();
+                                    .sg-user-manage-detail-login-history-list-item-device-title {
+                                        float: left;
+                                        color: #8d93a6;
+
+                                        width: 92px;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-device-body {
+                                        float: left;
+                                    }
+                                }
+                            }
+                            .sg-user-manage-detail-login-history-list-item-browser {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    float: left;
+                                    width: 100px;
+                                    text-align: center;
+
+                                    .sg-user-manage-detail-login-history-list-item-browser-title {
+                                        display: none;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-browser-body {
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                    }
+                                }
+
+                                @media screen and (max-width: $web-container-size - 1) {
+                                    margin-bottom: 6px;
+                                    @include after-clear();
+                                    .sg-user-manage-detail-login-history-list-item-browser-title {
+                                        float: left;
+                                        color: #8d93a6;
+
+                                        width: 92px;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-browser-body {
+                                        float: left;
+                                    }
+                                }
+                            }
+                            .sg-user-manage-detail-login-history-list-item-ip {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    float: left;
+                                    width: 120px;
+                                    text-align: center;
+
+                                    .sg-user-manage-detail-login-history-list-item-ip-title {
+                                        display: none;
+                                    }
+                                }
+
+                                @media screen and (max-width: $web-container-size - 1) {
+                                    margin-bottom: 6px;
+                                    @include after-clear();
+                                    .sg-user-manage-detail-login-history-list-item-ip-title {
+                                        float: left;
+                                        color: #8d93a6;
+
+                                        width: 92px;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-ip-body {
+                                        float: left;
+                                    }
+                                }
+                            }
+                            .sg-user-manage-detail-login-history-list-item-created-at {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    float: left;
+                                    width: 100px;
+                                    text-align: center;
+
+                                    .sg-user-manage-detail-login-history-list-item-created-at-title {
+                                        display: none;
+                                    }
+                                }
+
+                                @media screen and (max-width: $web-container-size - 1) {
+                                    margin-bottom: 6px;
+                                    @include after-clear();
+                                    .sg-user-manage-detail-login-history-list-item-created-at-title {
+                                        float: left;
+                                        color: #8d93a6;
+
+                                        width: 92px;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-created-at-body {
+                                        float: left;
+                                    }
+                                }
+                            }
+                            .sg-user-manage-detail-login-history-list-item-updated-at {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    float: left;
+                                    width: 100px;
+                                    text-align: center;
+
+                                    .sg-user-manage-detail-login-history-list-item-updated-at-title {
+                                        display: none;
+                                    }
+                                }
+
+                                @media screen and (max-width: $web-container-size - 1) {
+                                    margin-bottom: 6px;
+                                    @include after-clear();
+                                    .sg-user-manage-detail-login-history-list-item-updated-at-title {
+                                        float: left;
+                                        color: #8d93a6;
+
+                                        width: 92px;
+                                    }
+
+                                    .sg-user-manage-detail-login-history-list-item-updated-at-body {
+                                        float: left;
+                                    }
+                                }
+                            }
+                            .sg-user-manage-detail-login-history-list-item-disconnect {
+
+                                @media screen and (min-width: $web-container-size) {
+                                    margin-top: 8px;
+                                    margin-left: 34px;
+
+                                    float: left;
+                                    text-align: center;
+                                }
+
+                                border: solid 1px #d7dbdd;
+                                width: 70px;
+                                height: 26px;
+                                line-height: 26px;
+
+                                cursor: pointer;
+                                text-align: center;
+                                float: right;
+                                font-weight: normal;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .modal-lg {
+        width: auto;
+        margin: 30px 10px;
+    }
+}
+@media screen and (max-width: $web-min-width) {
+    .sg-core-responsive {
+        &#sg-user-manage {
+            .sg-user-manage-container {
+                .sg-user-manage-menu {
+                    .sg-user-manage-menu-search {
+                        margin-top: 12px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

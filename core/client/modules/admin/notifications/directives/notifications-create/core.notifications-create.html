@@ -1,0 +1,131 @@
+<script type="text/ng-template" id="coreNotificationsCreate.html">
+    <div id="sg-notification-manage-create" data-ng-if="init">
+        <div class="sg-notification-manage-create-container">
+
+            <div class="sg-notification-manage-create-close-btn" data-ng-click="cancel()"></div>
+
+            <div class="sg-notification-manage-create-main" data-ng-if="!progress.loading">
+                <div class="sg-notification-manage-create-top" data-ng-if="!lastPage && sendTypes.length > 1 || lastPage">
+
+                    <div class="sg-notification-manage-create-send-type-list" data-ng-if="!lastPage">
+                        <button class="sg-notification-manage-create-send-type-item"
+                                data-ng-class="{'active': sendTypeItem.message }"
+                                data-ng-click="changeBodyPath('message')" data-ng-if="isMessageOn">
+                            {{'message'| translate}}
+                        </button>
+                        <button class="sg-notification-manage-create-send-type-item"
+                                data-ng-class="{'active': sendTypeItem.email }" data-ng-click="changeBodyPath('email')"
+                                data-ng-if="isEmailOn">
+                            {{'email'| translate}}
+                        </button>
+                        <button class="sg-notification-manage-create-send-type-item"
+                                data-ng-class="{'active': sendTypeItem.push }" data-ng-click="changeBodyPath('push')"
+                                data-ng-if="isPushOn">
+                            {{'push'| translate}}
+                        </button>
+                    </div>
+
+                    <div class="sg-notification-manage-create-send-type-list" data-ng-if="lastPage">
+                        <!--<button class="sg-notification-manage-create-send-type-item"-->
+                        <!--data-ng-class="{'active': sendTypeSelectItem.user }"-->
+                        <!--data-ng-click="changeSelectPath('user')">-->
+                        <!--{{'selectUser'| translate}}-->
+                        <!--</button>-->
+                        <button class="sg-notification-manage-create-send-type-item "
+                                data-ng-class="{'active': sendTypeSelectItem.condition }"
+                                data-ng-click="changeSelectPath('condition')">
+                            {{'selectCondition'| translate}}
+                        </button>
+                        <button class="sg-notification-manage-create-send-type-item"
+                                data-ng-class="{'active': sendTypeSelectItem.csv }"
+                                data-ng-click="changeSelectPath('csv')">
+                            {{'CSV'| translate}}
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="sg-notification-manage-create-body">
+
+                    <div data-ng-include src="createBodyPath" data-ng-if="!lastPage"></div>
+                    <div data-ng-include src="createSelectPath" data-ng-if="lastPage"></div>
+
+                </div>
+
+                <div class="sg-notification-manage-create-bottom">
+
+                    <div class="sg-notification-manage-create-bottom-status">
+                        <div class="sg-notification-manage-create-bottom-status-item" data-ng-if="!lastPage">
+                            <img class="sg-notification-manage-create-bottom-status-item-img"
+                                 src="/assets/themes/admin/cloudy/images/ic_noti_process_h_34_2x.png" alt="" width="34">
+
+                            <div class="sg-notification-manage-create-bottom-status-item-text active">
+                                {{'내용생성'| translate}}
+                            </div>
+                        </div>
+
+                        <div class="sg-notification-manage-create-bottom-status-item" data-ng-if="lastPage">
+                            <img class="sg-notification-manage-create-bottom-status-item-img"
+                                 src="/assets/themes/admin/cloudy/images/ic_noti_process_n_34_2x.png" alt="" width="34">
+
+                            <div class="sg-notification-manage-create-bottom-status-item-text">
+                                {{'내용생성'| translate}}
+                            </div>
+                        </div>
+
+                        <img class="sg-notification-manage-create-bottom-status-img"
+                             src="/assets/themes/admin/cloudy/images/ic_noti_process_arrow_12_18_2x.png" alt=""
+                             width="12" height="18">
+
+                        <div class="sg-notification-manage-create-bottom-status-item" data-ng-if="!lastPage">
+
+                            <img class="sg-notification-manage-create-bottom-status-item-img"
+                                 src="/assets/themes/admin/cloudy/images/ic_noti_process_n_34_2x.png" alt="" width="34">
+
+                            <div class="sg-notification-manage-create-bottom-status-item-text">
+                                {{'타겟설정'| translate}}
+                            </div>
+                        </div>
+
+                        <div class="sg-notification-manage-create-bottom-status-item" data-ng-if="lastPage">
+
+                            <img class="sg-notification-manage-create-bottom-status-item-img"
+                                 src="/assets/themes/admin/cloudy/images/ic_noti_process_h_34_2x.png" alt="" width="34">
+
+                            <div class="sg-notification-manage-create-bottom-status-item-text active">
+                                {{'타겟설정'| translate}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="sg-notification-manage-create-bottom-create-btn sgc-btn-action"
+                            data-ng-if="!lastPage" data-ng-click="next()">{{'next'|translate}}
+                    </button>
+                    <button class="sg-notification-manage-create-bottom-cancel-btn sgc-btn-cancel"
+                            data-ng-if="!lastPage" data-ng-click="cancel()">{{'cancel'|translate}}
+                    </button>
+
+                    <button class="sg-notification-manage-create-bottom-create-btn sgc-btn-action"
+                            data-ng-if="lastPage" data-ng-click="sendNotificationCondition()">{{'send'|translate}}
+                    </button>
+                    <button class="sg-notification-manage-create-bottom-cancel-btn sgc-btn-cancel"
+                            data-ng-if="lastPage" data-ng-click="back()">{{'back'|translate}}
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="sg-notification-progress" data-ng-if="progress.loading">
+                <div class="sg-notification-progress-title">
+                    {{progress.title}}
+                </div>
+                <img src="/assets/themes/admin/cloudy/images/loading_220.gif" alt="" width="220" height="220">
+                <div class="sg-notification-progress-body">
+                    {{progress.progress}}%
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</script>

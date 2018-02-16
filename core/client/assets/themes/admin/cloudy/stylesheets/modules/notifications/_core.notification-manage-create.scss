@@ -1,0 +1,335 @@
+#sg-notification-manage-create {
+
+    .sg-notification-manage-create-container {
+        z-index: 13;
+
+        position: relative;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        min-width: 0;
+
+        background-color: white;
+
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+
+        border-radius: 5px;
+
+        .sg-notification-manage-create-close-btn {
+            position: absolute;
+            top: -34px;
+            right: 0;
+
+            width: 30px;
+            height: 30px;
+
+            cursor: pointer;
+
+            background-image: url('/assets/themes/admin/cloudy/images/ic_close_24_2x.png');
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: center;
+        }
+
+        .sg-notification-manage-create-main {
+            .sg-notification-manage-create-top {
+                height: 70px;
+
+                background-color: #f1f3f8;
+
+                .sg-notification-manage-create-send-type-list {
+
+                    padding: 0 20px;
+
+                    @include after-clear();
+                    .sg-notification-manage-create-send-type-item {
+                        float: left;
+
+                        margin-top: 18px;
+
+                        width: 120px;
+                        height: 35px;
+                        border-radius: 18px;
+                        background-color: #d9dde9;
+
+                        font-size: 14px;
+                        font-weight: normal;
+
+                        color: #656a78;
+
+                        margin-right: 12px;
+
+                        &.active {
+                            background-color: #2e314d;
+                            color: white;
+                        }
+                    }
+                }
+
+            }
+
+            .sg-notification-manage-create-body {
+                margin-top: 12px;
+                padding: 20px 20px;
+
+                .sg-notification-manage-create-title {
+                    padding-bottom: 8px;
+
+                    font-size: 20px;
+                    font-weight: bold;
+
+                    color: #2e314d;
+
+                    border-bottom: 1px solid #d5dbec;
+                }
+
+                .sg-notification-manage-create-subtitle {
+
+                    margin: 20px 0 12px 0;
+
+                    font-size: 16px;
+                    font-weight: normal;
+
+                    color: #626b80;
+                }
+
+                .sg-notification-manage-create-textarea {
+
+                    form {
+                        textarea {
+                            padding: 10px 15px;
+                            border-radius: 5px;
+                            background-color: #f1f3f8;
+                            margin: 0;
+                            width: 100%;
+                            height: 200px;
+                            resize: none;
+                        }
+                    }
+
+                }
+
+                .sg-notification-manage-create-message-container {
+                    max-width: 340px;
+                    margin: 18px auto;
+                    border: solid 1px #d6e1fe;
+
+                    .sg-notification-manage-create-message-top {
+                        height: 30px;
+                        line-height: 30px;
+
+                        padding: 0 12px;
+
+                        color: white;
+
+                        font-size: 16px;
+                        font-weight: normal;
+
+                        &.sms {
+                            background-color: #7397f2;
+                            border: solid 1px #7397f2;
+                        }
+
+                        &.lms {
+                            background-color: #af43dc;
+                            border: solid 1px #af43dc;
+                        }
+
+                        &.mms {
+                            background-color: #6d4edf;
+                            border: solid 1px #6d4edf;
+                        }
+                    }
+                    .sg-notification-manage-create-message-image {
+                        margin: 12px;
+
+                        height: 200px;
+                        border-radius: 8px;
+                        background-color: #f1f3f8;
+                        border: dashed 2px #a4afc9;
+
+                        text-align: center;
+
+                        cursor: pointer;
+
+                        .sg-notification-manage-create-message-image-img {
+                            margin-top: 60px;
+                        }
+
+                        .sg-notification-manage-create-message-image-text {
+                            margin-top: 8px;
+
+                            font-size: 14px;
+                            font-weight: 400;
+
+                            color: #959eb5;
+                        }
+                    }
+
+                    .sg-notification-manage-create-message-image-on {
+                        position: relative;
+
+                        margin: 12px;
+                        height: 200px;
+                        border-radius: 8px;
+
+                        text-align: center;
+                        vertical-align: middle;
+                        line-height: 200px;
+
+                        img {
+                            max-width: 100%;
+                            max-height: 100%;
+                        }
+
+                        .sg-notification-manage-create-message-image-on-delete {
+
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: 70px;
+                            height: 24px;
+                            background-color: grey;
+                            color: white;
+                            line-height: 24px;
+                            border-radius: 6px;
+
+                            font-size: 12px;
+                            font-weight: 400;
+                        }
+                    }
+
+                    .sg-notification-manage-create-message-title {
+                        margin: 0 12px;
+
+                        input {
+                            &.disabled {
+                                pointer-events: none;
+                                background-color: rgba(0, 0, 0, 0.2);
+                            }
+                        }
+                    }
+
+                    .sg-notification-manage-create-message-body {
+                        padding: 12px;
+                        textarea {
+                            padding: 16px;
+
+                            border-radius: 5px;
+                            background-color: rgb(241, 243, 248);
+
+                            margin: 0;
+                            width: 100%;
+                            height: 200px;
+                            resize: none;
+
+                        }
+                    }
+
+                    .sg-notification-manage-create-message-status {
+                        height: 24px;
+                        line-height: 24px;
+                        background-color: #8d93a6;
+
+                        text-align: right;
+                        padding: 0 12px;
+
+                        font-size: 12px;
+                        font-weight: normal;
+
+                        color: #f1f3f8;
+
+                    }
+
+                }
+
+            }
+
+            .sg-notification-manage-create-bottom {
+                margin-top: 12px;
+
+                height: 70px;
+                background-color: #f1f3f8;
+
+                @include after-clear();
+                .sg-notification-manage-create-bottom-cancel-btn {
+                    float: right;
+                    margin-top: 16px;
+
+
+                }
+                .sg-notification-manage-create-bottom-create-btn {
+                    float: right;
+                    margin-left: 10px;
+                    margin-top: 16px;
+                    margin-right: 16px;
+                }
+
+                .sg-notification-manage-create-bottom-status {
+                    @media screen and (max-width: $web-min-width + 100) {
+                        display: none;
+                    }
+
+                    float: left;
+                    height: 70px;
+                    margin-left: 6px;
+                    .sg-notification-manage-create-bottom-status-item {
+                        float: left;
+
+                        text-align: center;
+                        margin: 8px 0 0 12px;
+                        .sg-notification-manage-create-bottom-status-item-img {
+
+                        }
+
+                        .sg-notification-manage-create-bottom-status-item-text {
+                            font-size: 14px;
+                            font-weight: normal;
+
+                            color: #a7adc0;
+
+                            &.active {
+                                color: #35cd9d;
+                            }
+
+                        }
+                    }
+
+                    .sg-notification-manage-create-bottom-status-img {
+                        float: left;
+
+                        margin: 24px 0 0px 16px;
+                    }
+                }
+            }
+        }
+
+        .sg-notification-progress {
+            text-align: center;
+            .sg-notification-progress-title {
+                padding-top: 38px;
+                padding-bottom: 20px;
+                text-align: center;
+
+                font-size: 24px;
+                font-weight: 400;
+            }
+
+            .sg-notification-progress-body {
+                text-align: center;
+                padding-bottom: 34px;
+
+                font-size: 32px;
+                font-weight: 500;
+                color: #6c7896;
+            }
+        }
+    }
+}
+
+@import "core.notification-manage-create-condition";
+@import "core.notification-manage-create-csv";

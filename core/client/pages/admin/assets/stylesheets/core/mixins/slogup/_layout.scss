@@ -1,0 +1,32 @@
+/** layout **/
+
+@mixin reset-padding($padding: 0px) {
+  padding: $padding;
+}
+
+@mixin reset-margin($margin: 0px) {
+  margin: $margin;
+}
+
+@mixin set-min-width($min-width: 768px) {
+  min-width: $min-width;
+}
+
+@mixin set-grid-padding($padding){
+  & {
+    .row {
+      margin-left: $padding * -1;
+      margin-right: $padding * -1;
+    }
+    [class^="col-"]{
+      padding-left: $padding;
+      padding-right: $padding;
+    }
+  }
+}
+
+/** label,title **/
+@mixin title-left-bar($color: $text-color, $width: 3px){
+  border-left: $width solid $color;
+  padding-left: 10px;
+}

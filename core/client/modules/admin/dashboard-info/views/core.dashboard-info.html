@@ -1,0 +1,537 @@
+<div id="sg-dashboard" data-ng-controller="DashboardInfoCtrl" data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+
+    <div class="sg-dashboard-container">
+
+        <div class="sg-dashboard-title sgc-titles">
+            {{'dashboard' | translate}}
+        </div>
+
+        <div class="sg-dashboard-main">
+
+            <div class="sg-dashboard-item">
+                <div class="sg-dashboard-item-title">
+                    유저 현황
+                </div>
+                <div class="sg-dashboard-chart">
+                    <div class="sg-dashboard-chart-top">
+                        <div class="sg-dashboard-chart-top-status">
+                            <div class="sg-dashboard-chart-top-status-current-login">
+                                <div class="sg-dashboard-chart-top-status-current-login-title">
+                                    <div class="sg-dashboard-chart-top-status-current-login-title-img">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-status-current-login-title-text">
+                                        로그인 된 디바이스 수
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-top-status-current-login-body">
+                                    {{dashboardInfo.usersStatus.loginTotal | numbers}}
+                                </div>
+                            </div>
+
+                            <div class="sg-dashboard-chart-top-status-total">
+                                <div class="sg-dashboard-chart-top-status-total-title">
+                                    <div class="sg-dashboard-chart-top-status-total-title-img">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-status-total-title-text">
+                                        전체 회원수
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-top-status-total-body">
+                                    {{dashboardInfo.usersStatus.usersTotal - dashboardInfo.usersStatus.usersDeletedTotal  | numbers}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--solvedReports-->
+
+                    <div class="sg-dashboard-chart-body">
+                        <div class="sg-dashboard-chart-body-top">
+                            <div class="sg-dashboard-chart-body-top-img"
+                                 style="background-image: url('/pages/admin/assets/images/dashboard_pie_k_24.png')">
+                            </div>
+                            <div class="sg-dashboard-chart-body-top-title">
+                                유저 나이 비율
+                            </div>
+                        </div>
+                        <div class="sg-dashboard-chart-body-main">
+                            <div class="sg-dashboard-chart-body-main-left">
+                                <canvas class="chart chart-bar" chart-data="userAgeChart.data"
+                                        chart-labels="userAgeChart.labels"
+                                        chart-colors="userAgeChart.colors"
+                                        chart-options="userAgeChart.options">
+                                </canvas>
+                            </div>
+                            <div class="sg-dashboard-chart-body-main-right">
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #dae1f1; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        10대
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #6d8fe4; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        20대
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #62bbdb; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        30대
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #6be1cf; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        40대
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #b4ff91; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        50대
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #f6ff6d; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        60대 이상
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #ff9d9d; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        미입력
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="sg-dashboard-chart-body">-->
+                        <!--<div class="sg-dashboard-chart-body-top">-->
+                            <!--<div class="sg-dashboard-chart-body-top-img"-->
+                                 <!--style="background-image: url('/pages/admin/assets/images/dashboard_gender_k_24.png')">-->
+                            <!--</div>-->
+                            <!--<div class="sg-dashboard-chart-body-top-title">-->
+                                <!--유저 나이별 성별 비율-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="sg-dashboard-chart-body-main">-->
+                            <!--<div class="sg-dashboard-chart-body-main-left">-->
+                                <!--<canvas class="chart chart-bar" chart-data="userGenderByAgeChart.data"-->
+                                        <!--chart-labels="userGenderByAgeChart.labels"-->
+                                        <!--chart-series="userGenderByAgeChart.series"-->
+                                        <!--chart-colors="userGenderByAgeChart.colors">-->
+                                <!--</canvas>-->
+                            <!--</div>-->
+                            <!--<div class="sg-dashboard-chart-body-main-right">-->
+                                <!--<div class="sg-dashboard-chart-body-main-right-item">-->
+                                    <!--<div class="sg-dashboard-chart-body-main-right-item-img"-->
+                                         <!--style="background-color: #ff9d9d; border: solid 1px #9b9b9b;">-->
+                                    <!--</div>-->
+                                    <!--<div class="sg-dashboard-chart-body-main-right-item-title">-->
+                                        <!--여성-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="sg-dashboard-chart-body-main-right-item">-->
+                                    <!--<div class="sg-dashboard-chart-body-main-right-item-img"-->
+                                         <!--style="background-color: #a6c0ff; border: solid 1px #9b9b9b;">-->
+                                    <!--</div>-->
+                                    <!--<div class="sg-dashboard-chart-body-main-right-item-title">-->
+                                        <!--남성-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                </div>
+            </div>
+
+            <div class="sg-dashboard-item">
+                <div class="sg-dashboard-item-title">
+                    가입 탈퇴 현황
+                </div>
+                <div class="sg-dashboard-chart">
+                    <div class="sg-dashboard-chart-top">
+                        <div class="sg-dashboard-chart-top-sign-up-status">
+                            <div class="sg-dashboard-chart-top-sign-up-status-item">
+                                <div class="sg-dashboard-chart-top-sign-up-status-item-top">
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-img"
+                                         style="background-image: url('/pages/admin/assets/images/dashboard_today_w_24.png')">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-title">
+                                        오늘
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-top-sign-up-status-body-today">
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-sign-up-today">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-sign-up-today-count">
+                                            {{dashboardInfo.usersStatus.singUpToday | numbers}}
+                                        </div>
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-sign-up-today-text">
+                                            오늘 가입자 수
+                                        </div>
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-delete-dropout-today"
+                                         style="color: #ffb4b4">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-delete-dropout-today-count">
+                                            {{dashboardInfo.usersStatus.deletedUserToday | numbers}}
+                                        </div>
+                                        <div class="sg-dashboard-chart-top-signup-status-body-delete-dropout-today-text">
+                                            오늘 탈퇴자 수
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="sg-dashboard-chart-top-sign-up-status-item">
+                                <div class="sg-dashboard-chart-top-sign-up-status-item-top">
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-img"
+                                         style="background-image: url('/pages/admin/assets/images/dashboard_remove_w_24.png')">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-title">
+                                        전체
+                                    </div>
+
+                                </div>
+                                <div class="sg-dashboard-chart-top-sign-up-status-body-dropout">
+
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-left"
+                                         style="color: #ffb4b4">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-left-table">
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-left-ratio">
+                                                {{dashboardInfo.usersStatus.usersDeletedTotal/dashboardInfo.usersStatus.usersTotal * 100 | roundUp}}<span>%</span>
+                                            </div>
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-left-text">
+                                                탈퇴율
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-right">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-right-top"
+                                             style="color: #ffb4b4">
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-right-top-user">
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-top-count">
+                                                    {{dashboardInfo.usersStatus.usersDeletedTotal | numbers}}
+                                                </div>
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-top-text">
+                                                    전체 탈퇴 회원수
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom">
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-user">
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-count">
+                                                    {{dashboardInfo.usersStatus.usersTotal | numbers}}
+                                                </div>
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-text">
+                                                    전체 가입수
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sg-dashboard-chart-body">
+                        <div class="sg-dashboard-chart-body-top">
+                            <div class="sg-dashboard-chart-body-top-img"
+                                 style="background-image: url('/pages/admin/assets/images/dashboard_trending_k_24.png')">
+
+                            </div>
+                            <div class="sg-dashboard-chart-body-top-title">
+                                월간 가입자, 탈퇴자 수
+                            </div>
+                            <div class="sg-dashboard-chart-body-filter">
+
+                            </div>
+                        </div>
+                        <div class="sg-dashboard-chart-body-main">
+                            <div class="sg-dashboard-chart-body-main-left">
+                                <canvas class="chart chart-line" chart-data="userChart.data"
+                                        chart-labels="userChart.labels" chart-series="userChart.series"
+                                        chart-options="userChart.options"
+                                        chart-dataset-override="userChart.datasetOverride"
+                                        chart-colors="userChart.colors"
+                                        chart-click="userChart.onClick">
+                                </canvas>
+                            </div>
+                            <div class="sg-dashboard-chart-body-main-right">
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #dcdcdc; border: solid 1px #9b9b9b;">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        가입자
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #ff8f8f; border: solid 1px #9b9b9b;">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        탈퇴자
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="sg-dashboard-item">
+                <div class="sg-dashboard-item-title">
+                    문의 현황
+                </div>
+                <div class="sg-dashboard-chart">
+                    <div class="sg-dashboard-chart-top">
+                        <div class="sg-dashboard-chart-top-sign-up-status">
+                            <div class="sg-dashboard-chart-top-sign-up-status-item">
+                                <div class="sg-dashboard-chart-top-sign-up-status-item-top">
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-img"
+                                         style="background-image: url('/pages/admin/assets/images/dashboard_today_w_24.png')">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-title">
+                                        오늘
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-top-sign-up-status-body-today">
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-sign-up-today">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-sign-up-today-count">
+                                            {{dashboardInfo.reportsStatus.reportsToday | numbers}}
+                                        </div>
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-sign-up-today-text">
+                                            오늘 문의 수
+                                        </div>
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-delete-dropout-today"
+                                         style="color: #71ffe9">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-delete-dropout-today-count">
+                                            {{dashboardInfo.reportsStatus.solvedToday | numbers}}
+                                        </div>
+                                        <div class="sg-dashboard-chart-top-signup-status-body-delete-dropout-today-text">
+                                            오늘 답변 수
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="sg-dashboard-chart-top-sign-up-status-item">
+                                <div class="sg-dashboard-chart-top-sign-up-status-item-top">
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-img"
+                                         style="background-image: url('/pages/admin/assets/images/dashboard_help_w_24.png')">
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-item-top-title">
+                                        전체
+                                    </div>
+
+                                </div>
+                                <div class="sg-dashboard-chart-top-sign-up-status-body-dropout">
+
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-left"
+                                         style="color: #71ffe9">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-left-table">
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-left-ratio">
+                                                {{dashboardInfo.reportsStatus.solved/dashboardInfo.reportsStatus.total * 100 | roundUp}}<span>%</span>
+                                            </div>
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-left-text">
+                                                총 답변율
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="sg-dashboard-chart-top-sign-up-status-body-right">
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-right-top"
+                                             style="color: #71ffe9">
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-right-top-report">
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-top-count">
+                                                    {{dashboardInfo.reportsStatus.solved | numbers}}
+                                                </div>
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-top-text">
+                                                    전체 답변 수
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom">
+                                            <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-report">
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-count">
+                                                    {{dashboardInfo.reportsStatus.total | numbers}}
+                                                </div>
+                                                <div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-text">
+                                                    전체 문의 수
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sg-dashboard-chart-body">
+                        <div class="sg-dashboard-chart-body-top">
+                            <div class="sg-dashboard-chart-body-top-img"
+                                 style="background-image: url('/pages/admin/assets/images/dashboard_trending_k_24.png')">
+
+                            </div>
+                            <div class="sg-dashboard-chart-body-top-title">
+                                월간 문의, 답변 수
+                            </div>
+                            <div class="sg-dashboard-chart-body-filter">
+
+                            </div>
+                        </div>
+                        <div class="sg-dashboard-chart-body-main">
+                            <div class="sg-dashboard-chart-body-main-left">
+                                <canvas class="chart chart-line" chart-data="reportChart.data"
+                                        chart-labels="reportChart.labels" chart-series="reportChart.series"
+                                        chart-options="reportChart.options"
+                                        chart-dataset-override="reportChart.datasetOverride"
+                                        chart-colors="reportChart.colors">
+                                </canvas>
+                            </div>
+                            <div class="sg-dashboard-chart-body-main-right">
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #dcdcdc; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        문의
+                                    </div>
+                                </div>
+                                <div class="sg-dashboard-chart-body-main-right-item">
+                                    <div class="sg-dashboard-chart-body-main-right-item-img"
+                                         style="background-color: #41b1a0; border: solid 1px #9b9b9b;">
+                                    </div>
+                                    <div class="sg-dashboard-chart-body-main-right-item-title">
+                                        단변
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="sg-dashboard-item">-->
+            <!--<div class="sg-dashboard-item-title">-->
+            <!--이미지 현황-->
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart">-->
+            <!--<div class="sg-dashboard-chart-top">-->
+
+            <!--<div class="sg-dashboard-chart-top-sign-up-status">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-item">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-item-top">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-item-top-img"-->
+            <!--style="background-image: url('/pages/admin/assets/images/dashboard_img_w_24.png')">-->
+
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-item-top-title">-->
+            <!--이미지-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-dropout">-->
+
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-left"-->
+            <!--style="color: white">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-left-table">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-left-ratio">-->
+            <!--{{dashboardInfo.imagesStatus.unauthorized/dashboardInfo.imagesStatus.total-->
+            <!--* 100 | roundUp}}<span>%</span>-->
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-left-text">-->
+            <!--비인증 이미지 비율-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-top"-->
+            <!--style="color: #ff9d9d;">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-top-image">-->
+
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-top-items">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-top-item">-->
+            <!--<span>{{dashboardInfo.imagesStatus.unauthorized}}</span>장-->
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-top-item">-->
+            <!--123,345,456 kb-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-top-title">-->
+            <!--비인증 이미지-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom"-->
+            <!--style="color: white;">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-image">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-items">-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-item">-->
+            <!--{{dashboardInfo.imagesStatus.total}} 장-->
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-item">-->
+            <!--123,345,456 kb-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="sg-dashboard-chart-top-sign-up-status-body-right-bottom-title">-->
+            <!--전체 이미지-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!---->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+/*
+This is CORE SCSS for common little style, not moudule.
+Moudule concept need in APP SCSS.
+USED with bootstrap's variables and mixins
+AND slogup's core-mixins in ./mixins
+*/
+
+@import "variables";
+@import "mixins";

@@ -1,0 +1,24 @@
+@import "../../import";
+
+#sgc-mass-notification-wrap {
+  div.sgc-container {
+
+  }
+}
+
+@media screen and (max-width: $tablet-max-width) {
+  #sgc-mass-notification-wrap {
+    div.sgc-container.sgc-responsive {
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: $mobile-max-width) {
+  #sgc-mass-notification-wrap {
+    div.sgc-container.sgc-responsive {
+
+    }
+  }
+}

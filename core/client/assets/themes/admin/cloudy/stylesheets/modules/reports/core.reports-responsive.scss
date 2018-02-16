@@ -1,0 +1,96 @@
+@import "../../import";
+.sg-core-responsive {
+    &#sg-report-manage {
+        //$sg-report-manage-main-item-width: 401px;
+        //$sg-report-manage-main-item-margin-right: 8px;
+        //$sg-report-manage-container-padding: 12px;
+
+        .sg-report-manage-container {
+            @media screen and (max-width: $web-min-width) {
+                width: 100%;
+            }
+
+            @media screen and (max-width: $web-container-size + $g-menu-size) {
+                width: 100%;
+                padding: 25px 12px;
+            }
+
+            //@media screen and (min-width: $web-min-width) {
+            //    width: 100%;
+            //}
+            //
+            //@media screen and (min-width: $sg-report-manage-main-item-width * 2 + $sg-report-manage-main-item-margin-right * 2 + $sg-report-manage-container-padding * 2 + $g-menu-size) {
+            //    width: $sg-report-manage-main-item-width * 2 + $sg-report-manage-main-item-margin-right * 1 + $sg-report-manage-container-padding * 2;
+            //}
+            //
+            //@media screen and (min-width: $sg-report-manage-main-item-width * 3 +  $sg-report-manage-main-item-margin-right * 3 + $sg-report-manage-container-padding * 2 + $g-menu-size) {
+            //    width: $sg-report-manage-main-item-width * 3 + $sg-report-manage-main-item-margin-right * 2 + $sg-report-manage-container-padding * 2;
+            //}
+
+            @media screen and (max-width: 426px) {
+                .sg-report-manage-menu {
+                    .sg-report-manage-menu-search {
+                        width: 100%;
+                        margin-top: 8px;
+                    }
+                }
+            }
+
+
+            .sg-report-manage-main {
+                .sg-report-manage-main-list {
+                    .sg-report-manage-main-item {
+
+                        @media screen and (max-width: $web-container-size + $g-menu-size) {
+                            width: calc(50% - 4px);
+                            margin-right: 8px;
+                            &:nth-child(3n) {
+                                margin-right: 8px;
+                            }
+                            &:nth-child(2n) {
+                                margin-right: 0;
+                            }
+                        }
+
+                        @media screen and (max-width: $tablet-max-width) {
+                            margin-right: 0;
+                            width: 100%;
+                        }
+
+                        //@media screen and (max-width: $web-min-width) {
+                        //    margin-right: 0;
+                        //    width: 100%;
+                        //}
+                        //
+                        //@media screen and (min-width: $web-min-width) {
+                        //    width: 100%;
+                        //}
+                        //
+                        //@media screen and (min-width: $web-min-width) and (max-width: $sg-report-manage-main-item-width * 2 + $sg-report-manage-main-item-margin-right * 2 + $sg-report-manage-container-padding * 2 - 1px + $g-menu-size) {
+                        //    &:nth-child(1n) {
+                        //        margin-right: 0;
+                        //    }
+                        //}
+                        //
+                        //@media screen and (min-width: $sg-report-manage-main-item-width * 2 + $sg-report-manage-main-item-margin-right * 2 + $sg-report-manage-container-padding * 2 + $g-menu-size) and (max-width: $sg-report-manage-main-item-width * 3 + $sg-report-manage-main-item-margin-right * 3 + $sg-report-manage-container-padding * 2 -1px + $g-menu-size) {
+                        //    &:nth-child(2n) {
+                        //        margin-right: 0;
+                        //    }
+                        //    width: $sg-report-manage-main-item-width;
+                        //}
+                        //
+                        //@media screen and (min-width: $sg-report-manage-main-item-width * 3 + $sg-report-manage-main-item-margin-right * 3 + $sg-report-manage-container-padding * 2 + $g-menu-size) {
+                        //    &:nth-child(3n) {
+                        //        margin-right: 0;
+                        //    }
+                        //    width: $sg-report-manage-main-item-width;
+                        //}
+
+                    }
+
+                }
+
+            }
+        }
+    }
+}

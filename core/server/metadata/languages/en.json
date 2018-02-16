@@ -1,0 +1,10 @@
+{
+  "login": "Login",
+  "logout": "Logout",
+  "signUp": "Sign Up",
+  "en": "English",
+  "ko": "Korean",
+  "reportTitle": "문의에 대한 답변입니다.",
+  "confirm": "OK",
+  "cancel": "Cancel"
+}

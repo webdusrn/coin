@@ -1,0 +1,69 @@
+<div id="sg-image-manage" ng-controller="ImagesCtrl" data-ng-class="{'sg-core-responsive': vm.FLAG.isResponsive == true}">
+
+    <div class="sg-image-manage-container">
+        <div class="sg-image-manage-top">
+            <div class="sg-image-manage-title sgc-titles">
+                {{'imageManage' | translate}}
+            </div>
+            <select ng-model="form.folder" class="sg-image-manage-folder sgc-option">
+                <option ng-repeat="x in imageFolders" value="{{x}}">{{x | translate}}</option>
+            </select>
+        </div>
+
+        <div class="sg-image-manage-menu">
+            <select ng-model="form.searchFieldUser" class="sg-image-manage-menu-option sgc-option">
+                <option ng-repeat="x in enumSearchFieldsUser" value="{{x}}">{{x | translate}}</option>
+            </select>
+            <div class="sg-image-manage-menu-search">
+                <form ng-submit="findImages()">
+                    <input class="sgc-search-input" ng-model="form.searchItemUser" type="text"
+                           placeholder="{{'typeKeywords'|translate}}">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="sg-image-manage-main">
+            <div class="sg-image-manage-main-top">
+                <select ng-model="isAuthorized" class="sg-image-manage-main-top-filter sgc-filter">
+                    <option ng-repeat="x in enumAuthorized" value="{{x}}">{{x | translate}}</option>
+                </select>
+                <div class="sg-image-manage-main-top-total sgc-total">
+                    Total <span>{{imageListTotal}}</span>
+                </div>
+            </div>
+            <div class="sg-image-manage-main-list">
+                <div class="sg-image-manage-main-list-item" ng-repeat="image in imageList track by $index">
+                    <div class="sg-image-manage-main-list-item-body"
+                         ng-style="{'background-image': 'url('+ (image | imageUrl : 'l') +')'}" ng-click="showImageDetail(image)">
+                        <div class="sg-image-manage-main-list-item-unauthorized-overlay" ng-if="!image.authorized">
+
+                        </div>
+                    </div>
+                    <div class="sg-image-manage-main-list-item-bottom">
+                        <div class="sg-image-manage-main-list-item-top-delete" ng-click="deleteImage($index)"></div>
+                        <div class="sg-image-manage-main-list-item-top-authorization"
+                             ng-click="toggleImageAuthorization($index)"
+                             ng-if="!image.authorized">{{'authorized'|translate}}
+                        </div>
+                        <div class="sg-image-manage-main-list-item-top-unauthorization"
+                             ng-click="toggleImageAuthorization($index)"
+                             ng-if="image.authorized">{{'unauthorized'|translate}}
+                        </div>
+                    </div>
+                    <!--{{image.authorized}}-->
+                    <!--{{image.createdAt}}-->
+                </div>
+            </div>
+
+            <div class="sg-image-manage-main-more-container">
+                <button class="sg-image-manage-main-more sgc-btn-more" ng-if="more" ng-click="findImagesMore()">
+                    {{'more' | translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div data-ng-include src="'modules/admin/images/views/core.images-detail.html'" ng-if="isImageDetailVisible"></div>
+</div>

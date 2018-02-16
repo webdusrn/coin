@@ -1,0 +1,322 @@
+@import "../../import";
+
+@media screen and (max-width: $web-container-size + $g-menu-size) {
+  .sg-core-responsive{
+    &#sg-core-terms-manage-wrap {
+      position: relative;
+      height: inherit;
+      background-color: white;
+      div.sg-core-container {
+        position: relative;
+
+        max-width: $web-container-size;
+        padding: 25px 12px;
+        margin: auto;
+        height: inherit;
+        div.sg-core-terms-header {
+          position: relative;
+          @include after-clear();
+          div.sg-core-title {
+            position: relative;
+            float: left;
+            p {
+              font-size: 24px;
+              font-weight: 400;
+              color: #121428;
+              padding-bottom: 16px;
+            }
+          }
+          div.sg-core-hint {
+            display: none;
+            float: left;
+            p {
+              line-height: 40px;
+              margin-left: 12px;
+              color: #d4404e;
+            }
+          }
+          select.sg-core-select {
+            position: relative;
+            float: right;
+          }
+        }
+        div.sg-core-terms-main {
+          position: relative;
+          @include after-clear();
+          div.sg-core-list-wrap {
+            background-color: white;
+            min-height: inherit;
+            float: none;
+            padding: 0px;
+            position: absolute;
+            top: -70px;
+            right: 0px;
+            display: inline-block;
+            width: 111px;
+            @include after-clear();
+            select.sg-core-filter {
+              position: relative;
+              float: left;
+              width: calc(100% - 111px);
+              background-color: #f1f3f8;
+              border-radius: 0;
+
+              padding-left: 18px;
+
+              border: none;
+              height: 42px;
+
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              padding-right: 32px;
+
+              cursor: pointer;
+
+              background-image: url('/assets/themes/admin/cloudy/images/ic_arrow_down_17_10_2x.png');
+              background-repeat: no-repeat;
+              background-size: 17px 10px;
+              background-position: right 8px center;
+
+              background-color: #e2e5ee;
+              &:hover {
+                background-color: #d8dce8;
+              }
+            }
+            button.sg-core-button {
+              float: left;
+              width: 111px;
+              height: inherit;
+              background-color: $soft-blue;
+
+              color: white;
+              text-align: center;
+              line-height: 42px;
+
+              cursor: pointer;
+
+              background-image: url('/assets/themes/admin/cloudy/images/ic_terms_create_20_2x.png');
+
+              background-repeat: no-repeat;
+              background-size: 20px;
+              background-position: 14px center;
+              padding-left: 22px;
+
+              &:hover {
+                background-color: $soft-blue-hover;
+              }
+            }
+            ul {
+              position: relative;
+              display: none;
+              li {
+                position: relative;
+
+                margin: 8px 0;
+
+                line-height: 40px;
+                padding-left: 8px;
+                padding-right: 8px;
+                border-radius: 3px;
+                font-size: 16px;
+                font-weight: normal;
+                cursor: pointer;
+
+                &.sg-core-selected {
+                  p {
+                    color: #35334a;
+                    font-weight: 700;
+                  }
+                }
+                p {
+                  position: relative;
+                  color: #9b9fad;
+                }
+
+                &:hover {
+                  background-color: rgba(0, 0, 0, 0.1);
+                }
+              }
+            }
+          }
+          div.sg-core-content-wrap {
+            position: relative;
+            background-color: white;
+            margin-left: 0px;
+            width: 100%;
+            min-height: inherit;
+            float: none;
+            div.sg-core-title {
+              display: none;
+            }
+            div.sg-core-version-wrap {
+              $sg-core-version-wrap-height: 50px;
+
+              position: relative;
+              border-bottom: 1px solid #d5dbec;
+              height: inherit;
+              padding-bottom: 10px;
+
+              @include after-clear();
+              button.sg-core-button {
+                position: relative;
+
+                margin: 0px;
+
+                border: solid 1px $soft-blue;
+                width: 28px;
+                height: 28px;
+                color: #6d8fe4;
+                float: left;
+
+                border-radius: 50%;
+                cursor: pointer;
+                background-color: white;
+
+                &:hover {
+                  background-color: $soft-blue;
+                  color: white;
+                  i {
+                    background-color: white;
+                  }
+                }
+
+                i {
+                  position: absolute;
+                  top: calc(50% - 0.5px);
+                  left: 7px;
+                  width: 12px;
+                  height: 1px;
+                  background-color: $soft-blue;
+                  &:nth-of-type(1) {
+                    -webkit-transform: rotate(90deg);
+                    -ms-transform: rotate(90deg);
+                    transform: rotate(90deg);
+                  }
+                }
+                span {
+                  display: none;
+                }
+              }
+              div.sg-core-version {
+                position: relative;
+                float: left;
+
+                line-height: 28px;
+                padding: 0 6px;
+                color: #8d93a6;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: normal;
+                cursor: pointer;
+                margin-left: 8px;
+
+                &:first-child {
+                  margin-left: 0;
+                }
+
+                p {
+                  position: relative;
+                }
+
+                &:hover {
+                  background-color: rgba(126, 134, 154, 0.1);
+                }
+
+                &.sg-selected {
+                  color: $soft-blue;
+                  font-weight: 500;
+                }
+              }
+            }
+            div.sg-core-date-wrap {
+              position: relative;
+
+              height: 37px;
+              line-height: 37px;
+              background-color: rgba(#bfc3cf, 0.2);
+              padding: 0 12px;
+              border-bottom: 1px solid $pale-grey;
+
+              @include after-clear();
+              &.sg-core-applied {
+                background-color: #dfeada;
+                div.sg-core-applied {
+                  display: block;
+                }
+              }
+              div.sg-core-date-content {
+                position: relative;
+                float: left;
+                @include after-clear();
+                div.sg-core-date {
+                  position: relative;
+                  float: left;
+
+                  margin-right: 6px;
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #5a5f6e;
+                }
+                div.sg-core-date-info {
+                  position: relative;
+                  float: left;
+
+                  font-size: 13px;
+                  font-weight: normal;
+                  color: #505c80;
+                }
+              }
+              div.sg-core-applied {
+                position: relative;
+                display: none;
+                float: right;
+                @include after-clear();
+                div.sg-core-img {
+                  position: relative;
+                  float: left;
+
+                  margin-top: 12px;
+                  margin-right: 8px;
+
+                  width: 12px;
+                  height: 12px;
+
+                  background-image: url('/assets/themes/admin/cloudy/images/ic_terms_check_12_2x.png');
+
+                  background-repeat: no-repeat;
+                  background-size: 12px;
+                  background-position: center;
+                }
+                p {
+                  display: none;
+                }
+              }
+            }
+            div.sg-core-content {
+              position: relative;
+              padding: 16px 16px;
+              div.sg-core-body {
+                position: relative;
+                font-size: 12px;
+                line-height: 20px;
+                color: #1b1e33;
+              }
+            }
+            div.sg-core-button-wrap {
+              position: relative;
+
+              padding: 0 0 20px 0;
+              @include after-clear();
+              button.sg-core-button {
+                position: relative;
+                float: right;
+                margin-right: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

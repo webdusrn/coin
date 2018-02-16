@@ -1,0 +1,62 @@
+@import "../../import";
+
+
+@media screen and (max-width: $web-container-size + $g-menu-size) {
+    .sg-core-responsive {
+        &#sg-info-manage {
+            .sg-info-manage-container {
+                width: 100%;
+                padding: 25px 12px;
+                .sg-info-manage-title {
+
+                }
+
+                .sg-info-manage-body {
+                    margin-top: 28px;
+                    padding: 20px 0;
+
+                    .sg-info-manage-body-top {
+                        padding: 0 80px 60px 80px;
+                    }
+
+                    .sg-info-manage-body-float {
+                        &:first-child {
+                            margin-top: 0;
+                        }
+
+                    }
+                    .sg-info-manage-body-bottom {
+                        padding: 32px 20px 20px 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: $tablet-max-width){
+    .sg-core-responsive {
+        &#sg-info-manage {
+            .sg-info-manage-container {
+
+                .sg-info-manage-body {
+                    .sg-info-manage-body-top {
+                        padding: 0px 10px 30px 10px;
+                    }
+
+                    .sg-info-manage-body-float {
+                        .sg-info-manage-body-item{
+                            display: block;
+                            width: 100%;
+                            padding: 0px 30px;
+                            &:nth-child(2){
+                                margin-left: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,246 @@
+#sg-report-manage-detail {
+    $sg-report-manage-detail-container-width: 500px;
+
+    .sg-report-manage-detail-container {
+        border-radius: 5px;
+
+        z-index: 13;
+
+        position: relative;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+
+        background-color: white;
+
+        @include after-clear();
+
+        .sg-report-manage-detail-header-right-close-btn {
+            position: absolute;
+            top: -34px;
+            right: 0;
+
+            width: 30px;
+            height: 30px;
+
+            cursor: pointer;
+
+            background-image: url('/assets/themes/admin/cloudy/images/ic_close_24_2x.png');
+            background-repeat: no-repeat;
+            background-size: 24px;
+            background-position: center;
+        }
+        .sg-report-manage-detail-top {
+            height: 62px;
+            line-height: 62px;
+            border-bottom: 1px solid #d5dbec;
+            padding-left: 20px;
+            padding-right: 20px;
+
+            @include after-clear();
+
+            .sg-report-manage-detail-top-solved-img {
+                margin-top: 21px;
+                float: left;
+
+                background-color: #51c7b5;
+                border-radius: 50%;
+
+                width: 16px;
+                height: 16px;
+
+                line-height: 48px;
+            }
+
+            .sg-report-manage-detail-top-unsolved-img {
+                margin-top: 21px;
+                float: left;
+
+                background-color: #b4bacd;
+                border-radius: 50%;
+
+                width: 16px;
+                height: 16px;
+
+                line-height: 48px;
+            }
+
+            .sg-report-manage-detail-top-solved {
+                float: left;
+                font-size: 16px;
+                margin-left: 12px;
+                margin-top: -2px;
+
+                font-weight: 500;
+                color: #121428;
+            }
+
+            .sg-report-manage-detail-top-unsolved {
+                float: left;
+                font-size: 16px;
+                margin-left: 12px;
+                margin-top: -2px;
+
+                font-weight: 500;
+                color: #121428;
+            }
+
+            .sg-report-manage-detail-top-nick {
+
+            }
+        }
+
+        .sg-report-manage-detail-body {
+
+            .sg-report-manage-detail-body-body {
+                padding: 20px;
+                font-size: 14px;
+            }
+
+            .sg-report-manage-detail-body-bottom {
+                height: 42px;
+                line-height: 42px;
+                padding: 0 20px;
+                @include after-clear();
+                .sg-report-manage-detail-body-bottom-user-img {
+                    float: left;
+
+                    margin-top: 9px;
+                    margin-right: 9px;
+
+                    width: 26px;
+                    height: 26px;
+
+                    border-radius: 50%;
+                    border: 1px solid $divider;
+
+                    background-image: url('/assets/themes/admin/cloudy/images/ic_report_avatar_26_2x.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    -webkit-background-size: 26px;
+                    background-size: 26px;
+
+                }
+                .sg-report-manage-detail-top-nick {
+                    float: left;
+
+                    font-size: 16px;
+                    color: #6d8fe4;
+                }
+                .sg-report-manage-detail-body-crated-at {
+                    float: right;
+
+                    font-size: 12px;
+                    color: #b4bacd;
+                }
+            }
+
+        }
+
+        .sg-report-manage-detail-reply {
+            padding: 16px 20px;
+            border-top: 1px solid #d5dbec;
+            border-bottom: 1px solid #d5dbec;
+
+            textarea {
+                padding: 16px;
+
+                border-radius: 5px;
+                background-color: rgb(241, 243, 248);
+
+                margin: 0;
+                width: 100%;
+                height: 200px;
+                resize: none;
+
+            }
+
+            .sg-report-manage-detail-bottom-notification {
+                margin-top: 8px;
+
+                @include after-clear();
+                .sg-report-manage-detail-bottom-notification-item {
+                    float: left;
+                    margin-right: 8px;
+                    text-align: center;
+                    cursor: pointer;
+
+                    .sg-report-manage-detail-bottom-notification-item-img {
+                        width: 38px;
+                        height: 38px;
+                        border: solid 1px #c2c7d7;
+                        border-radius: 50%;
+                    }
+                    .sg-report-manage-detail-bottom-notification-item-text {
+                        margin-top: 4px;
+                        font-size: 11px;
+                        color: #8d93a6;
+                    }
+
+                    .sms {
+                        background-image: url('/assets/themes/admin/cloudy/images/ic_report_message_normal_45_2x.png');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 45px;
+                    }
+                    .email {
+                        background-image: url('/assets/themes/admin/cloudy/images/ic_report_mail_normal_45_2x.png');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 45px;
+                    }
+                    .push {
+                        background-image: url('/assets/themes/admin/cloudy/images/ic_report_push_normal_45_2x.png');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 45px;
+                    }
+
+                    &.active {
+                        .sg-report-manage-detail-bottom-notification-item-img {
+                            border: solid 1px #1b1e33;
+                        }
+                        .sg-report-manage-detail-bottom-notification-item-text {
+                            color: #1b1e33;
+                        }
+                        .sms {
+                            background-image: url('/assets/themes/admin/cloudy/images/ic_report_message_active_45_2x.png');
+                        }
+                        .email {
+                            background-image: url('/assets/themes/admin/cloudy/images/ic_report_mail_active_45_2x.png');
+                        }
+                        .push {
+                            background-image: url('/assets/themes/admin/cloudy/images/ic_report_push_active_45_2x.png');
+                        }
+                    }
+
+                    &:active {
+                        transform: scale(0.95);
+                    }
+
+                }
+            }
+
+        }
+
+        .sg-report-manage-detail-bottom {
+            padding: 16px 20px;
+            width: 292px;
+            float: right;
+            @include after-clear();
+
+            .sg-report-manage-detail-bottom-save-btn {
+                float: right;
+                margin-left: 12px;
+            }
+            .sg-report-manage-detail-bottom-exit-btn {
+                float: right;
+            }
+        }
+    }
+
+}

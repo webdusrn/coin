@@ -1,0 +1,142 @@
+<script type="text/ng-template" id="coreNoticeDetail.html">
+    <div id="sg-notice-manage-detail">
+
+        <div class="sg-notice-manage-detail-container">
+
+            <!--<div class="sg-notice-manage-detail-title">-->
+            <!--공지사항 보기-->
+            <!--</div>-->
+
+            <div class="sg-notice-manage-detail-close" ng-click="cancel()">
+            </div>
+
+            <div class="sg-notice-manage-detail-body" ng-if="!isNoticeEditMode">
+
+                <div class="sg-notice-manage-detail-body-top">
+                    <div class="sg-notice-manage-detail-body-type">
+                        <div class="sg-notice-manage-detail-body-type-title">
+                            {{form.type | translate}}
+                        </div>
+                    </div>
+
+                    <div class="sg-notice-manage-detail-body-country">
+                        <div class="sg-notice-manage-detail-body-country-img">
+
+                        </div>
+                        <div class="sg-notice-manage-detail-body-country-title">
+                            {{form.country | translate}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-detail-body-sub-top">
+                    <div class="sg-notice-manage-detail-body-title">
+                        {{form.title}}
+                    </div>
+                    <div class="sg-notice-manage-detail-body-created-at">
+                        {{noticeList[currentIndex].createdAt | microTimeToDate}}
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-detail-body-body">
+                    <div class="sg-notice-manage-detail-body-body-body" ng-bind-html="form.body | trustAsHtml">
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-detail-body-date" data-ng-hide="form.startDate == null && from.endDate == null">
+                    <div class="sg-notice-manage-detail-date">
+                        {{form.startDate}} ~ {{form.endDate}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sg-notice-manage-detail-body-edit"  ng-if="isNoticeEditMode">
+
+                <div class="sg-notice-manage-detail-body-top">
+                    <div class="sg-notice-manage-detail-body-type">
+                        <div class="sg-notice-manage-detail-titles">
+                            {{'type'| translate}}
+                        </div>
+                        <div class="sg-notice-manage-detail-body-type-body">
+                            <select ng-model="form.type" class="sg-main-view-top-second-sort-btn sgc-option" required>
+                                <option ng-repeat="x in noticeTypes" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sg-notice-manage-detail-body-country">
+                        <div class="sg-notice-manage-detail-titles">
+                            {{'country'| translate}}
+                        </div>
+                        <div class="sg-notice-manage-detail-body-country-body">
+                            <select ng-model="form.country" class="sg-main-view-top-second-sort-btn sgc-option" required>
+                                <option ng-repeat="x in noticeCountries" value="{{x}}">{{x | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-detail-body-title">
+                    <div class="sg-notice-manage-detail-titles">
+                        {{'title'| translate}}
+                    </div>
+                    <input ng-model="form.title" type="text" class="sg-notice-manage-detail-body-title-body sgc-input"
+                           placeholder="{{'title'|translate}}" required>
+                </div>
+
+                <div class="sg-notice-manage-detail-body-body">
+                    <div class="sg-notice-manage-detail-titles">
+                        {{'body'| translate}}
+                    </div>
+                    <div class="sg-notice-manage-detail-body-body-body">
+                        <form>
+                            <textarea ck-editor ng-model="form.body" required></textarea>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-create-body-createdAt">
+                    <div class="sg-notice-manage-detail-titles">
+                        {{'startDate'| translate}}
+                    </div>
+                    <div class="datepicker" date-format="yyyy-MM-dd">
+                        <input type="text" class=" sg-filter-select sg-g-input sg-left"
+                               data-ng-model="form.startDate"
+                               placeholder="{{ 'startDate' | translate }}"
+                        >
+                    </div>
+                </div>
+
+                <div class="sg-notice-manage-create-body-createdAt">
+                    <div class="sg-notice-manage-detail-titles">
+                        {{'endDate'| translate}}
+                    </div>
+                    <div class="datepicker" date-format="yyyy-MM-dd">
+                        <input type="text" class=" sg-filter-select sg-g-input sg-left"
+                               data-ng-model="form.endDate"
+                               placeholder="{{ 'endDate' | translate }}"
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sg-notice-manage-detail-bottom">
+                <button class="sg-notice-manage-detail-bottom-edit-btn sgc-btn-action" ng-click="updateNotice()"
+                        ng-if="isNoticeEditMode">
+                    {{'complete'|translate}}
+                </button>
+                <button class="sg-notice-manage-detail-bottom-edit-btn sgc-btn-action" ng-click="startEditMode()"
+                        ng-if="!isNoticeEditMode">
+                    {{'edit'|translate}}
+                </button>
+                <button class="sg-notice-manage-detail-bottom-cancel-btn sgc-btn-cancel" ng-click="exitEditMode()"
+                        ng-if="isNoticeEditMode">
+                    {{'cancel'|translate}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</script>

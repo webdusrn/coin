@@ -1,0 +1,89 @@
+body#bb-api-wrap {
+  background: #F1F2F6;
+  font-family: "Sans-serif";
+
+  h1 {
+    text-align: center;
+    font-size: 3em;
+    span {
+      font-size: 0.625em;
+    }
+  }
+  fieldset {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: none;
+  }
+  h3 {
+    font-weight: bold;
+    margin-top: 0;
+    text-indent: 20px;
+    margin-bottom: 20px;
+  }
+  fieldset legend {
+    color: #555;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  fieldset legend strong.design {
+    color: #c23b37;
+  }
+  fieldset legend strong.development {
+    color: #c2783f;
+  }
+  fieldset legend strong.staging {
+    color: #c2bd43;
+  }
+  fieldset legend strong.release {
+    color: #57c243;
+  }
+  fieldset p.help-block {
+    color: #e82c21;
+    text-indent: 5px;
+    font-size: 0.875em;
+    font-weight: bold;
+  }
+  .nav-tabs {
+    background-color: #f1f4f8;
+  }
+  .success {
+    color: #1cac46
+  }
+  .fail {
+    color: #e87124
+  }
+  .error {
+    color: #e82c21
+  }
+  .api-list {
+    margin-bottom: 30px;
+  }
+  .url-name {
+    display: inline-block;
+    font-size: 13px;
+    margin: 10px 0;
+    padding: 5px;
+  }
+  .category-name {
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.05);
+
+    i {
+      font-size: 12px;
+      margin-left: 5px;
+    }
+  }
+  .category-name:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .btn {
+    cursor: pointer;
+  }
+}
